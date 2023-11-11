@@ -29,15 +29,6 @@ return {
       event = { "BufRead", "BufNewFile" },
       enabled = Is_Enabled("nvim-treesitter-textobjects"),
     },
-    -- {
-    --   "David-Kunz/treesitter-unit",
-    --   config = function()
-    --     vim.keymap.set("x", "iu", ':lua require("treesitter-unit").select()<CR>', { noremap = true, desc = "Inside TS unit" })
-    --     vim.keymap.set("x", "au", ':lua require("treesitter-unit").select(true)<CR>', { noremap = true, desc = "Around TS unit" })
-    --     vim.keymap.set("o", "iu", ':<c-u>lua require"treesitter-unit".select()<CR>', { noremap = true, desc = "Inside TS unit" })
-    --     vim.keymap.set("o", "au", ':<c-u>lua require"treesitter-unit".select(true)<CR>', { noremap = true, desc = "Around TS unit" })
-    --   end,
-    -- },
   },
   config = function()
     require("nvim-treesitter.configs").setup({
@@ -61,12 +52,15 @@ return {
         "markdown",
         "markdown_inline",
         "php",
+        "python",
+        "query",
         "regex",
         "rust",
+        "sql",
         "ssh_config",
+        "toml",
         "tsx",
         "typescript",
-        "toml",
         "vim",
         "vimdoc",
         "yaml",
@@ -74,7 +68,7 @@ return {
       sync_install = false,
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = { "markdown "},
       },
       indent = { enable = true },
       context_commentstring = {

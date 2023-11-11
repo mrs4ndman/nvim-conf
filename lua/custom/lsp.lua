@@ -23,9 +23,6 @@ M.capabilities.textDocument.completion.completionItem = {
   },
 }
 
--- Luasnip setup
-require("luasnip.loaders.from_vscode").lazy_load()
-
 -- First, Native LSP attach
 local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "[LSP] Go to Definition", buffer = bufnr })

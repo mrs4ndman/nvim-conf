@@ -144,11 +144,12 @@ function M.git_component()
     local gitdir = vim.fn.finddir(".git", filepath .. ";")
     return gitdir and #gitdir > 0 and #gitdir < #filepath
   end
+  local git_icon = icons.misc.git
   local head = vim.b.gitsigns_head
   if (not head) or not check_git_workspace then
     return ""
   end
-  return string.format("%%#StatuslineGit# %s", head)
+  return string.format("%%#StatuslineGit#%s %s", git_icon, head)
 end
 
 --- Noice key status

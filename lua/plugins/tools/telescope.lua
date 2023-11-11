@@ -14,12 +14,12 @@ return {
   },
   keys = {
     -- TELESCOPE
-    { "<leader>tf",  "<cmd>Telescope find_files<CR>",     desc = "Find files" },
-    { "<leader>tg",  "<cmd>Telescope grep_string<CR>",    desc = "Grep through files" },
-    { "<leader>tb",  "<cmd>Telescope buffers<CR>",        desc = "List buffers" },
-    { "<leader>vh",  "<cmd>Telescope help_tags<CR>",      desc = "Help tags" },
-    { "<leader>sg",  "<cmd>Telescope grep_string<CR>",    desc = "Fast string grep" },
-    { "<leader>tr",  "<cmd>Telescope oldfiles<CR>",       desc = "Recent files" },
+    { "<leader>tf", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+    { "<leader>tg", "<cmd>Telescope live_grep<CR>", desc = "Grep through files" },
+    { "<leader>tb", "<cmd>Telescope buffers<CR>", desc = "List buffers" },
+    { "<leader>vh", "<cmd>Telescope help_tags<CR>", desc = "Help tags" },
+    { "<leader>sg", "<cmd>Telescope grep_string<CR>", desc = "Fast string grep" },
+    { "<leader>tr", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
     { "<leader>tli", "<cmd>Telescope lsp_incoming_calls", desc = "LSP incoming calls" },
     { "<leader>tlo", "<cmd>Telescope lsp_outgoing_calls", desc = "LSP outgoing calls" },
   },
@@ -137,7 +137,7 @@ return {
       vim.cmd(cmd)
     end
 
-    local opts = {
+    local color_opts = {
       prompt_title = "Which color?",
       layout_strategy = "vertical",
       layout_config = {
@@ -147,14 +147,14 @@ return {
       },
       sorting_strategy = "ascending",
       finder = finders.new_table({
-        "tokyodark",
         "tokyonight",
-        "oxocarbon",
         "catppuccin",
         "rose-pine",
+        "tokyodark",
+        "oxocarbon",
         "enfocado",
-        "material-deep-ocean",
         "fluoromachine",
+        -- "material-deep-ocean",
         -- "github_dark_high_contrast",
         -- "carbonfox",
         -- "doom-one",
@@ -191,9 +191,11 @@ return {
       end,
     }
 
-    local colors = pickers.new(opts)
+    local colors = pickers.new(color_opts)
 
-    vim.api.nvim_create_user_command("Themer", function() colors:find() end, {})
+    vim.api.nvim_create_user_command("Themer", function()
+      colors:find()
+    end, {})
 
     -- last-color plugin
     -- local theme = require("last-color").recall() or "tokyonight"

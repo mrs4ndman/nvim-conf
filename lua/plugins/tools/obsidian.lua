@@ -9,34 +9,47 @@ return {
   "epwalsh/" .. plugin,
   enabled = Is_Enabled(plugin),
   lazy = true,
-  event = { "BufReadPre ~/Documents/Obsidian Vaults/**.md" },
+  event = {
+    "BufReadPre " .. vim.fn.expand "~" .. "/notes/HS-1-Doble/**.md",
+    "BufReadPre " .. vim.fn.expand "~" .. "/Documents/Obsidian Vaults/**.md",
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "mrs4ndman/nvim-cmp",
     "nvim-telescope/telescope.nvim",
   },
   opts = {
-    dir = "~/Documents/Obsidian Vaults",
-    notes_subdir = "new_notes",
+    workspaces = {
+      {
+        name = "hs",
+        path = "~/notes/HS-1-Doble"
+      },
+      {
+        name = "personal",
+        path = "~/Documents/Obsidian Vaults"
+      }
+    },
     completion = {
       nvim_cmp = true,
       min_chars = 2,
-      new_notes_location = "notes_subdir",
+      new_notes_location = "current_dir",
+    },
+    mappings = {
+      ["gf"] = {
+        action = function()
+          return require("obsidian").util.gf_passthrough()
+        end,
+        opts = { noremap = false, expr = true, buffer = true },
+      }
     },
     follow_url_func = function(url)
       vim.fn.jobstart({"xdg-open", url})
     end,
     open_app_foreground = true,
     finder = "telescope.nvim",
+    open_notes_in = "current",
   },
   config = function(_, opts)
     require("obsidian").setup(opts)
-    vim.keymap.set("n", "gf", function()
-      if require("obisidian").util.cursor_on_markdown_link() then
-        return "<cmd>ObsidianFollowLink<CR>"
-      else
-        return "gf"
-      end
-    end, { noremap = false, expr = true })
   end,
 }

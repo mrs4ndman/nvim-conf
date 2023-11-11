@@ -8,7 +8,8 @@ local plugin = "flit.nvim"
 return {
   "ggandor/" .. plugin,
   enabled = Is_Enabled(plugin),
-  lazy = false,
+  event = "BufRead",
+  -- lazy = false,
   opts = function(_, opts)
     if Use_Defaults(plugin) then
       opts = opts

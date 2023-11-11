@@ -25,7 +25,7 @@ return {
         ["->"] = "<-",
         ["?"] = "¿",
         ["<"] = ">",
-        ["[]"] = "{}",
+        ["[x]"] = "[ ]",
         ["enabled"] = "disabled",
         ["enable"] = "disable",
         ["active"] = "inactive",

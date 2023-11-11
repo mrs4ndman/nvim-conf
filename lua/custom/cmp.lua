@@ -9,7 +9,7 @@ return function(_, opts)
     -- Local variables
     local cmp = require("cmp")
     local luasnip = require("luasnip")
-    require("luasnip.loaders.from_snipmate").load({ paths = "~/dotfiles/nvim/.config/nvim/snippets/" })
+    local lspkind = require("lspkind")
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
@@ -27,6 +27,10 @@ return function(_, opts)
 
     local performance = {
       max_view_entries = 50,
+    }
+
+    local view = {
+      entries = { name = "custom", selection_order = "bottom_up" },
     }
 
     local matching = {
@@ -55,23 +59,26 @@ return function(_, opts)
 
     local formatting = {
       -- changing the order of fields so the icon is the first
-      fields = { "menu", "abbr", "kind" },
-
-      -- here is where the change happens
-      format = require("lspkind").cmp_format({
-        with_text = true,
-        menu = {
-          buffer = "󰦨",
-          path = "/",
-          nvim_lsp = "λ",
-          luasnip = "⋗",
-          vsnip = "V",
-          nvim_lua = "Π",
-          Codeium = "C",
-          codeium = "󱍋",
+      fields = { "kind", "abbr", "menu" },
+      format = function(entry, vim_item)
+        vim_item.menu = ({
+          codeium = "[ ] ",
+          buffer = "[󰦨]",
+          git = "[" .. require("core.icons").misc.git .. "]",
+          luasnip = "[LS]",
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[Π]",
           omni = "[Ø]",
-        },
-      }),
+          path = "[/]",
+          treesitter = "[TS]",
+          -- tmux = '[Tmux]',
+          -- vsnip = "[V]",
+        })[entry.source.name]
+        vim_item.menu = (vim_item.menu or "") .. " " .. (vim_item.kind or "")
+        vim_item.kind = lspkind.symbolic(vim_item.kind)
+        return vim_item
+      end,
+      -- here is where the change happens
       -- Tailwind CSS cmp icons
       require("tailwindcss-colorizer-cmp").formatter,
     }
@@ -361,6 +368,7 @@ return function(_, opts)
     opts.mapping = mapping
     opts.matching = matching
     opts.performance = performance
+    opts.view = view
     opts.sorting = sorting
     opts.sources = sources
     opts.snippet = snippet

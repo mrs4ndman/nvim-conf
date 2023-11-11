@@ -55,6 +55,7 @@ M.misc = {
   alpha = "",
   lazy = "󰒲",
   oil = "󱐋",
+  git = "",
 }
 
 return M

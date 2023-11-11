@@ -58,7 +58,7 @@ vim.keymap.set("n", "<A-Down>", ":resize +2<CR>", {
   silent = true,
 })
 for i = 1, 10 do
-  vim.keymap.set({ "n", "v" }, "<M-" .. i .. ">", func.tabnm(i), { desc = "Go to tab " .. i})
+  vim.keymap.set({ "n", "v" }, "<M-" .. i .. ">", func.tabnm(i), { desc = "Go to tab " .. i })
 end
 
 -- Get me out of here (:D)
@@ -81,7 +81,7 @@ vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Better paste :)" })
 vim.keymap.set({ "n", "v" }, "<leader>dd", [["_d]], { desc = "Better delete" })
 
 -- Enable custom mappings for 1-9 yank-paste-delete registers
-local alphabet = "abcdefghijklmnopqrstuvwxyz"
+local alphabet = "abefghijklmnoqrstuvwxyz"
 
 for i = 1, #alphabet do
   local letter = alphabet:sub(i, i)
@@ -192,13 +192,16 @@ end, { desc = "Put - at the beginning of the line" })
 vim.keymap.set("n", "<leader>*", function()
   func.put_at_beginning("* ")
 end, { desc = "Put * at the beginning of the line" })
+vim.keymap.set("n", "<leader>pc", function()
+  func.put_at_beginning("* [ ]")
+end)
 
 -- Start recording macro for a given word / selection
-vim.keymap.set({ "n", "v"}, "<M-C-q>", func.record_macro, { desc = "Ranged macro"})
+vim.keymap.set({ "n", "v" }, "<M-C-q>", func.record_macro, { desc = "Ranged macro" })
 -- Replay said macro
-vim.keymap.set("n", "<M-C-r>", "n@i", { desc = "Replay ranged macro"})
+vim.keymap.set("n", "<M-C-r>", "n@i", { desc = "Replay ranged macro" })
 -- Stop recording said macro
-vim.keymap.set({ "i", "v", "n"}, "<M-C-c>", func.confirm_macro, { desc = "Confirm ranged macro"})
+vim.keymap.set({ "i", "v", "n" }, "<M-C-c>", func.confirm_macro, { desc = "Confirm ranged macro" })
 
 -- Normal mode CTRL Keybinds
 
@@ -235,8 +238,16 @@ vim.keymap.set("i", "<C-c>", "<Esc>", { silent = true })
 -- VISUAL mode Keybinds
 
 -- Moving around text on visual
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "J", function()
+  func.visual_move(vim.v.count1, 1, "'>", ".", 0, "'<,'> m '>+")
+end, { desc = "Visual move down" })
+
+vim.keymap.set("v", "K", function()
+  func.visual_move(vim.v.count1, 2, ".", "'<", 1, "'<,'> m '<-")
+end, { desc = "Visual move up" })
+
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Better indenting
 vim.keymap.set("v", "<", "<gv", { silent = true })

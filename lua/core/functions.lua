@@ -54,6 +54,42 @@ function M.put_at_beginning(chars)
   end
 end
 
+
+--- Moves [count] up and down the selected lines
+function M.visual_move (count, min_count, pos_1, pos_2, fix_num, cmd_start)
+    vim.cmd([[execute "normal! \<esc>"]])
+
+    local get_to_move = function()
+        if count <= min_count then
+            return min_count
+        else
+            return count - (vim.fn.line(pos_1) - vim.fn.line(pos_2)) + fix_num
+        end
+    end
+
+    local to_move = get_to_move()
+    vim.cmd(cmd_start .. to_move)
+
+    local cur_row, cur_col = unpack(vim.api.nvim_win_get_cursor(0))
+
+    vim.cmd("normal! `]")
+    local end_cursor_pos = vim.api.nvim_win_get_cursor(0)
+    local end_row = end_cursor_pos[1]
+    local end_line = vim.api.nvim_get_current_line()
+    local end_col = #end_line
+    vim.api.nvim_buf_set_mark(0, "z", end_row, end_col, {})
+
+    vim.cmd("normal! `[")
+    local start_cursor_pos = vim.api.nvim_win_get_cursor(0)
+    local start_row = start_cursor_pos[1]
+    vim.api.nvim_win_set_cursor(0, { start_row, 0 })
+
+    vim.cmd("normal! =`z")
+    vim.api.nvim_win_set_cursor(0, { cur_row, cur_col })
+    vim.cmd("normal! gv")
+end
+
+
 --[[ 
 # --------------------------------------------------- #
 #    FUNCTIONS FOR RANGED / SINGLE LINE MACRO EXEC    #
