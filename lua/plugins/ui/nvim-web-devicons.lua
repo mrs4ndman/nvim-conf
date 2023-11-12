@@ -8,5 +8,5 @@ local plugin = "nvim-web-devicons"
 return {
   "nvim-tree/" .. plugin,
   enabled = Is_Enabled(plugin),
-  lazy = false,
+  -- lazy = false,
 }

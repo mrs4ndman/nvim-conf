@@ -1,6 +1,6 @@
-local myTable = { "h", "e", "l", "l", "o" }
-local combinedString = table.concat(myTable)
-print(combinedString) -- Outputs hello
+-- local myTable = { "h", "e", "l", "l", "o" }
+-- local combinedString = table.concat(myTable)
+-- print(combinedString) -- Outputs hello
 
 -- -- ENCODING -> UTF-8 etc.
 -- local function encoding()
@@ -12,3 +12,4 @@ print(combinedString) -- Outputs hello
 --     -- return fileencoding ~= "" and string.format("%s", encoding) or ""
 --     return tostring(fileencoding)
 -- end
+

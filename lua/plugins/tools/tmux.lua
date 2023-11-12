@@ -8,10 +8,13 @@ return {
     "christoomey/vim-tmux-navigator",
     enabled = os.getenv("TMUX") ~= nil,
     keys = {
-      { "<C-h>", "<cmd>TmuxNavigateLeft<CR>", desc = "Navigate to left pane" },
-      { "<C-j>", "<cmd>TmuxNavigateDown<CR>", desc = "Navigate to left pane" },
-      { "<C-k>", "<cmd>TmuxNavigateUp<CR>", desc = "Navigate to left pane" },
-      { "<C-l>", "<cmd>TmuxNavigateRight<CR>", desc = "Navigate to left pane" },
+      { "<M-h>", "<cmd>TmuxNavigateLeft<CR>", desc = "Navigate to left pane" },
+      { "<M-j>", "<cmd>TmuxNavigateDown<CR>", desc = "Navigate to left pane" },
+      { "<M-k>", "<cmd>TmuxNavigateUp<CR>", desc = "Navigate to left pane" },
+      { "<M-l>", "<cmd>TmuxNavigateRight<CR>", desc = "Navigate to left pane" },
     },
+    init = function()
+      vim.g.tmux_navigator_no_mappings = 1
+    end
   },
 }

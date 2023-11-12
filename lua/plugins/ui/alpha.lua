@@ -12,7 +12,7 @@ end
 return {
   "goolord/" .. plugin,
   -- event = "VimEnter",
-  dependencies = "nvim-tree/nvim-web-devicons",
+  -- dependencies = "nvim-tree/nvim-web-devicons",
   enabled = Is_Enabled(plugin),
   lazy = false,
   priority = 1000,

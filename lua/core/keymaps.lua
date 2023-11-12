@@ -16,15 +16,17 @@ vim.keymap.set("n", "<leader>sb", function()
   require("telescope.builtin").live_grep({ search_dirs = { vim.api.nvim_buf_get_name(0) } })
 end, { desc = "Search current buffer" })
 
--- OBSIDIAN: direct access
--- vim.keymap.set("n", "<leader>nt", "<cmd>!cd $OBSIDIAN_VAULT | e ~/Documents/Obsidian Vaults/Dashboard/Current TO-DO.md<CR>")
-
 -- INTERNAL KEYBINDS
 -- NORMAL mode Keybinds
 
 -- Source current config file
 vim.keymap.set("n", "<leader><leader>", function()
+  if vim.bo.filetype ~= "lua" then
+    print("Not a Lua file")
+    return
+  end
   vim.cmd("so")
+  print("Sourced :)")
 end, { silent = true, desc = "Source current file" })
 
 -- Clear notifications and search
@@ -63,7 +65,8 @@ end
 
 -- Get me out of here (:D)
 vim.keymap.set("n", "<leader><Esc>", "<cmd>quitall<CR>", { desc = "Quit all", silent = true })
-vim.keymap.set("n", "<leader>ww", "<cmd>write<CR>", { desc = "Write all" })
+vim.keymap.set("n", "<leader>ww", "<cmd>write<CR>", { desc = "Write current buffer" })
+vim.keymap.set("n", "<leader>wa", "<cmd>write<CR>", { desc = "Write to all buffers" })
 vim.keymap.set("n", "<leader>wq", "<cmd>wqa<CR>", { desc = "Bye :D" })
 
 -- Substitutor for current word
@@ -71,23 +74,21 @@ vim.keymap.set("n", "<C-s>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Lef
 
 -- indent machine
 vim.keymap.set("n", "<leader>ip", "=ap", { desc = "Indent a paragraph", silent = true })
-vim.keymap.set("n", "<leader>il", "==", { desc = "Indent current line" })
 
 -- Set files to be executable
 vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { desc = "Make file executable", silent = true })
 
 -- greatest remaps ever,  replace current selection with paste buffer & visual deletion made easy
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Better paste :)" })
+vim.keymap.set("x", "<leader>p", '"_dp', { desc = "Better paste :)" })
+vim.keymap.set("x", "<leader>P", '"_dP', { desc = "Better Paste :)" })
 vim.keymap.set({ "n", "v" }, "<leader>dd", [["_d]], { desc = "Better delete" })
 
 -- Enable custom mappings for 1-9 yank-paste-delete registers
-local alphabet = "abefghijklmnoqrstuvwxyz"
+local alphabet = "abcefghijklmnopqrstuvwxz"
 
 for i = 1, #alphabet do
   local letter = alphabet:sub(i, i)
-
   vim.keymap.set({ "n", "v" }, ("<leader>y%s"):format(letter), ([["%sy]]):format(letter), { desc = ("%s"):format(letter) .. " register yank" })
-  vim.keymap.set({ "n", "v" }, ("<leader>p%s"):format(letter), ([["%sp]]):format(letter), { desc = ("%s"):format(letter) .. " register paste" })
 end
 
 -- smart blackhole deletion
@@ -129,6 +130,7 @@ vim.keymap.set("n", ")", ")zzzv", { silent = true })
 
 -- "S" functionality remap for Leap functionality
 vim.keymap.set("n", "+", "S")
+vim.keymap.set("v", "+", "s")
 
 -- Delete character without yanking
 vim.keymap.set({ "n", "v" }, "x", '"_x', { silent = true })
@@ -163,8 +165,9 @@ vim.keymap.set("i", "<C-p>", "<Esc>:Telescope oldfiles<CR>")
 
 -- Buffer previous, next and close, window closing too
 -- To use without the cokeline bar
-vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { silent = true, desc = "Previous buffer" })
-vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", { silent = true, desc = "Previous buffer" })
+-- This gave too many troubles with the Tab == <C-i> encoding
+-- vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { silent = true, desc = "Previous buffer" })
+-- vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", { silent = true, desc = "Previous buffer" })
 
 -- Delete buffer without saving
 vim.keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", { silent = true, desc = "Force buffer close" })
@@ -177,6 +180,7 @@ local end_strings = {
   ":",
   ".",
   ")",
+  "}",
   "]",
   "\\",
 }
@@ -194,16 +198,20 @@ vim.keymap.set("n", "<leader>*", function()
 end, { desc = "Put * at the beginning of the line" })
 vim.keymap.set("n", "<leader>pc", function()
   func.put_at_beginning("* [ ]")
-end)
+end, { desc = "Put * [ ] at the beginning of the line" })
 
+-- Toggle relative linenumbers on and off
+vim.keymap.set({ "n", "v" }, "<leader>tn", function()
+  vim.o.relativenumber = not vim.o.relativenumber
+end, { silent = true })
+
+-- Normal mode CTRL Keybinds
 -- Start recording macro for a given word / selection
 vim.keymap.set({ "n", "v" }, "<M-C-q>", func.record_macro, { desc = "Ranged macro" })
 -- Replay said macro
 vim.keymap.set("n", "<M-C-r>", "n@i", { desc = "Replay ranged macro" })
 -- Stop recording said macro
 vim.keymap.set({ "i", "v", "n" }, "<M-C-c>", func.confirm_macro, { desc = "Confirm ranged macro" })
-
--- Normal mode CTRL Keybinds
 
 -- Half-page jumping
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
@@ -213,19 +221,16 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "tmux sessionizer" })
 
 -- Lazy terminal
-vim.keymap.set("n", "<M-C-J>", function()
+vim.keymap.set("n", "<M-C-j>", function()
   require("lazy.util").float_term()
 end, {})
-
--- Export current state to HTML:
-vim.keymap.set("n", "<leader>xth", "<cmd>TOhtml<CR>", { desc = "Export to HTML" })
 
 -- Normal mode ALT keybinds
 -- Sidescrolling: Go-Go-Gadget :D
 vim.keymap.set("", "<ScrollWheelLeft>", "<Nop>")
 vim.keymap.set("", "<ScrollWheelRight>", "<Nop>")
-vim.keymap.set("n", "<M-H>", "2<ScrollWheelLeft>")
-vim.keymap.set("n", "<M-L>", "2<ScrollWheelRight>")
+vim.keymap.set("n", "<C-h>", "2<ScrollWheelLeft>")
+vim.keymap.set("n", "<C-l>", "2<ScrollWheelRight>")
 
 -- No plz
 vim.keymap.set("n", "<C-z>", "<Nop>")
@@ -238,16 +243,16 @@ vim.keymap.set("i", "<C-c>", "<Esc>", { silent = true })
 -- VISUAL mode Keybinds
 
 -- Moving around text on visual
-vim.keymap.set("v", "J", function()
-  func.visual_move(vim.v.count1, 1, "'>", ".", 0, "'<,'> m '>+")
-end, { desc = "Visual move down" })
+-- vim.keymap.set("v", "J", function()
+--   func.visual_move(vim.v.count1, 1, "'>", ".", 0, "'<,'> m '>+")
+-- end, { desc = "Visual move down" })
+--
+-- vim.keymap.set("v", "K", function()
+--   func.visual_move(vim.v.count1, 2, ".", "'<", 1, "'<,'> m '<-")
+-- end, { desc = "Visual move up" })
 
-vim.keymap.set("v", "K", function()
-  func.visual_move(vim.v.count1, 2, ".", "'<", 1, "'<,'> m '<-")
-end, { desc = "Visual move up" })
-
--- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
--- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Better indenting
 vim.keymap.set("v", "<", "<gv", { silent = true })

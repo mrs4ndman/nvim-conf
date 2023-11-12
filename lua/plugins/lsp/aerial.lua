@@ -14,7 +14,6 @@ return {
     { "<leader>A", "<cmd>AerialCloseAll<CR>", desc = "Close Aerial" },
   },
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
