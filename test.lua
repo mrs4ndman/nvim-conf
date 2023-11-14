@@ -13,3 +13,14 @@
 --     return tostring(fileencoding)
 -- end
 
+vim.keymap.set({ "n", "v" }, "<leader>F", function()
+  local clients = vim.lsp.get_clients({
+    method = "textDocument/format",
+  })
+
+  if #clients > 0 then
+    vim.lsp.buf.format()
+  else
+    print("no formatter :(")
+  end
+end, { desc = "LSP formatting" })

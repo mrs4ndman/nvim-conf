@@ -147,5 +147,21 @@ function M.confirm_macro()
   vim.cmd('normal! qq')
 end
 
+--- Registry cleaner
+function M.clear_reg()
+  print("Clearing registers")
+  vim.cmd([[
+    let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+    for r in regs
+    call setreg(r, [])
+    endfor
+    ]])
+end
+-- Clearing the registers?
+vim.api.nvim_create_user_command("ClearReg", function()
+  M.clear_reg()
+end, {})
+vim.keymap.set("n", "<leader>cr", "<cmd>ClearReg<CR>", { desc = "Clear registers" })
+
 
 return M

@@ -16,16 +16,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
--- Markdown and LaTeX settings
-vim.api.nvim_create_autocmd("Filetype", {
-  pattern = "markdown",
-  callback = function()
-    vim.cmd([[setlocal wrap linebreak]])
-    vim.keymap.set("n", "j", "gj")
-    vim.keymap.set("n", "k", "gk")
-  end,
-})
-
 vim.api.nvim_create_autocmd("Filetype", {
   pattern = "alpha",
   callback = function()
@@ -98,20 +88,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank({ timeout = 60 })
   end,
 })
-
--- Create Registry cleaner
-local function ClearReg()
-  print("Clearing registers")
-  vim.cmd([[
-    let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
-    for r in regs
-    call setreg(r, [])
-    endfor
-    ]])
-end
-
--- Clearing the registers?
-vim.api.nvim_create_user_command("ClearReg", function()
-  ClearReg()
-end, {})
-vim.keymap.set("n", "<leader>cr", "<cmd>ClearReg<CR>", { desc = "Clear registers" })

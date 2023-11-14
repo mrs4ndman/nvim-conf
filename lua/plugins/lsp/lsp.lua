@@ -25,7 +25,6 @@ return {
       end,
     },
   },
-  config = function()
-    require("custom.lsp")
-  end,
+  main = "custom.lsp",
+  config = true,
 }

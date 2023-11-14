@@ -56,6 +56,7 @@ M.misc = {
   lazy = "󰒲",
   oil = "󱐋",
   git = "",
+  folder = " ",
 }
 
 return M
