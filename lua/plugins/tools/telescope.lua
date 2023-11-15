@@ -8,9 +8,11 @@ return {
   "nvim-telescope/" .. plugin,
   enabled = Is_Enabled(plugin),
   cmd = { "Telescope", "Themer" },
+  -- tag = "0.1.4",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "barrett-ruth/telescope-http.nvim",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   keys = {
     -- TELESCOPE
@@ -31,6 +33,7 @@ return {
         colorscheme = { enable_preview = true },
         find_files = {
           find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git", "--strip-cwd-prefix" },
+          -- BUG: THIS FUCKER IS GIVING ME TROUBLE :/
           theme = "ivy",
         },
         oldfiles = {
@@ -91,11 +94,20 @@ return {
           },
         },
       }
+      opts.extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        }
+      }
     end
   end,
   config = function(_, opts)
     require("telescope").setup(opts)
     require("telescope").load_extension("http")
+    require("telescope").load_extension("fzf")
     vim.keymap.set("n", "<leader>tH", "<cmd>Telescope http list<CR>", { desc = "HTTP Status codes" })
     -- colorizer
     local actions = require("telescope.actions")

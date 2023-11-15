@@ -29,7 +29,7 @@ return {
       conceallevel = 3,
       concealcursor = "n",
     },
-    default_file_explorer = false,
+    default_file_explorer = true,
     restore_win_options = true,
     use_default_keymaps = true,
     view_options = {

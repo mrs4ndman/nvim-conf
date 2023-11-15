@@ -14,6 +14,6 @@ return {
     { "<leader>md", "<cmd>MarkdownPreview<CR>", desc = "Toggle MD preview" },
   },
   config = function()
-    vim.g.nvim_markdown_preview_theme = "solarized-dark"
+    vim.g.nvim_markdown_preview_theme = "github"
   end
 }
