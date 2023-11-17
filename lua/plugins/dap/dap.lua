@@ -58,14 +58,14 @@ return {
       function()
         require("dapui").toggle()
       end,
-      desc = "DAP Toggle",
+      desc = "[DAP] Toggle UI",
     },
     {
       "<leader>Db",
       function()
         require("dap").toggle_breakpoint()
       end,
-      desc = "DAP Toggle Breakpoint",
+      desc = "[DAP] Toggle Breakpoint",
       { silent = true },
     },
     {
@@ -73,7 +73,7 @@ return {
       function()
         require("dap").continue()
       end,
-      desc = "DAP Continue",
+      desc = "[DAP] Continue",
     },
     {
       "<leader>DL",
@@ -87,91 +87,91 @@ return {
       function()
         require("dap").run_to_cursor()
       end,
-      desc = "DAP Run To Cursor",
+      desc = "[DAP] Run To Cursor",
     },
     {
       "<leader>Dg",
       function()
         require("dap").goto_()
       end,
-      desc = "DAP Go to line (no execute)",
+      desc = "[DAP] Go to line (no execute)",
     },
     {
       "<leader>Di",
       function()
         require("dap").step_into()
       end,
-      desc = "DAP Step Into",
+      desc = "[DAP] Step Into",
     },
     {
       "<leader>Dj",
       function()
         require("dap").down()
       end,
-      desc = "DAP Down",
+      desc = "[DAP] Down",
     },
     {
       "<leader>Dk",
       function()
         require("dap").up()
       end,
-      desc = "DAP Up",
+      desc = "[DAP] Up",
     },
     {
       "<leader>Dl",
       function()
         require("dap").run_last()
       end,
-      desc = "DAP Run Last",
+      desc = "[DAP] Run Last",
     },
     {
       "<leader>Do",
       function()
         require("dap").step_out()
       end,
-      desc = "DAP Step-Out",
+      desc = "[DAP] Step-Out",
     },
     {
       "<leader>DO",
       function()
         require("dap").step_over()
       end,
-      desc = "DAP Step-Over",
+      desc = "[DAP] Step-Over",
     },
     {
       "<leader>Dp",
       function()
         require("dap").pause()
       end,
-      desc = "DAP Pause",
+      desc = "[DAP] Pause",
     },
     {
       "<leader>Dr",
       function()
         require("dap").repl.toggle()
       end,
-      desc = "DAP Toggle REPL",
+      desc = "[DAP] Toggle REPL",
     },
     {
       "<leader>Ds",
       function()
         require("dap").session()
       end,
-      desc = "DAP Session",
+      desc = "[DAP] Session",
     },
     {
       "<leader>Dt",
       function()
         require("dap").terminate()
       end,
-      desc = "DAP Terminate",
+      desc = "[DAP] Terminate",
     },
     {
       "<leader>Dw",
       function()
         require("dap.ui.widgets").hover()
       end,
-      desc = "DAP Widgets",
+      desc = "[DAP] Widgets",
     },
   },
 }

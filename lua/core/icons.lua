@@ -57,6 +57,8 @@ M.misc = {
   oil = "󱐋",
   git = "",
   folder = " ",
+  neovim_transparent = "",
+  neovim_solid = "",
 }
 
 return M

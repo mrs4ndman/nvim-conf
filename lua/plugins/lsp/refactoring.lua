@@ -7,15 +7,10 @@ local plugin = "refactoring.nvim"
 
 return {
   "ThePrimeagen/" .. plugin,
-  keys = {
-    { "<leader>rr", desc = "[refactoring] Select refactoring" },
-  },
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
+  keys = { { "<leader>rr", desc = "[Refactor] Select refactoring" } },
+  dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     require("refactoring").setup({
-
       prompt_func_return_type = {
         go = true,
         cpp = true,

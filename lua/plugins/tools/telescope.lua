@@ -14,16 +14,17 @@ return {
     "barrett-ruth/telescope-http.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
+  
   keys = {
     -- TELESCOPE
-    { "<leader>tf", "<cmd>Telescope find_files<CR>", desc = "Find files" },
-    { "<leader>tg", "<cmd>Telescope live_grep<CR>", desc = "Grep through files" },
-    { "<leader>tb", "<cmd>Telescope buffers<CR>", desc = "List buffers" },
-    { "<leader>vh", "<cmd>Telescope help_tags<CR>", desc = "Help tags" },
-    { "<leader>sg", "<cmd>Telescope grep_string<CR>", desc = "Fast string grep" },
-    { "<leader>tr", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
-    { "<leader>tli", "<cmd>Telescope lsp_incoming_calls", desc = "LSP incoming calls" },
-    { "<leader>tlo", "<cmd>Telescope lsp_outgoing_calls", desc = "LSP outgoing calls" },
+    { "<leader>tf", "<cmd>Telescope find_files<CR>", desc = "[🔭] Find files" },
+    { "<leader>tg", "<cmd>Telescope live_grep<CR>", desc = "[🔭] Grep through files" },
+    { "<leader>tb", "<cmd>Telescope buffers<CR>", desc = "[🔭] List buffers" },
+    { "<leader>vh", "<cmd>Telescope help_tags<CR>", desc = "[🔭] Help tags" },
+    { "<leader>sg", "<cmd>Telescope grep_string<CR>", desc = "[🔭] Fast string grep" },
+    { "<leader>tr", "<cmd>Telescope oldfiles<CR>", desc = "[🔭] Recent files" },
+    { "<leader>tli", "<cmd>Telescope lsp_incoming_calls", desc = "[🔭-LSP] Incoming calls" },
+    { "<leader>tlo", "<cmd>Telescope lsp_outgoing_calls", desc = "[🔭-LSP] Outgoing calls" },
   },
   opts = function(_, opts)
     if Use_Defaults(plugin) then
@@ -166,8 +167,8 @@ return {
         "oxocarbon",
         "enfocado",
         "fluoromachine",
+        "github_dark_high_contrast",
         -- "material-deep-ocean",
-        -- "github_dark_high_contrast",
         -- "carbonfox",
         -- "doom-one",
         -- "onedark_dark",

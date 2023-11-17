@@ -12,7 +12,7 @@ return {
     {
       "<leader>bt",
       "<cmd>Block<CR>",
-      desc = "Block view toggle",
+      desc = "[Block] View toggle",
     },
   },
   config = true,

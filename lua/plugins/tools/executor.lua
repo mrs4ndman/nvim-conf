@@ -8,26 +8,23 @@ local plugin = "executor.nvim"
 return {
   "google/" .. plugin,
   keys = {
-    { "<localleader>xc", "<cmd>ExecutorRun<CR>", desc = "Start Executor" },
-    { "<localleader>xs", "<cmd>ExecutorSetCommand<CR>", desc = "Set Executor command" },
-    { "<localleader>xd", "<cmd>ExecutorToggleDetail<CR>", desc = "Toggle Executor detail" },
-    { "<localleader>xr", "<cmd>ExecutorReset<CR>", desc = "Reset Executor status" },
-    { "<localleader>xp", "<cmd>ExecutorShowPresets<CR>", desc = "Show presets for CWD" },
+    { "<localleader>xc", "<cmd>ExecutorRun<CR>", desc = "[Exec] Start Executor" },
+    { "<localleader>xs", "<cmd>ExecutorSetCommand<CR>", desc = "[Exec] Set Executor command" },
+    { "<localleader>xd", "<cmd>ExecutorToggleDetail<CR>", desc = "[Exec] Toggle Executor detail" },
+    { "<localleader>xr", "<cmd>ExecutorReset<CR>", desc = "[Exec] Reset Executor status" },
+    { "<localleader>xp", "<cmd>ExecutorShowPresets<CR>", desc = "[Exec] Show presets for CWD" },
   },
   opts = {
     use_split = true,
     split = {
       position = "right",
-      size = math.floor(vim.o.columns * 1/5)
+      size = math.floor(vim.o.columns * 1 / 4),
     },
-    notifications = {
-      task_started = true,
-      task_completed = true,
-    },
+    notifications = { task_started = true, task_completed = true },
     preset_commands = {
       ["custom-website"] = {
         "npm run dev",
-      }
-    }
-  }
+      },
+    },
+  },
 }

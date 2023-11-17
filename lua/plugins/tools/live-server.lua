@@ -9,9 +9,9 @@ return {
   "barrett-ruth/" .. plugin,
   cmd = { "LiveServerStart", "LiveServerRestart", "LiveServerStop" },
   keys = {
-    { "<leader>ls", "<cmd>LiveServerStart<CR>", desc = "Start Live Server" },
-    { "<leader>lr", "<cmd>LiveServerRestart<CR>", desc = "Start Live Server" },
-    { "<leader>lq", "<cmd>LiveServerStop<CR>",  desc = "Stop Live Server" },
+    { "<leader>ls", "<cmd>LiveServerStart<CR>", desc = "[Live-Server] Start" },
+    { "<leader>lr", "<cmd>LiveServerRestart<CR>", desc = "[Live-Server] Restart" },
+    { "<leader>lq", "<cmd>LiveServerStop<CR>",  desc = "[Live-Server] Stop" },
   },
   config = function()
     require("live-server").setup({

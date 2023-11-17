@@ -20,7 +20,7 @@ return {
           { "n", "v" },
           "<leader>vl",
           require("lsp_lines").toggle,
-          { desc = "Toggle LSP line diagnostics" }
+          { desc = "[LSP] Toggle extra line diagnostics" }
         )
       end,
     },

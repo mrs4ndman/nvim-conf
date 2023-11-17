@@ -90,14 +90,10 @@ end
 
 function M.harpoon_split()
   ---@param harp_mark integer
-  vim.ui.input({ prompt = "Which mark?"}, function(harp_mark)
+  vim.ui.input({ prompt = "Which mark?" }, function(harp_mark)
     vim.cmd(string.format("vsplit | lua require('harpoon.ui').nav_file(%d)", harp_mark))
-  end
-  )
+  end)
 end
-vim.keymap.set("n", "<leader>H", function()
-  M.harpoon_split()
-end)
 
 --[[ 
 # --------------------------------------------------- #

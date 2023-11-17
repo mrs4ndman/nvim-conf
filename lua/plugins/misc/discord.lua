@@ -3,12 +3,10 @@ local functions = require("mrsandman.functions")
 Is_Enabled = functions.is_enabled
 Use_Defaults = functions.use_plugin_defaults
 
-local plugin = "presence.nvim"
-
 return {
-  "andweeb/" .. plugin,
-  enabled = false,
-  lazy = true,
+  "jiriks74/presence.nvim",
+  enabled = true,
+  lazy = false,
   config = function()
     require("presence").setup({
       auto_update = true,
@@ -24,8 +22,8 @@ return {
       file_explorer_text = "Browsing %s",
       git_commit_text = "Committing changes",
       plugin_manager_text = "Managing plugins",
-      reading_text = "Parsing through %s",
-      workspace_text = "Working On %s",
+      reading_text = "Trying to understand %s",
+      workspace_text = "Working on %s",
     })
   end,
 }
