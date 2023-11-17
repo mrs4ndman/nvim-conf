@@ -9,7 +9,7 @@ return {
   "Wansmer/" .. plugin,
   cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
   keys = {
-    { "Q", "<cmd>TSJToggle<CR>", desc = "Toggle TS node" },
+    { "Q", "<cmd>TSJToggle<CR>", desc = "[TSJ] Toggle node" },
   },
   opts = {
     use_default_keymaps = false,

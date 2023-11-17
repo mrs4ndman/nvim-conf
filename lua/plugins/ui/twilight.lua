@@ -11,7 +11,7 @@ return {
   -- event = "BufReadPost",
   cmd = "Twilight",
   keys = {
-    { "<leader>zt", "<cmd>Twilight<CR>", desc = "Twilight toggle" },
+    { "<leader>zt", "<cmd>Twilight<CR>", desc = "[Twilight] Toggle" },
   },
   opts = function(_, opts)
     if Use_Defaults(plugin) then

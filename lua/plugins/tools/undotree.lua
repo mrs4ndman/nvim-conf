@@ -10,6 +10,6 @@ return {
   enabled = Is_Enabled(plugin),
   cmd = "UndotreeToggle",
   keys = {
-    { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Undo-tree Toggle" },
+    { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "[Undotree] Toggle" },
   },
 }

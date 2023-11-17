@@ -205,6 +205,10 @@ vim.keymap.set({ "n", "v" }, "<leader>tn", function()
   vim.o.relativenumber = not vim.o.relativenumber
 end, { silent = true })
 
+vim.keymap.set("n", "<leader>H", function()
+  func.harpoon_split()
+end)
+
 -- Normal mode CTRL Keybinds
 -- Start recording macro for a given word / selection
 vim.keymap.set({ "n", "v" }, "<M-C-q>", func.record_macro, { desc = "Ranged macro" })

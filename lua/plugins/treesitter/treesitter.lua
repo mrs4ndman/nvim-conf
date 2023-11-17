@@ -10,9 +10,7 @@ return {
   enabled = Is_Enabled(plugin),
   cmd = { "TSInstall", "TSUpdate" },
   event = { "BufRead", "BufNewFile" },
-  build = function()
-    vim.cmd("TSUpdate")
-  end,
+  build = function() vim.cmd("TSUpdate") end,
   dependencies = {
     {
       "nvim-treesitter/nvim-treesitter-context",
@@ -21,7 +19,12 @@ return {
       },
       opts = { mode = "cursor" },
     },
-    "JoosepAlviste/nvim-ts-context-commentstring",
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      opts = {
+        enable_autocmd = false,
+      },
+    },
     "windwp/nvim-ts-autotag",
     { "David-Kunz/markid", enabled = Is_Enabled("markid") },
     {
@@ -68,13 +71,13 @@ return {
       sync_install = false,
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = { "markdown "},
+        additional_vim_regex_highlighting = { "markdown " },
       },
       indent = { enable = true },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      },
+      -- context_commentstring = {
+      --   enable = true,
+      --   enable_autocmd = false,
+      -- },
       autotag = { enable = true },
       markid = { enable = true },
       textobjects = {

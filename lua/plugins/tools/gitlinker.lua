@@ -11,7 +11,7 @@ return {
   "ruifm/" .. plugin,
   enabled = Is_Enabled(plugin),
   keys = {
-    { "<leader>gy", mode = {"n", "v"}, desc = "Create codelink" }
+    { "<leader>gy", mode = {"n", "v"}, desc = "[Git] Create codelink" }
   },
   dependencies = {
     "nvim-lua/plenary.nvim",

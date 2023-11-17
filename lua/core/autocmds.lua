@@ -8,6 +8,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "alpha",
+  callback = function()
+    vim.cmd([[setlocal nofoldenable signcolumn=no nonumber norelativenumber]])
+  end,
+})
+
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
     vim.opt.number = false
@@ -20,7 +27,7 @@ vim.api.nvim_create_autocmd("Filetype", {
   pattern = "alpha",
   callback = function()
     vim.b.miniindentscope_disable = true
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {

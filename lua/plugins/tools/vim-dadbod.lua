@@ -12,7 +12,7 @@ return {
     enabled = Is_Enabled("vim-dadbod-ui"),
     cmd = "DBUI",
     keys = {
-      { "<leader>db", "<cmd>DBUI<CR>", desc = "Database toggle" }
+      { "<leader>db", "<cmd>DBUI<CR>", desc = "[DB] Toggle UI" }
     }
   },
 }

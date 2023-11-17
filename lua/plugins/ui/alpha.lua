@@ -50,7 +50,7 @@ return {
           -- "",
           -- "",
           "",
-          "   " .. time .. "      Neovim " .. v.major .. "." .. v.minor .. "." .. v.patch,
+          "        " .. time .. " |   v" .. v.major .. "." .. v.minor .. "." .. v.patch,
           "",
           "   " .. stats.loaded .. " / " .. stats.count .. " plugins | " .. ms .. "ms |  mrs4ndman",
           "",
@@ -99,8 +99,6 @@ return {
     }
 
     alpha.setup(dashboard.opts)
-
-    vim.cmd([[ autocmd Filetype alpha setlocal nofoldenable signcolumn=no nonumber norelativenumber ]])
     -- end
   end,
 }

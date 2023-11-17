@@ -21,7 +21,7 @@ for mode, color in pairs({
 end
 statusline_groups = vim.tbl_extend("error", statusline_groups, {
   CmpGhostText = { fg = colors.deep_lavender, bg = colors.deep_velvet, force = true },
-  Statusline = { bg = "#000000" },
+  -- Statusline = { bg = "#000000" },
   StatuslineColumnIndicator = { fg = colors.yellow, bg = colors.bg },
   StatuslineCurrentLine = { fg = colors.lime, bg = colors.bg, bold = true },
   StatuslineDapIcon = { fg = colors.lime, bg = colors.bg, bold = true },

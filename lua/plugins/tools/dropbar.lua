@@ -8,21 +8,20 @@ local plugin = "dropbar.nvim"
 return {
   "Bekaboo/" .. plugin,
   enabled = Is_Enabled(plugin),
-  lazy = false,
+  event = "BufReadPost",
+  -- lazy = false,
   keys = {
     {
       "<leader>nv",
       function()
         require("dropbar.api").pick()
       end,
-      desc = "Pick element to navigate",
+      desc = "[UI] Pick element to navigate",
     },
   },
   opts = {
     bar = {
-      pick = {
-        pivots = "asdfhjlkqweruioptyzxcvbnm"
-      }
-    }
-  }
+      pick = { pivots = "asdfhjlkqweruioptyzxcvbnm" },
+    },
+  },
 }

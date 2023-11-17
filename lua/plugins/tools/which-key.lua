@@ -8,6 +8,7 @@ local plugin = "which-key.nvim"
 return {
   "folke/" .. plugin,
   enabled = Is_Enabled(plugin),
+  keys = { " "},
   opts = {
     key_labels = {
       ["<leader>"] = "Space",
@@ -25,5 +26,9 @@ return {
       spacing = 2,
       align = "center",
     }
-  }
+  },
+  config = function(_, opts)
+    require("which-key").setup(opts)
+    require("custom.which-key")
+  end
 }

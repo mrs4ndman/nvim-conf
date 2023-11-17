@@ -91,7 +91,9 @@ function M.mode_component()
   end
 
   return table.concat({
-    string.format("%%#StatuslineModeSeparator%s#   ", hl),
+    M.side_marks_component(),
+    " ",
+    string.format("%%#StatuslineModeSeparator%s# " .. icons.misc.neovim_solid .. " ", hl),
     string.format("%%#StatuslineMode%s#%s", hl, mode),
     string.format("%%#StatuslineModeSeparator%s#  %%", hl),
   })
@@ -337,6 +339,8 @@ function M.position_component()
     string.format("%%#StatuslineCurrentLine#%d", line),
     string.format("%%#StatuslinePosSeparator#/%d", line_count),
     string.format(":%%#StatuslineColumnIndicator#%d", col),
+    " ",
+    M.side_marks_component(),
   })
 end
 --- Lazy package updates for the session
@@ -392,7 +396,7 @@ function M.render()
 
   return table.concat({
     concat_components({
-      M.side_marks_component(),
+      -- M.side_marks_component(),
       M.mode_component(),
       M.filename_component(),
       M.git_component(),
@@ -413,7 +417,7 @@ function M.render()
       M.filetype_component(),
       M.position_component(),
       -- M.current_time(),
-      M.side_marks_component(),
+      -- M.side_marks_component(),
     }),
     "",
   })

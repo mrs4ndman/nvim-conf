@@ -8,14 +8,14 @@ return {
       function()
         require("dap-python").test_method()
       end,
-      desc = "Debug test method",
+      desc = "[DAP] Python test method",
     },
     {
       "<localleader>DPc",
       function()
         require("dap-python").test_class()
       end,
-      desc = "Debug test class",
+      desc = "[DAP] Python test class",
     },
   },
   config = function()

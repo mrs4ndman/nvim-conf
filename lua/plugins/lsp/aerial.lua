@@ -10,8 +10,8 @@ return {
   enabled = Is_Enabled(plugin),
   cmd = "AerialToggle",
   keys = {
-    { "<leader>nb", "<cmd>AerialToggle!<CR>", desc = "Toggle Aerial" },
-    { "<leader>A", "<cmd>AerialCloseAll<CR>", desc = "Close Aerial" },
+    { "<leader>nb", "<cmd>AerialToggle!<CR>", desc = "[TS] Toggle Aerial" },
+    { "<leader>A", "<cmd>AerialCloseAll<CR>", desc = "[TS] Close Aerial" },
   },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
