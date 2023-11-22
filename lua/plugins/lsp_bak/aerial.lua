@@ -1,13 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "aerial.nvim"
-
 return {
-  "stevearc/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "stevearc/aerial.nvim",
   cmd = "AerialToggle",
   keys = {
     { "<leader>nb", "<cmd>AerialToggle!<CR>", desc = "[TS] Toggle Aerial" },

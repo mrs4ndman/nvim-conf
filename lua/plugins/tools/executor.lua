@@ -1,12 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "executor.nvim"
-
 return {
-  "google/" .. plugin,
+  "google/executor.nvim",
   keys = {
     { "<localleader>xc", "<cmd>ExecutorRun<CR>", desc = "[Exec] Start Executor" },
     { "<localleader>xs", "<cmd>ExecutorSetCommand<CR>", desc = "[Exec] Set Executor command" },

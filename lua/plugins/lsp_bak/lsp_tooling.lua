@@ -1,15 +1,10 @@
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-
 return {
   "WhoIsSethDaniel/mason-tool-installer.nvim",
-  enabled = Is_Enabled("mason-tool-installer.nvim"),
   cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     {
       "williamboman/mason.nvim",
-      enabled = Is_Enabled("mason.nvim"),
       cmd = "Mason",
       opts = {
         ui = {

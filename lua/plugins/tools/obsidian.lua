@@ -1,17 +1,9 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "obsidian.nvim"
-
 return {
-  "epwalsh/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "epwalsh/obsidian.nvim",
   lazy = true,
   event = {
-    "BufReadPre " .. vim.fn.expand "~" .. "/notes/HS-1-Doble/**.md",
-    "BufReadPre " .. vim.fn.expand "~" .. "/Documents/Obsidian Vaults/**.md",
+    "BufReadPre " .. vim.fn.expand("~") .. "/notes/HS-1-Doble/**.md",
+    "BufReadPre " .. vim.fn.expand("~") .. "/Documents/Obsidian Vaults/**.md",
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -22,12 +14,12 @@ return {
     workspaces = {
       {
         name = "hs",
-        path = "~/notes/HS-1-Doble"
+        path = "~/notes/HS-1-Doble",
       },
       {
         name = "personal",
-        path = "~/Documents/Obsidian Vaults"
-      }
+        path = "~/Documents/Obsidian Vaults",
+      },
     },
     completion = {
       nvim_cmp = true,
@@ -40,10 +32,10 @@ return {
           return require("obsidian").util.gf_passthrough()
         end,
         opts = { noremap = false, expr = true, buffer = true },
-      }
+      },
     },
     follow_url_func = function(url)
-      vim.fn.jobstart({"xdg-open", url})
+      vim.fn.jobstart({ "xdg-open", url })
     end,
     open_app_foreground = true,
     finder = "telescope.nvim",

@@ -1,11 +1,11 @@
 local capabilities = require("custom.lsp.init").capabilities
 local on_attach = require("custom.lsp.init").on_attach
 local lspconfig = require("lspconfig")
+local balls_dir = vim.fs.joinpath(_G.BALLS_PLUGINS["balls.nvim"]:path(), "lua")
 
 local servers = {
   ["lua_ls"] = function()
     return {
-
       on_attach = on_attach,
       capabilities = capabilities,
       settings = {
@@ -18,6 +18,7 @@ local servers = {
               vim.env.VIMRUNTIME,
               vim.fn.stdpath("config") .. "/lua",
               vim.api.nvim_get_runtime_file("", true),
+              balls_dir,
             },
           },
           hint = { enable = true },

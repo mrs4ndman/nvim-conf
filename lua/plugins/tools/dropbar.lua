@@ -1,15 +1,6 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "dropbar.nvim"
-
 return {
-  "Bekaboo/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "Bekaboo/dropbar.nvim",
   event = "BufReadPost",
-  -- lazy = false,
   keys = {
     {
       "<leader>nv",

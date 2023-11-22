@@ -1,13 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "zen-mode.nvim"
-
 return {
-  "folke/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "folke/zen-mode.nvim",
   keys = {
     { "<leader>zz", desc = "A bit Zen" },
     { "<leader>zZ", desc = "Even more Zen" },

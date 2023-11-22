@@ -1,8 +1,3 @@
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-
-local plugin = "gh.nvim"
-
 return {
   "ldelossa/gh.nvim",
   enabled = false,

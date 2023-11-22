@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "alpha",
   callback = function()
-    vim.cmd([[setlocal nofoldenable signcolumn=no nonumber norelativenumber]])
+    vim.cmd([[setlocal laststatus=0 nofoldenable signcolumn=no nonumber norelativenumber]])
   end,
 })
 

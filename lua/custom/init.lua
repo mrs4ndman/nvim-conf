@@ -1,4 +1,3 @@
 -- Colorschemes
 -- last-color plugin
-local theme = require("last-color").recall() or "tokyonight"
-vim.cmd(("colorscheme %s"):format(theme))
+-- vim.cmd("colorscheme tokyonight")

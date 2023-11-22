@@ -1,14 +1,6 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "harpoon"
-
 return {
   -- 6.- ThePrimeagen plugins (Blazingly Fast)
-  "ThePrimeagen/" .. plugin, -- Reeling those files in
-  enabled = Is_Enabled(plugin),
+  "ThePrimeagen/harpoon", -- Reeling those files in
   keys = {
     { "<leader>1", desc = "[Harpoon] File 1" },
     { "<leader>2", desc = "[Harpoon] File 2" },

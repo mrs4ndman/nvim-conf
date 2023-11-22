@@ -1,12 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "neo-tree.nvim"
-
 return {
-  "nvim-neo-tree/" .. plugin,
+  "nvim-neo-tree/neo-tree.nvim",
   enabled = false,
   dependencies = {
     "nvim-lua/plenary.nvim",

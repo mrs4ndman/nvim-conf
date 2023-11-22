@@ -1,13 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "iswap.nvim"
-
 return {
-  "mizlan/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "mizlan/iswap.nvim",
   cmd = "ISwap",
   keys = {
     { "<leader>is", "<cmd>ISwap<CR>", desc = "[iswap] Start swap" },
