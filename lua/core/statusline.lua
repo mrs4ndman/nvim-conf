@@ -118,6 +118,19 @@ function M.filename_component()
 
   local filename = vim.fn.expand("%:t")
 
+  if vim.bo.filetype == "TelescopePrompt" then
+    ---@diagnostic disable-next-line: param-type-mismatch
+    filename = "[🔭 Telescope]"
+  end
+  if vim.bo.filetype == "oil" then
+    ---@diagnostic disable-next-line: param-type-mismatch
+    filename = "[Oil] " .. vim.fn.expand("%"):sub(7)
+  end
+  if vim.bo.filetype == "help" then
+    ---@diagnostic disable-next-line: param-type-mismatch
+    filename = "[Help] " .. filename:sub(1, (filename:len() - 4))
+  end
+
   if filename == "" then
     filename = "[No Name]"
   end
@@ -133,6 +146,9 @@ function M.filename_component()
     filename = filename .. default_options.symbols.readonly
   end
 
+  if vim.bo.filetype == "alpha" then
+    filename = "[Start]"
+  end
   -- local relpath = "%f%m%r"
   return string.format("%%#StatuslineFilename# %s", filename)
 end
@@ -147,11 +163,20 @@ function M.git_component()
     return gitdir and #gitdir > 0 and #gitdir < #filepath
   end
   local git_icon = icons.misc.git
+  local git_status = vim.b.gitsigns_status
   local head = vim.b.gitsigns_head
   if (not head) or not check_git_workspace then
     return ""
   end
-  return string.format("%%#StatuslineGit#%s %s", git_icon, head)
+  if not (git_status == "") then
+    git_status = " → " .. git_status
+  else
+    git_status = git_status
+  end
+  return table.concat({
+    string.format("%%#StatuslineGit#%s %s", git_icon, head),
+    string.format("%%#StatuslineTitle#%s", git_status),
+  })
 end
 
 --- Noice key status

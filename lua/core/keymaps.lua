@@ -203,11 +203,11 @@ end, { desc = "Put * [ ] at the beginning of the line" })
 -- Toggle relative linenumbers on and off
 vim.keymap.set({ "n", "v" }, "<leader>tn", function()
   vim.o.relativenumber = not vim.o.relativenumber
-end, { silent = true })
+end, { desc = "Toggle relative line numbers" })
 
 vim.keymap.set("n", "<leader>H", function()
   func.harpoon_split()
-end)
+end, { desc = "Harpoon picker"})
 
 -- Normal mode CTRL Keybinds
 -- Start recording macro for a given word / selection
@@ -220,9 +220,6 @@ vim.keymap.set({ "i", "v", "n" }, "<M-C-c>", func.confirm_macro, { desc = "Confi
 -- Half-page jumping
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
-
--- Invoke sessionizer
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "tmux sessionizer" })
 
 -- Lazy terminal
 vim.keymap.set("n", "<M-C-j>", function()
@@ -243,6 +240,18 @@ vim.keymap.set("n", "<C-z>", "<Nop>")
 
 -- How to escape Vim Insert mode: keybind edition:
 vim.keymap.set("i", "<C-c>", "<Esc>", { silent = true })
+
+-- Move a bit in insert mode
+vim.keymap.set({ "c", "i" }, "<C-h>", "<Left>")
+vim.keymap.set({ "c", "i" }, "<C-l>", "<Right>")
+
+vim.keymap.set("i", "<M-h>", function()
+  func.swap_char_b()
+end)
+
+vim.keymap.set("i", "<M-l>", function()
+  func.swap_char_f()
+end)
 
 -- VISUAL mode Keybinds
 

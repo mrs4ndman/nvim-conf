@@ -15,9 +15,6 @@ return {
   config = function()
     require("litee.lib").setup()
     require("litee.gh").setup({
-      -- INFO: deprecated, around for compatability for now.
-      -- jump_mode             = "invoking",
-
       map_resize_keys = false,
       disable_keymaps = false,
       icon_set = "default",

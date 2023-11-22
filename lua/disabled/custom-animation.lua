@@ -1,4 +1,3 @@
--- WARN: !DISABLED: Used with disabled/animation.lua!!
 local redraw_buffer = function()
   local Animation = require("animation")
   local fps = 45

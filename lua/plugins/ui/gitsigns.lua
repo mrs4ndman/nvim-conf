@@ -9,6 +9,9 @@ return {
   "lewis6991/" .. plugin,
   event = { "BufRead", "BufNewFile" },
   enabled = Is_Enabled(plugin),
+  keys = {
+    { "<leader>Gh", "<cmd>Gitsigns stage_hunk<cr>", desc = "[Git] Stage hunk" },
+  },
   opts = {
     signs = {
       add = {

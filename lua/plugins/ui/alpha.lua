@@ -50,7 +50,7 @@ return {
           -- "",
           -- "",
           "",
-          "        " .. time .. " |   v" .. v.major .. "." .. v.minor .. "." .. v.patch,
+          "       " .. time .. " |   v" .. v.major .. "." .. v.minor .. "." .. v.patch,
           "",
           "   " .. stats.loaded .. " / " .. stats.count .. " plugins | " .. ms .. "ms |  mrs4ndman",
           "",

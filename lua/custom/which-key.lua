@@ -8,6 +8,7 @@ wk.register({
   ["<leader>c"] = { name = "[Buffers] [chmod] " },
   ["<leader>ca"] = { name = "a secret" },
   ["<leader>d"] = { name = "[Pets] [DB] [Word-toggler]" },
+  ["<leader>D"] = { name = "[DAP]" },
   ["<leader>e"] = { name = "[Refactoring -> Extract]" },
   ["<leader>f"] = { name = "[Formatter]" },
   ["<leader>g"] = { name = "[Git (Blame + Links)]" },

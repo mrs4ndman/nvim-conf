@@ -41,7 +41,6 @@ M.on_attach = function(client, bufnr)
   vim.keymap.set({ "n", "v" }, "<leader>vrn", vim.lsp.buf.rename, { noremap = true, desc = "[LSP] Rename element under cursor", buffer = bufnr })
   vim.keymap.set("n", "<C-n>", vim.lsp.buf.signature_help, { noremap = true, desc = "[LSP] Signature help", buffer = bufnr })
 
-  -- TODO: Need to configure this for the ones that need it:
   if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
     vim.lsp.inlay_hint.enable(bufnr, false)
     vim.keymap.set("n", "<leader>ih", function()

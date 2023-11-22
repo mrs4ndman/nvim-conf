@@ -1,18 +1,10 @@
-Customize = require("mrsandman.customize")
-Is_Enabled = require("mrsandman.functions").is_enabled
-
-local plugin = "nvim-cmp"
-
 return {
-  "mrs4ndman/" .. plugin,
+  "mrs4ndman/nvim-cmp",
   event = "InsertEnter",
-  -- event = { "InsertEnter", "CmdlineEnter" },
-  enabled = Is_Enabled(plugin),
   dependencies = {
     -- Completion sources
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-cmdline",
-    -- "amarakon/nvim-cmp-buffer-lines",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-emoji",
     "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -93,5 +85,6 @@ return {
     "buschco/nvim-cmp-ts-tag-close",
     "saadparwaiz1/cmp_luasnip",
   },
-  opts = require("custom.cmp"),
+  main = "custom.cmp",
+  config = true
 }

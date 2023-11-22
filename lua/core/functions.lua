@@ -95,6 +95,37 @@ function M.harpoon_split()
   end)
 end
 
+--- Swap current char with the previous one
+function M.swap_char_b()
+  local pos = vim.api.nvim_win_get_cursor(0)
+  local prev_colnr = pos[2]
+  local colnr = pos[2] + 1
+  if not prev_colnr then
+    print("Go forward a char to swap")
+    return
+  end
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local curchar = vim.fn.getline("."):sub(colnr, colnr)
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local prevchar = vim.fn.getline("."):sub(prev_colnr, prev_colnr)
+  local concatted = curchar .. prevchar
+  vim.api.nvim_buf_set_text(0, pos[1] - 1, (prev_colnr - 1), pos[1] - 1, colnr, { concatted })
+  -- print(concatted)
+end
+
+--- Swap current char with the next one
+function M.swap_char_f()
+  local pos = vim.api.nvim_win_get_cursor(0)
+  local colnr = pos[2] + 1
+  local next_colnr = pos[2] + 2
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local curchar = vim.fn.getline("."):sub(colnr, colnr)
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local nextchar = vim.fn.getline("."):sub(next_colnr, next_colnr)
+  local concatted = nextchar .. curchar
+  vim.api.nvim_buf_set_text(0, pos[1] - 1, (colnr - 1), pos[1] - 1, next_colnr, { concatted })
+end
+
 --[[ 
 # --------------------------------------------------- #
 #    FUNCTIONS FOR RANGED / SINGLE LINE MACRO EXEC    #
