@@ -5,7 +5,6 @@ local lspconfig = require("lspconfig")
 local servers = {
   ["lua_ls"] = function()
     return {
-
       on_attach = on_attach,
       capabilities = capabilities,
       settings = {

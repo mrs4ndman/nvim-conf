@@ -421,7 +421,6 @@ function M.render()
 
   return table.concat({
     concat_components({
-      -- M.side_marks_component(),
       M.mode_component(),
       M.filename_component(),
       M.git_component(),
@@ -442,7 +441,6 @@ function M.render()
       M.filetype_component(),
       M.position_component(),
       -- M.current_time(),
-      -- M.side_marks_component(),
     }),
     "",
   })
