@@ -88,6 +88,7 @@ function M.visual_move(count, min_count, pos_1, pos_2, fix_num, cmd_start)
   vim.cmd("normal! gv")
 end
 
+--- Open inputted harpoon tag number in vertical split
 function M.harpoon_split()
   ---@param harp_mark integer
   vim.ui.input({ prompt = "Which mark?" }, function(harp_mark)
@@ -124,6 +125,25 @@ function M.swap_char_f()
   local nextchar = vim.fn.getline("."):sub(next_colnr, next_colnr)
   local concatted = nextchar .. curchar
   vim.api.nvim_buf_set_text(0, pos[1] - 1, (colnr - 1), pos[1] - 1, next_colnr, { concatted })
+end
+
+--- Code runner
+---@param height integer
+function M.runner(height)
+  local fts = {
+    rust = "cargo run",
+    python = "python3 %",
+    javascript = "npm start",
+    c = "make",
+    cpp = "make",
+    java = "java %",
+  }
+
+  local cmd = fts[vim.bo.filetype]
+  -- stylua: ignore
+  vim.cmd(
+    cmd and ("w | " .. (height or "") .. "sp | term " .. cmd)
+    or "echo 'No runner for this filetype'")
 end
 
 --[[ 
@@ -194,7 +214,7 @@ function M.confirm_macro()
   -- exit insert mode if it is being recorded
   if mode == "i" then
     vim.cmd("stopinsert")
-  -- exit visual mode if it is being recorded
+    -- exit visual mode if it is being recorded
   elseif mode == "v" then
     -- feedkeys
     local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)

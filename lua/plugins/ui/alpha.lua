@@ -88,14 +88,14 @@ return {
 
     dashboard.section.buttons.val = {
       dashboard.button("n", "    New file", "<cmd>ene<CR>"),
-      dashboard.button("o", "⚡   It's Oil time", ":Oil<CR>"),
-      dashboard.button("v", "    Source session", ":SessionRestore<CR>"),
-      dashboard.button("f", "󰈞    Find project file", ":Telescope find_files<CR>"),
-      dashboard.button("r", "    Recent", ":Telescope oldfiles<CR>"),
-      dashboard.button("g", "󰊄    Grep pattern", ":Telescope live_grep<CR>"),
-      dashboard.button("c", "󰏘    Colorschemes", ":Themer<CR>"),
-      dashboard.button("l", "󰒲    Plugins", ":Lazy<CR>"),
-      dashboard.button("q", "󰿅    Get me out :D", ":qa<CR>"),
+      dashboard.button("o", "⚡   It's Oil time", "<cmd>Oil<CR>"),
+      dashboard.button("v", "    Source session", "<cmd>SessionRestore<CR>"),
+      dashboard.button("f", "󰈞    Find project file", "<cmd>Telescope find_files<CR>"),
+      dashboard.button("r", "    Recent", "<cmd>Telescope oldfiles<CR>"),
+      dashboard.button("g", "󰊄    Grep pattern", "<cmd>Telescope live_grep<CR>"),
+      dashboard.button("c", "󰏘    Colorschemes", "<cmd>Themer<CR>"),
+      dashboard.button("l", "󰒲    Plugins", "<cmd>Lazy<CR>"),
+      dashboard.button("q", "󰿅    Get me out :D", "<cmd>qa<CR>"),
     }
 
     alpha.setup(dashboard.opts)

@@ -21,6 +21,7 @@ return {
         ["on"] = "off",
         ["left"] = "right",
         ["up"] = "down",
+        ["public"] = "private",
         ["!="] = "==",
         ["->"] = "<-",
         ["?"] = "¿",

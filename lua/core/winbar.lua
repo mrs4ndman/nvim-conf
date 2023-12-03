@@ -2,8 +2,24 @@ local M = {}
 
 local folder_icon = require("core.icons").misc.folder
 
+function M.navic_component()
+  -- if not package.loaded["nvim-navic"] or vim.bo.modifiable == false or vim.bo.filetype == ("help" or "lazy") then
+  --   return ""
+  -- end
+  if not package.loaded["nvim-navic"] or require("nvim-navic").get_location() == "" then
+    return ""
+  end
+  return "  " .. "%{%v:lua.require'nvim-navic'.get_location()%}"
+end
+
+--- Side marks, a la Doom-Emacs
 ---@return string
-function M.render()
+function M.side_marks_component()
+  return string.format("%%#WinbarSidemark#▊%%##")
+end
+
+---@return string
+function M.path()
   local path = vim.fs.normalize(vim.fn.expand("%:p") --[[@as string]])
   -- No slashes, just arrows
   local separator = " %#WinbarSeparator# "
@@ -27,23 +43,33 @@ function M.render()
         prefix, prefix_path = dir_name, dir_path
       end
     end
-    if prefix ~= '' then
-      path = path:gsub('^' .. prefix_path, '')
+    if prefix ~= "" then
+      path = path:gsub("^" .. prefix_path, "")
       prefix = string.format("%%#WinbarSpecial#%s %s%s", folder_icon, prefix, separator)
     end
   end
--- Remove trailing slash.
+  -- Remove trailing slash.
   path = path:gsub("^/", "")
 
   return table.concat({
-    "▊ ",
+    " ",
     prefix,
     table.concat(
       vim.iter.map(function(segment)
-      return string.format('%%#Winbar#%s', segment)
+        return string.format("%%#Winbar#%s", segment)
       end, vim.split(path, "/")),
       separator
     ),
+  })
+end
+
+function M.render()
+  return table.concat({
+    M.side_marks_component(),
+    M.path(),
+    M.navic_component(),
+    "%=",
+    M.side_marks_component(),
   })
 end
 
@@ -51,18 +77,19 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   group = vim.api.nvim_create_augroup("mrsandman/winbar", { clear = true }),
   desc = "Attach winbar",
   callback = function(args)
-    if 
-    not vim.api.nvim_win_get_config(0).zindex -- Not a floating window
-    and vim.bo[args.buf].buftype == "" -- Normal buffer 
-    and vim.api.nvim_buf_get_name(args.buf) ~= "" -- Has a file name
-    and not vim.wo[0].diff -- Not in diff mode
+    if
+      not vim.api.nvim_win_get_config(0).zindex -- Not a floating window
+      and vim.bo[args.buf].buftype == "" -- Normal buffer
+      and vim.api.nvim_buf_get_name(args.buf) ~= "" -- Has a file name
+      and not vim.wo[0].diff -- Not in diff mode
     then
       vim.wo.winbar = "%{%v:lua.require'core.winbar'.render()%}"
     end
-  end
+  end,
 })
 
-
-vim.o.winbar = "%!v:lua.require'core.winbar'.render()"
+vim.o.winbar = "%{%v:lua.require'core.winbar'.render()%}"
 
 return M
+
+-- vim.o.winbar = "%!v:lua.require'core.winbar'.render()"

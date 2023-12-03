@@ -34,8 +34,7 @@ vim.keymap.set("n", "<Esc>", function()
   require("notify").dismiss()
   vim.cmd("Noice dismiss")
   vim.cmd("nohl")
-  vim.cmd("nohlsearch")
-end, {})
+end)
 
 -- Netrw keybind
 -- vim.keymap.set("n", "<leader>E", vim.cmd.Ex, { desc = "Ex", silent = true })
@@ -207,7 +206,7 @@ end, { desc = "Toggle relative line numbers" })
 
 vim.keymap.set("n", "<leader>H", function()
   func.harpoon_split()
-end, { desc = "Harpoon picker"})
+end, { desc = "Harpoon picker" })
 
 -- Normal mode CTRL Keybinds
 -- Start recording macro for a given word / selection
@@ -275,3 +274,7 @@ vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.keymap.set("t", "<M-C-J>", "<C-\\><C-n>bd!<CR>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>te>", ":bd!", { desc = "Exit terminal" })
+
+vim.keymap.set("n", "<leader>R", function()
+  func.runner(20)
+end, { desc = "Code runner" })

@@ -24,3 +24,7 @@ vim.keymap.set({ "n", "v" }, "<leader>F", function()
     print("no formatter :(")
   end
 end, { desc = "LSP formatting" })
+
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true })

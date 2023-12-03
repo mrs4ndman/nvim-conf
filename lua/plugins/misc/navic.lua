@@ -7,13 +7,11 @@ local plugin = "nvim-navic"
 
 return {
   "SmiteshP/" .. plugin,
-  enabled = Is_Enabled(plugin),
-  init = function()
-    vim.g.navic_silence = true
-  end,
+  enabled = true,
+  lazy = false,
   config = function()
     require("nvim-navic").setup({
-      separator = "  ",
+      separator = "  ",
       highlight = true,
       lsp = { auto_attach = true },
       depth_limit = 4,

@@ -144,12 +144,15 @@ local mapping = cmp.mapping.preset.insert({
 
 local custom_sources = {
   { name = "nvim_lsp" },
-  {
-    name = "codeium",
-  },
+  -- {
+  --   name = "codeium",
+  -- },
   {
     name = "spell",
     filetype = { "tex", "markdown", "txt" },
+    option = {
+      keep_all_entries = false,
+    },
   },
   {
     name = "omni",
@@ -157,8 +160,12 @@ local custom_sources = {
   },
   { name = "luasnip", keyword_length = 2 },
   {
+    name = "otter",
+    filetype = "markdown",
+  },
+  {
     name = "buffer",
-    options = {
+    option = {
       get_bufnrs = function()
         return vim.api.nvim_list_bufs()
       end,

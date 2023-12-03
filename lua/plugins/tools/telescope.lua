@@ -124,7 +124,6 @@ return {
       if selected[1] ~= currentColorscheme then
         vim.cmd("colorscheme " .. currentColorscheme)
       end
-      vim.print(currentColorscheme)
       actions.close(prompt_bufnr)
     end
 
@@ -164,6 +163,7 @@ return {
         "catppuccin",
         "rose-pine",
         "tokyodark",
+        "default",
         "oxocarbon",
         "enfocado",
         "fluoromachine",

@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("Filetype", {
   pattern = "alpha",
   callback = function()
     vim.b.miniindentscope_disable = true
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -38,49 +38,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-local statuslineNop = {
-  "netrw",
-  "alpha",
-  "lazy",
-}
-vim.api.nvim_create_autocmd({ "BufAdd", "BufEnter", "BufRead", "BufLeave", "WinLeave", "WinNew", "WinClosed", "WinNew" }, {
-  callback = function()
-    if vim.bo.filetype ~= statuslineNop then
-      vim.cmd([[setlocal laststatus=3]])
-      -- vim.api.nvim_get_option_value("filetype", { 0 })
-    end
-    if vim.bo.filetype == statuslineNop then
-      vim.cmd([[setlocal laststatus=0]])
-    end
-  end,
-})
-
-vim.api.nvim_create_autocmd("Filetype", {
-  pattern = statuslineNop,
-  callback = function()
-    vim.cmd([[setlocal laststatus=0]])
-  end,
-})
-
--- Might give this a shot at some point
--- vim.api.nvim_create_autocmd("Filetype", {
---   pattern = { "lua", "html", "css" },
+-- Fix for :Telescope oldfiles leaving me in insert mode
+-- vim.api.nvim_create_autocmd("WinLeave", {
 --   callback = function()
---     vim.bo.tabstop = 2
---     vim.bo.shiftwidth = 2
---     vim.bo.softtabstop = 2
---     vim.bo.expandtab = true
+--     if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
+--       vim.cmd.stopinsert()
+--     end
 --   end,
 -- })
-
--- Fix for :Telescope oldfiles leaving me in insert mode
-vim.api.nvim_create_autocmd("WinLeave", {
-  callback = function()
-    if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
-    end
-  end,
-})
 
 -- Highlight yanking action for a second
 vim.api.nvim_create_autocmd("TextYankPost", {

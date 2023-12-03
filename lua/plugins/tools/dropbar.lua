@@ -7,7 +7,8 @@ local plugin = "dropbar.nvim"
 
 return {
   "Bekaboo/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  -- enabled = Is_Enabled(plugin),
+  enabled = false,
   event = "BufReadPost",
   -- lazy = false,
   keys = {

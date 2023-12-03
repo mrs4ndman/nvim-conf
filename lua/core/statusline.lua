@@ -118,22 +118,23 @@ function M.filename_component()
 
   local filename = vim.fn.expand("%:t")
 
-  if vim.bo.filetype == "TelescopePrompt" then
+  ---@type table<string, string>
+  local special_stuff = {
+    ["TelescopePrompt"] = "[🔭 Telescope]",
     ---@diagnostic disable-next-line: param-type-mismatch
-    filename = "[🔭 Telescope]"
-  end
-  if vim.bo.filetype == "oil" then
+    ["oil"] = "[oil] " .. vim.fn.expand("%" --[[@as string]]):sub(7),
     ---@diagnostic disable-next-line: param-type-mismatch
-    filename = "[Oil] " .. vim.fn.expand("%"):sub(7)
-  end
-  if vim.bo.filetype == "help" then
-    ---@diagnostic disable-next-line: param-type-mismatch
-    filename = "[Help] " .. filename:sub(1, (filename:len() - 4))
+    ["help"] = "[Help] " .. filename:sub(1, (filename:len() - 4)),
+    ["lazy"] = "[lazy.nvim]",
+    [""] = "[No Name]",
+    ["alpha"] = "[Start]",
+  }
+  for k, v in pairs(special_stuff) do
+    if vim.bo.filetype == k then
+      filename = v
+    end
   end
 
-  if filename == "" then
-    filename = "[No Name]"
-  end
   if vim.fn.mode() == "t" then
     local terminalName = "%t"
     return string.format("%%#StatuslineWhite# %s", terminalName)
@@ -146,9 +147,6 @@ function M.filename_component()
     filename = filename .. default_options.symbols.readonly
   end
 
-  if vim.bo.filetype == "alpha" then
-    filename = "[Start]"
-  end
   -- local relpath = "%f%m%r"
   return string.format("%%#StatuslineFilename# %s", filename)
 end
@@ -168,7 +166,7 @@ function M.git_component()
   if (not head) or not check_git_workspace then
     return ""
   end
-  if not (git_status == "") then
+  if git_status ~= "" then
     git_status = " → " .. git_status
   else
     git_status = git_status
@@ -381,7 +379,7 @@ function M.lazy_updates()
 end
 ---@return string
 function M.current_time()
-  local time = string.sub(tostring(os.date()), 13)
+  local time = string.sub(tostring(os.date()), 17, 21)
   return string.format("%%#StatuslineTime# %s", time)
 end
 

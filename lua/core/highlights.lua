@@ -41,6 +41,7 @@ statusline_groups = vim.tbl_extend("error", statusline_groups, {
   StatuslineTotalLines = { fg = colors.red, italic = true },
   StatuslineWhite = { fg = colors.white, bg = colors.bg, bold = true },
   WinbarTitle = { link = "StatuslineTitle" },
+  WinbarSidemark = { link = "StatuslineSidemark", bg = "" },
 })
 
 for group, opts in pairs(statusline_groups) do

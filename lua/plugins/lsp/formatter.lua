@@ -29,6 +29,8 @@ return {
       css = { "prettierd" },
       markdown = { "injected" },
       java = { "clang_format" },
+      sql = { "sql_formatter" },
+      rust = { "rustfmt" },
     },
   },
 }
