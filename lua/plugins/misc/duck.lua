@@ -1,13 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "duck.nvim"
-
 return {
-  "tamton-aquib/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "tamton-aquib/duck.nvim",
   keys = {
     { "<leader>da", desc = "Hatch amogus"},
     { "<leader>dc", desc = "Hatch cat"},

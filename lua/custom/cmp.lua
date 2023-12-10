@@ -10,6 +10,23 @@ local lspkind = require("lspkind")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+--- Select item next/prev, taking into account whether the cmp window is
+--- top-down or bottoom-up so that the movement is always in the same direction.
+local select_item_smart = function(dir, opts)
+  return function(fallback)
+    if cmp.visible() then
+      opts = opts or { behavior = cmp.SelectBehavior.Select }
+      if cmp.core.view.custom_entries_view:is_direction_top_down() then
+        ({ next = cmp.select_next_item, prev = cmp.select_prev_item })[dir](opts)
+      else
+        ({ prev = cmp.select_next_item, next = cmp.select_prev_item })[dir](opts)
+      end
+    else
+      fallback()
+    end
+  end
+end
+
 local preselect = cmp.PreselectMode.Item
 
 local completion = {
@@ -111,8 +128,8 @@ local has_words_before = function()
 end
 
 local mapping = cmp.mapping.preset.insert({
-  ["<C-p>"] = cmp.mapping.select_prev_item(),
-  ["<C-n>"] = cmp.mapping.select_next_item(),
+  ["<C-p>"] = select_item_smart("prev"),
+  ["<C-n>"] = select_item_smart("next"),
   ["<C-u>"] = cmp.mapping.scroll_docs(-2),
   ["<C-d>"] = cmp.mapping.scroll_docs(2),
   ["<C-y>"] = cmp.mapping.confirm({ select = true }),

@@ -1,12 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "live-server.nvim"
-
 return {
-  "barrett-ruth/" .. plugin,
+  "barrett-ruth/live-server.nvim",
   cmd = { "LiveServerStart", "LiveServerRestart", "LiveServerStop" },
   keys = {
     { "<leader>ls", "<cmd>LiveServerStart<CR>", desc = "[Live-Server] Start" },

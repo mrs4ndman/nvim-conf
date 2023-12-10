@@ -1,11 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-
-local plugin = "trouble.nvim"
-
 return {
-  "folke/" .. plugin,
+  "folke/trouble.nvim",
   cmd = { "TroubleToggle", "Trouble" },
   keys = {
     { "<leader>xx", "<cmd>TroubleToggle<CR>", desc = "[Trouble] Toggle list" },

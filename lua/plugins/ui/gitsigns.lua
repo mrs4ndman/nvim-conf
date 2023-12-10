@@ -1,14 +1,6 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "gitsigns.nvim"
-
 return {
-  "lewis6991/" .. plugin,
+  "lewis6991/gitsigns.nvim",
   event = { "BufRead", "BufNewFile" },
-  enabled = Is_Enabled(plugin),
   keys = {
     { "<leader>Gh", "<cmd>Gitsigns stage_hunk<cr>", desc = "[Git] Stage hunk" },
   },

@@ -1,39 +1,26 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "flash.nvim"
-
 return {
-  "folke/" .. plugin,
-  enabled = Is_Enabled(plugin),
-  opts = function(_, opts)
-    if Use_Defaults(plugin) then
-      opts = opts
-    else
-      opts = {
+  "folke/flash.nvim",
+  opts = {
+    labels = "hjklñasdfghquwieorpty",
+    label = {
+      uppercase = true,
+      reuse = "all",
+      distance = true,
+      rainbow = { enabled = true, shade = 6 },
+    },
+    modes = {
+      treesitter = {
         labels = "hjklñasdfghquwieorpty",
-        label = {
-          uppercase = true,
-          reuse = "all",
-          distance = true,
-          rainbow = { enabled = true, shade = 6 },
-        },
-        modes = {
-          treesitter = {
-            labels = "hjklñasdfghquwieorpty",
-
-          },
-        },
-      }
-    end
-  end,
+      },
+    },
+  },
   keys = {
     {
       "<leader>tS",
       mode = { "n", "x", "o" },
-      function() require("flash").treesitter() end,
+      function()
+        require("flash").treesitter()
+      end,
       desc = "Flash Treesitter",
     },
     {
@@ -64,7 +51,7 @@ return {
           remote_op = { restore = true },
         })
       end,
-      desc = "Flash mega TS"
-    }
-  }
+      desc = "Flash mega TS",
+    },
+  },
 }

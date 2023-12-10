@@ -77,9 +77,6 @@ vim.keymap.set("n", "<leader>ip", "=ap", { desc = "Indent a paragraph", silent =
 -- Set files to be executable
 vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { desc = "Make file executable", silent = true })
 
--- greatest remaps ever,  replace current selection with paste buffer & visual deletion made easy
-vim.keymap.set("x", "<leader>p", '"_dp', { desc = "Better paste :)" })
-vim.keymap.set("x", "<leader>P", '"_dP', { desc = "Better Paste :)" })
 vim.keymap.set({ "n", "v" }, "<leader>dd", [["_d]], { desc = "Better delete" })
 
 -- Enable custom mappings for 1-9 yank-paste-delete registers
@@ -135,22 +132,6 @@ vim.keymap.set("v", "+", "s")
 vim.keymap.set({ "n", "v" }, "x", '"_x', { silent = true })
 vim.keymap.set({ "n", "v" }, "X", '"_X', { silent = true })
 
--- Incredible markdown codeblocks:
-vim.keymap.set("n", "<leader>C", function()
-  if vim.bo.filetype == "markdown" then
-    local keys = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
-    vim.api.nvim_feedkeys(
-      [[i
-```
-
-```]],
-      "n",
-      true
-    )
-    vim.api.nvim_feedkeys(keys .. [[kkA]], "n", false)
-  end
-end, { desc = "Codeblock" })
-
 -- Select all
 vim.keymap.set("n", "<leader>sa", "ggVG", { desc = "Select all" })
 
@@ -160,7 +141,7 @@ vim.keymap.set("n", "<leader>ya", 'ggVG"+y', { desc = "Yank whole buffer" })
 -- Insert new line above and below and exit
 -- vim.keymap.set("n", "<leader>o", "o<Esc>", { silent = true, desc = "Insert new line below and exit" })
 vim.keymap.set("n", "<leader>O", "O<Esc>", { silent = true, desc = "Insert new line above and exit" })
-vim.keymap.set("i", "<C-p>", "<Esc>:Telescope oldfiles<CR>")
+vim.keymap.set("i", "<C-p>", "<Esc><cmd>Telescope oldfiles<CR>")
 
 -- Buffer previous, next and close, window closing too
 -- To use without the cokeline bar
@@ -189,6 +170,11 @@ for _, char in ipairs(end_strings) do
   end, { desc = "Put " .. char .. " at the end of the line" })
 end
 
+-- Incredible markdown codeblocks:
+vim.keymap.set("n", "<leader>C", function()
+  func.md_block()
+end, { desc = "Codeblock" })
+
 vim.keymap.set("n", "<leader>-", function()
   func.put_at_beginning("- ")
 end, { desc = "Put - at the beginning of the line" })
@@ -207,6 +193,10 @@ end, { desc = "Toggle relative line numbers" })
 vim.keymap.set("n", "<leader>H", function()
   func.harpoon_split()
 end, { desc = "Harpoon picker" })
+
+vim.keymap.set("n", "<leader>R", function()
+  func.runner(20)
+end, { desc = "Code runner" })
 
 -- Normal mode CTRL Keybinds
 -- Start recording macro for a given word / selection
@@ -253,16 +243,6 @@ vim.keymap.set("i", "<M-l>", function()
 end)
 
 -- VISUAL mode Keybinds
-
--- Moving around text on visual
--- vim.keymap.set("v", "J", function()
---   func.visual_move(vim.v.count1, 1, "'>", ".", 0, "'<,'> m '>+")
--- end, { desc = "Visual move down" })
---
--- vim.keymap.set("v", "K", function()
---   func.visual_move(vim.v.count1, 2, ".", "'<", 1, "'<,'> m '<-")
--- end, { desc = "Visual move up" })
-
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
@@ -274,7 +254,3 @@ vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.keymap.set("t", "<M-C-J>", "<C-\\><C-n>bd!<CR>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>te>", ":bd!", { desc = "Exit terminal" })
-
-vim.keymap.set("n", "<leader>R", function()
-  func.runner(20)
-end, { desc = "Code runner" })

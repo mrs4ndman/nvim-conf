@@ -1,16 +1,10 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "nvim-treesitter"
-
 return {
-  "nvim-treesitter/" .. plugin, -- parsing to the end of time
-  enabled = Is_Enabled(plugin),
+  "nvim-treesitter/nvim-treesitter", -- parsing to the end of time
   cmd = { "TSInstall", "TSUpdate" },
   event = { "BufRead", "BufNewFile" },
-  build = function() vim.cmd("TSUpdate") end,
+  build = function()
+    vim.cmd("TSUpdate")
+  end,
   dependencies = {
     {
       "nvim-treesitter/nvim-treesitter-context",
@@ -26,11 +20,10 @@ return {
       },
     },
     "windwp/nvim-ts-autotag",
-    { "David-Kunz/markid", enabled = Is_Enabled("markid") },
+    { "David-Kunz/markid" },
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
       event = { "BufRead", "BufNewFile" },
-      enabled = Is_Enabled("nvim-treesitter-textobjects"),
     },
   },
   config = function()
@@ -79,6 +72,7 @@ return {
       --   enable_autocmd = false,
       -- },
       autotag = { enable = true },
+      autopairs = { enable = true },
       markid = { enable = true },
       textobjects = {
         select = {

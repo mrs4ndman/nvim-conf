@@ -1,12 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "treesj"
-
 return {
-  "Wansmer/" .. plugin,
+  "Wansmer/treesj",
   cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
   keys = {
     { "Q", "<cmd>TSJToggle<CR>", desc = "[TSJ] Toggle node" },
@@ -18,5 +11,5 @@ return {
     cursor_behaviour = "hold",
     notify = true,
     dot_repeat = true,
-  }
+  },
 }

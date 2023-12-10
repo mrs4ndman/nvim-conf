@@ -146,6 +146,15 @@ function M.runner(height)
     or "echo 'No runner for this filetype'")
 end
 
+--- Markdown codeblock machine using `vim.ui.input`
+function M.md_block()
+  vim.ui.input({ prompt = "Block language?"}, function(lang)
+     local enter = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
+     local escape = vim.api.nvim_replace_termcodes("<C-o>k", true, false, true)
+    vim.api.nvim_feedkeys([[o```]] .. lang .. enter .. enter .. [[```]] .. escape, "n", true)
+  end)
+end
+
 --[[ 
 # --------------------------------------------------- #
 #    FUNCTIONS FOR RANGED / SINGLE LINE MACRO EXEC    #

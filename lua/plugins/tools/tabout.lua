@@ -1,14 +1,6 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "tabout.nvim"
-
 -- Lua tabout finally working
 return {
-  "abecodes/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "abecodes/tabout.nvim",
   event = "InsertEnter",
   dependencies = { "nvim-treesitter/nvim-treesitter" }, -- parsing to the end of time
   config = function()

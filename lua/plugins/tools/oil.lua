@@ -1,13 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "oil.nvim"
-
 return {
-  "stevearc/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "stevearc/oil.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
     { "-", "<cmd>Oil<CR>" },

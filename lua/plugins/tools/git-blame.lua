@@ -1,13 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "git-blame.nvim"
-
 return {
-  "f-person/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "f-person/git-blame.nvim",
   keys = {
     { "<leader>gb", "<cmd>GitBlameToggle<CR>", desc = "[Git] Blame Toggle" },
     { "<leader>go", "<cmd>GitBlameOpenCommitURL<CR>", desc = "[Git] Open Commit URL" },

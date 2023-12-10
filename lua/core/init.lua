@@ -5,3 +5,4 @@ require("core.autocmds")
 -- Fully custom statusline and winbar
 require("core.statusline")
 require("core.winbar")
+require("core.plugin_manager")

@@ -1,11 +1,5 @@
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-
-local plugin = "Comment.nvim"
-
 return {
-  "numToStr/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "numToStr/Comment.nvim",
   event = { "BufRead", "BufNewFile" },
   config = function()
     require("Comment").setup({

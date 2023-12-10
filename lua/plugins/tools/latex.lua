@@ -1,10 +1,8 @@
-local plugin = "vimtex"
 return {
   "lervag/vimtex",
   keys = {
     { "<localleader>t", "<cmd>VimtexCompile<CR> | VimtexView<CR>", "[Vimtex] Compile and open" }
   },
-  enabled = Is_Enabled(plugin),
   ft = { "bib", "tex" },
   config = function()
     vim.g.vimtex_view_method = "zathura"

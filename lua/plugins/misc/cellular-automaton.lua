@@ -1,11 +1,5 @@
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-
-local plugin = "cellular-automaton.nvim"
--- Goofy stuff:
 return {
-  "eandrju/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "eandrju/cellular-automaton.nvim",
   cmd = "CellularAutomaton",
   keys = {
     { "<leader>cat", "<cmd>CellularAutomaton make_it_rain<CR>", desc = "cool stuff" },
@@ -50,11 +44,11 @@ return {
       name = "screensaver",
       update = function(grid)
         screensaver(grid, function(prev, i, j)
-        grid[i][j], prev = prev, grid[i][j]
-        return prev
+          grid[i][j], prev = prev, grid[i][j]
+          return prev
         end)
         return true
-      end
+      end,
     })
     require("cellular-automaton").register_animation({
       fps = 50,

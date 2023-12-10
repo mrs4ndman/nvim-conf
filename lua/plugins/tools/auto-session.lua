@@ -1,12 +1,6 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "auto-session"
 
 return {
-  "rmagatti/" .. plugin,
+  "rmagatti/auto-session",
   event = "VimEnter",
   keys = {
     { "<leader>sd", "<cmd>SessionDelete<CR>",  desc = "Delete current session" },
@@ -18,7 +12,6 @@ return {
     "SessionSave",
     "SessionDelete",
   },
-  enabled = Is_Enabled(plugin),
   opts = {
     log_level = "error",
     auto_session_suppress_dirs = { "~/", "~/install", "~/Downloads" },

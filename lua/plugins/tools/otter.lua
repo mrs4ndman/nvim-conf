@@ -3,7 +3,7 @@ return {
   ft = "markdown",
   dependencies = {
     "neovim/nvim-lspconfig",
-    "hrsh7th/nvim-cmp",
+    "mrs4ndman/nvim-cmp",
   },
   opts = {
     buffers = {

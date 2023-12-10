@@ -1,12 +1,5 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-
-local plugin = "flit.nvim"
-
 return {
-  "ggandor/" .. plugin,
-  enabled = Is_Enabled(plugin),
+  "ggandor/flit.nvim",
   dependencies = { "tpope/vim-repeat" },
   event = "BufRead",
   -- lazy = false,

@@ -1,28 +1,12 @@
-Customize = require("mrsandman.customize")
-local functions = require("mrsandman.functions")
-Is_Enabled = functions.is_enabled
-Use_Defaults = functions.use_plugin_defaults
-
-local plugin = "alpha-nvim"
-
-if Is_Enabled(plugin) then
-  vim.keymap.set("n", "<leader>sp", "<cmd>Alpha<CR>", { desc = "Toggle Alpha", silent = true })
-end
-
 return {
-  "goolord/" .. plugin,
+  "goolord/alpha-nvim",
   -- event = "VimEnter",
   -- dependencies = "nvim-tree/nvim-web-devicons",
-  enabled = Is_Enabled(plugin),
+  keys = {
+    { "<leader>sp", "<cmd>Alpha<CR>", desc = "Toggle Alpha" },
+  },
   lazy = false,
   priority = 1000,
-  opts = function(_, opts)
-    if Use_Defaults(plugin) then
-      opts = opts
-    else
-      opts = opts.dashboard
-    end
-  end,
   config = function()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
