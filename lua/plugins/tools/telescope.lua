@@ -16,8 +16,9 @@ return {
     { "<leader>vh", "<cmd>Telescope help_tags<CR>", desc = "[🔭] Help tags" },
     { "<leader>sg", "<cmd>Telescope grep_string<CR>", desc = "[🔭] Fast string grep" },
     { "<leader>tr", "<cmd>Telescope oldfiles<CR>", desc = "[🔭] Recent files" },
-    { "<leader>tli", "<cmd>Telescope lsp_incoming_calls", desc = "[🔭-LSP] Incoming calls" },
-    { "<leader>tlo", "<cmd>Telescope lsp_outgoing_calls", desc = "[🔭-LSP] Outgoing calls" },
+    { "<leader>lh", "<cmd>Telescope highlights<CR>", desc = "[🔭] List highlights" },
+    { "<leader>tli", "<cmd>Telescope lsp_incoming_calls<CR>", desc = "[🔭-LSP] Incoming calls" },
+    { "<leader>tlo", "<cmd>Telescope lsp_outgoing_calls<CR>", desc = "[🔭-LSP] Outgoing calls" },
   },
   opts = {
     pickers = {
@@ -32,7 +33,7 @@ return {
       },
       live_grep = {
         layout_strategy = "vertical",
-        -- theme = "dropdown"
+        -- theme = "ivy"
       },
       buffers = { ignore_current_buffer = true },
     },
@@ -60,7 +61,6 @@ return {
       border = true,
       prompt_prefix = "   ",
       hl_result_eol = false,
-      -- results_title = "",
       wrap_results = true,
       hidden = true,
       mappings = {
@@ -71,17 +71,13 @@ return {
           ["<C-p>"] = require("telescope.actions").preview_scrolling_up,
           ["<C-h>"] = require("telescope.actions").preview_scrolling_left,
           ["<C-l>"] = require("telescope.actions").preview_scrolling_right,
-          -- ["<M-p>"] = action_layout.toggle_preview,
           ["<C-j>"] = require("telescope.actions").move_selection_next,
           ["<C-k>"] = require("telescope.actions").move_selection_previous,
           ["<Esc>"] = require("telescope.actions").close,
         },
         n = {
-          -- ["<M-p>"] = action_layout.toggle_preview,
           ["<C-n>"] = require("telescope.actions").preview_scrolling_down,
           ["<C-p>"] = require("telescope.actions").preview_scrolling_up,
-          ["<M-s>"] = require("telescope.actions").file_split,
-          ["<M-v>"] = require("telescope.actions").file_vsplit,
         },
       },
     },

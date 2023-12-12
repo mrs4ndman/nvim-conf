@@ -128,6 +128,7 @@ function M.filename_component()
     ["lazy"] = "[lazy.nvim]",
     [""] = "[No Name]",
     ["alpha"] = "[Start]",
+    ["Trouble"] = "[" .. icons.plugins.trouble .. "trouble]",
   }
   for k, v in pairs(special_stuff) do
     if vim.bo.filetype == k then
@@ -160,12 +161,28 @@ function M.git_component()
     local gitdir = vim.fn.finddir(".git", filepath .. ";")
     return gitdir and #gitdir > 0 and #gitdir < #filepath
   end
-  local git_icon = icons.misc.git
+  local git_icon = icons.misc.git.icon
   local git_status = vim.b.gitsigns_status
   local head = vim.b.gitsigns_head
   if (not head) or not check_git_workspace then
     return ""
   end
+  local chunks = {}
+  local formatted_str = ""
+  for substring in git_status:gmatch("%S+") do
+    if vim.startswith(substring, "+") then
+      substring = "%#GitSignsAdd#" .. substring
+    end
+    if vim.startswith(substring, "-") then
+      substring = "%#GitSignsDelete#" .. substring
+    end
+    if vim.startswith(substring, "~") then
+      substring = "%#GitSignsChange#" .. substring
+    end
+    table.insert(chunks, "%## " .. substring)
+  end
+  formatted_str = table.concat(chunks)
+  -- vim.print(formatted_str)
   if git_status ~= "" then
     git_status = " → " .. git_status
   else
@@ -173,7 +190,7 @@ function M.git_component()
   end
   return table.concat({
     string.format("%%#StatuslineGit#%s %s", git_icon, head),
-    string.format("%%#StatuslineTitle#%s", git_status),
+    string.format("%%#StatuslineTitle#%s", formatted_str),
   })
 end
 
@@ -302,12 +319,12 @@ function M.filetype_component()
     dapui_stacks = { icons.misc.bug, "StatuslineDapIcon" },
     gitcommit = { " ", "StatuslineGitIcon" },
     gitrebase = { " ", "StatuslineGitIcon" },
-    lazy = { icons.misc.lazy, "StatuslineLazyIcon" },
-    TelescopePrompt = { icons.misc.telescope, "Comment" },
-    lazyterm = { " ", "Comment" },
+    lazy = { icons.plugins.lazy, "StatuslineLazyIcon" },
+    TelescopePrompt = { icons.plugins.telescope, "Comment" },
+    lazyterm = { icons.misc.terminal, "Comment" },
     qf = { icons.misc.search, "Comment" },
-    alpha = { icons.misc.alpha, "Comment" },
-    oil = { icons.misc.oil, "StatuslineColumnIndicator" },
+    alpha = { icons.plugins.alpha, "Comment" },
+    oil = { icons.plugins.oil, "StatuslineColumnIndicator" },
     -- OverseerList = { "󰦬", "Special" },
     -- spectre_panel = { icons.misc.search, "String" },
   }

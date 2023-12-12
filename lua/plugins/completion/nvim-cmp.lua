@@ -25,6 +25,7 @@ return {
     {
       "Exafunction/codeium.nvim",
       dependencies = "nvim-lua/plenary.nvim",
+      enabled = false,
       config = true,
     },
     {

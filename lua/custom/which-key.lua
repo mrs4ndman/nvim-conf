@@ -1,39 +1,40 @@
 local wk = require("which-key")
+local icons = require("core.icons")
 
 -- LEADER plugin keybinds (Space for this config)
 
 wk.register({
   -- which-key category entries
-  ["<leader>b"] = { name = "[Buffers] [Block-view]" },
-  ["<leader>c"] = { name = "[Buffers] [chmod] " },
+  ["<leader>b"] = { name = "Built-in [Buffers]" },
+  ["<leader>c"] = { name = "Built-in [Buffers] [chmod]" },
   ["<leader>ca"] = { name = "a secret" },
   ["<leader>d"] = { name = "[Pets] [DB] [Word-toggler]" },
   ["<leader>D"] = { name = "[DAP]" },
   ["<leader>e"] = { name = "[Refactoring -> Extract]" },
   ["<leader>f"] = { name = "[Formatter]" },
-  ["<leader>g"] = { name = "[Git (Blame + Links)]" },
-  ["<leader>gc"] = { name = "Blame Copy" },
+  ["<leader>gc"] = { name = "[" .. icons.misc.git.icon .. " Git] Blame Copy" },
+  ["<leader>G"] = { name = "[" .. icons.misc.git.icon .. " Gitsigns]" },
+  ["<leader>g"] = { name = "[" .. icons.misc.git.icon .. " Git]" },
   ["<leader>i"] = { name = "[Indenting] [ISwap] [Word HL]" },
   ["<leader>l"] = { name = "[Leap] [Live Server] [Lazy]" },
-  ["<leader>m"] = { name = "[Markdown] [Mason] [TS Move]" },
-  ["<leader>n"] = { name = "[Navbuddy] [NeckPain] [Navbar]" },
-  ["<leader>nw"] = { name = "[NeckPain] Split width" },
+  ["<leader>m"] = { name = "[" .. icons.misc.langs.markdown .. "Markdown] [Mason] [TS Move]" },
+  ["<leader>n"] = { name = "[Aerial]" },
   ["<leader>k"] = { name = "[Harpoon]" },
-  ["<leader>p"] = { name = "[NeoTree] [Register-pasting]" },
+  ["<leader>p"] = { name = "[Register-pasting]" },
   ["<leader>r"] = { name = "[Refactoring] [LSP Rename]" },
-  ["<leader>s"] = { name = "[Sessions] [Timer] [ISwap]" },
-  ["<leader>t"] = { name = "[Telescope] [TS] [Harpoon] [To-Do]" },
+  ["<leader>s"] = { name = "[Sessions] [ISwap]" },
+  ["<leader>t"] = { name = "[" .. icons.plugins.telescope .. "Telescope] [TS] [Harpoon] [To-Do]" },
   ["<leader>te"] = { name = "[Built-in] Terminal" },
   -- ["<leader>tt"] = { name = "[TS] Playground" },
   ["<leader>tc"] = { name = "[To-Do] [TS Context]" },
-  ["<leader>tl"] = { name = "[Telescope] LSP Calls" },
-  ["<leader>v"] = { name = "[Telescope] [Diags] [LSP]" },
+  ["<leader>tl"] = { name = "[" .. icons.plugins.telescope .. "Telescope] LSP Calls" },
+  ["<leader>v"] = { name = "[" .. icons.plugins.telescope .. "Telescope] [Diags] [LSP]" },
   ["<leader>vc"] = { name = "[LSP] Code actions" },
   ["<leader>vr"] = { name = "[LSP] Variable actions" },
-  ["<leader>w"] = { name = "[Windows] [Saving]" },
+  ["<leader>w"] = { name = "Built-in [Windows] [Saving]" },
   ["<leader>x"] = { name = "[Trouble] [Export to HTML]" },
-  ["<leader>xt"] = { name = "Export to HTML" },
-  ["<leader>y"] = { name = "[Register yanking]" },
+  ["<leader>xt"] = { name = "[Built-in] Export to HTML" },
+  ["<leader>y"] = { name = "[Built-in] Register yanking" },
   ["<leader>z"] = { name = "[Zen-Mode] [Twilight]" },
 
   ["<localleader>b"] = { name = "[Shade]" },
@@ -43,7 +44,7 @@ wk.register({
   ["<localleader>DP"] = { name = "[DAP] Python testing" },
 
   -- Custom lua functions: their which-key entries
-  ["<leader>th"] = { "<cmd>Themer<CR>", "Colorscheme manager", { silent = true } },
+  ["<leader>th"] = { "<cmd>Themer<CR>", "[🔭] Colorscheme manager", { silent = true } },
 
   -- LSP Stuff
   ["gp"] = { name = "[LSP] Previews" },
@@ -58,9 +59,8 @@ wk.register({
 -- GitHub stuff
 wk.register({
   g = {
-    name = "+[Git]",
     h = {
-      name = "+[Github]",
+      name = "+[ Github]",
       c = {
         name = "+Commits",
         c = { "<cmd>GHCloseCommit<cr>", "Close" },
@@ -106,4 +106,3 @@ wk.register({
     },
   },
 }, { prefix = "<leader>" })
-

@@ -48,17 +48,32 @@ M.symbol_kinds = {
 
 --- Shared icons that don't really fit into a category.
 M.misc = {
+  langs = {
+    lua = "󰢱",
+    markdown = " ",
+  },
   bug = " ",
+  folder = " ",
+  neovim_solid = "",
+  neovim_transparent = "",
   search = " ",
+  terminal = " ",
   vertical_bar = "│",
+  git = {
+    icon = "",
+    added = " ",
+    modified = " ",
+    removed = " ",
+  },
+}
+
+M.plugins = {
   telescope = "󰭎 ",
   alpha = "",
   lazy = "󰒲",
   oil = "󱐋",
-  git = "",
-  folder = " ",
-  neovim_transparent = "",
-  neovim_solid = "",
+  trouble = " ",
+  undotree = "󰃢 ",
 }
 
 return M

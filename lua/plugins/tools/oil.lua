@@ -4,7 +4,7 @@ return {
   keys = {
     { "-", "<cmd>Oil<CR>" },
   },
-  cmd = "Oil",
+  lazy = false,
   opts = {
     columns = {
       "icon",
@@ -39,6 +39,5 @@ return {
         winblend = 10,
       },
     },
-    silence_netrw_warning = true,
   },
 }

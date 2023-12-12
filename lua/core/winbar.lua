@@ -3,9 +3,6 @@ local M = {}
 local folder_icon = require("core.icons").misc.folder
 
 function M.navic_component()
-  -- if not package.loaded["nvim-navic"] or vim.bo.modifiable == false or vim.bo.filetype == ("help" or "lazy") then
-  --   return ""
-  -- end
   if not package.loaded["nvim-navic"] or require("nvim-navic").get_location() == "" then
     return ""
   end
@@ -45,7 +42,7 @@ function M.path()
     end
     if prefix ~= "" then
       path = path:gsub("^" .. prefix_path, "")
-      prefix = string.format("%%#WinbarSpecial#%s %s%s", folder_icon, prefix, separator)
+      prefix = string.format("%%#WinbarTitle#%s %s%s", folder_icon, prefix, separator)
     end
   end
   -- Remove trailing slash.
@@ -56,7 +53,7 @@ function M.path()
     prefix,
     table.concat(
       vim.iter.map(function(segment)
-        return string.format("%%#Winbar#%s", segment)
+        return string.format("%%#WinbarTitle#%s", segment)
       end, vim.split(path, "/")),
       separator
     ),

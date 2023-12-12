@@ -18,14 +18,17 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
+
+      rust = { "rustfmt" },
+
       javascript = { "prettierd" },
       astro = { "prettierd" },
       html = { "prettierd" },
       css = { "prettierd" },
+
       markdown = { "injected" },
       java = { "clang_format" },
       sql = { "sql_formatter" },
-      rust = { "rustfmt" },
     },
   },
 }

@@ -7,14 +7,15 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "ñ"
 
 local func = require("core.functions")
+local icons = require("core.icons")
 
 -- Lazy and Mason shortcuts
-vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<CR>", { desc = "Lazy", silent = true })
-vim.keymap.set("n", "<leader>mp", "<cmd>Mason<CR>", { desc = "Mason", silent = true })
+vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<CR>", { desc = "Lazy" })
+vim.keymap.set("n", "<leader>mp", "<cmd>Mason<CR>", { desc = "Mason" })
 
 vim.keymap.set("n", "<leader>sb", function()
   require("telescope.builtin").live_grep({ search_dirs = { vim.api.nvim_buf_get_name(0) } })
-end, { desc = "Search current buffer" })
+end, { desc = "[🔭] Search current buffer" })
 
 -- INTERNAL KEYBINDS
 -- NORMAL mode Keybinds
@@ -27,7 +28,7 @@ vim.keymap.set("n", "<leader><leader>", function()
   end
   vim.cmd("so")
   print("Sourced :)")
-end, { silent = true, desc = "Source current file" })
+end, { desc = icons.misc.langs.lua .. " → Source current file" })
 
 -- Clear notifications and search
 vim.keymap.set("n", "<Esc>", function()
@@ -37,33 +38,21 @@ vim.keymap.set("n", "<Esc>", function()
 end)
 
 -- Netrw keybind
--- vim.keymap.set("n", "<leader>E", vim.cmd.Ex, { desc = "Ex", silent = true })
+-- vim.keymap.set("n", "<leader>E", vim.cmd.Ex, { desc = "Ex" })
 
 -- Window splits and ?tabs?
 vim.keymap.set("n", "<leader>wh", "<cmd>split<CR>", { desc = "Horizontal split" })
 vim.keymap.set("n", "<leader>wv", "<cmd>vsplit<CR>", { desc = "Vertical split" })
-vim.keymap.set("n", "<A-Left>", ":vertical resize -2<CR>", {
-  desc = "Make vertical split smaller",
-  silent = true,
-})
-vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", {
-  desc = "Make vertical split larger",
-  silent = true,
-})
-vim.keymap.set("n", "<A-Up>", ":resize -2<CR>", {
-  desc = "Make horizontal split smaller",
-  silent = true,
-})
-vim.keymap.set("n", "<A-Down>", ":resize +2<CR>", {
-  desc = "Make horizontal split larger",
-  silent = true,
-})
+vim.keymap.set("n", "<A-Left>", "<cmd>vertical resize -2<CR>", { desc = "Make vertical split smaller" })
+vim.keymap.set("n", "<A-Right>", "<cmd>vertical resize +2<CR>", { desc = "Make vertical split larger" })
+vim.keymap.set("n", "<A-Up>", "<cmd>resize -2<CR>", { desc = "Make horizontal split smaller" })
+vim.keymap.set("n", "<A-Down>", "<cmd>resize +2<CR>", { desc = "Make horizontal split larger" })
 for i = 1, 10 do
   vim.keymap.set({ "n", "v" }, "<M-" .. i .. ">", func.tabnm(i), { desc = "Go to tab " .. i })
 end
 
 -- Get me out of here (:D)
-vim.keymap.set("n", "<leader><Esc>", "<cmd>quitall<CR>", { desc = "Quit all", silent = true })
+vim.keymap.set("n", "<leader><Esc>", "<cmd>quitall<CR>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>ww", "<cmd>write<CR>", { desc = "Write current buffer" })
 vim.keymap.set("n", "<leader>wa", "<cmd>write<CR>", { desc = "Write to all buffers" })
 vim.keymap.set("n", "<leader>wq", "<cmd>wqa<CR>", { desc = "Bye :D" })
@@ -72,10 +61,10 @@ vim.keymap.set("n", "<leader>wq", "<cmd>wqa<CR>", { desc = "Bye :D" })
 vim.keymap.set("n", "<C-s>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]])
 
 -- indent machine
-vim.keymap.set("n", "<leader>ip", "=ap", { desc = "Indent a paragraph", silent = true })
+vim.keymap.set("n", "<leader>ip", "=ap", { desc = "Indent a paragraph" })
 
 -- Set files to be executable
-vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { desc = "Make file executable", silent = true })
+vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { desc = "Make file executable" })
 
 vim.keymap.set({ "n", "v" }, "<leader>dd", [["_d]], { desc = "Better delete" })
 
@@ -112,25 +101,25 @@ vim.keymap.set({ "n", "v" }, "<leader>yy", [[""y]])
 vim.keymap.set({ "n", "v" }, "<leader>pp", [[""p]])
 
 -- Appending line below to current line ("lil J")
-vim.keymap.set("n", "J", "mzJ'z", { silent = true })
+vim.keymap.set("n", "J", "mzJ'z")
 
 -- Keeping my cursor in the middle when searching
-vim.keymap.set("n", "n", "nzzzv", { silent = true })
-vim.keymap.set("n", "N", "Nzzzv", { silent = true })
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
 -- Center cursor when skipping blocks and spaces
-vim.keymap.set("n", "{", "{zzzv", { silent = true })
-vim.keymap.set("n", "}", "}zzzv", { silent = true })
-vim.keymap.set("n", "(", "(zzzv", { silent = true })
-vim.keymap.set("n", ")", ")zzzv", { silent = true })
+vim.keymap.set("n", "{", "{zzzv")
+vim.keymap.set("n", "}", "}zzzv")
+vim.keymap.set("n", "(", "(zzzv")
+vim.keymap.set("n", ")", ")zzzv")
 
 -- "S" functionality remap for Leap functionality
 vim.keymap.set("n", "+", "S")
 vim.keymap.set("v", "+", "s")
 
 -- Delete character without yanking
-vim.keymap.set({ "n", "v" }, "x", '"_x', { silent = true })
-vim.keymap.set({ "n", "v" }, "X", '"_X', { silent = true })
+vim.keymap.set({ "n", "v" }, "x", '"_x')
+vim.keymap.set({ "n", "v" }, "X", '"_X')
 
 -- Select all
 vim.keymap.set("n", "<leader>sa", "ggVG", { desc = "Select all" })
@@ -139,20 +128,20 @@ vim.keymap.set("n", "<leader>sa", "ggVG", { desc = "Select all" })
 vim.keymap.set("n", "<leader>ya", 'ggVG"+y', { desc = "Yank whole buffer" })
 
 -- Insert new line above and below and exit
--- vim.keymap.set("n", "<leader>o", "o<Esc>", { silent = true, desc = "Insert new line below and exit" })
-vim.keymap.set("n", "<leader>O", "O<Esc>", { silent = true, desc = "Insert new line above and exit" })
+-- vim.keymap.set("n", "<leader>o", "o<Esc>", {desc = "Insert new line below and exit" })
+vim.keymap.set("n", "<leader>O", "O<Esc>", { desc = "Insert new line above and exit" })
 vim.keymap.set("i", "<C-p>", "<Esc><cmd>Telescope oldfiles<CR>")
 
 -- Buffer previous, next and close, window closing too
 -- To use without the cokeline bar
 -- This gave too many troubles with the Tab == <C-i> encoding
--- vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { silent = true, desc = "Previous buffer" })
--- vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", { silent = true, desc = "Previous buffer" })
+-- vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", {desc = "Previous buffer" })
+-- vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", {desc = "Previous buffer" })
 
 -- Delete buffer without saving
-vim.keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", { silent = true, desc = "Force buffer close" })
-vim.keymap.set("n", "<leader>bc", "<cmd>bd<CR>", { silent = true, desc = "Close buffer softly" })
-vim.keymap.set("n", "<leader>q", "<cmd>close<CR>", { silent = true, desc = "Close window the other way" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", { desc = "Force buffer close" })
+vim.keymap.set("n", "<leader>bc", "<cmd>bd<CR>", { desc = "Close buffer softly" })
+vim.keymap.set("n", "<leader>q", "<cmd>close<CR>", { desc = "Close window the other way" })
 
 local end_strings = {
   ";",
@@ -170,11 +159,6 @@ for _, char in ipairs(end_strings) do
   end, { desc = "Put " .. char .. " at the end of the line" })
 end
 
--- Incredible markdown codeblocks:
-vim.keymap.set("n", "<leader>C", function()
-  func.md_block()
-end, { desc = "Codeblock" })
-
 vim.keymap.set("n", "<leader>-", function()
   func.put_at_beginning("- ")
 end, { desc = "Put - at the beginning of the line" })
@@ -190,13 +174,20 @@ vim.keymap.set({ "n", "v" }, "<leader>tn", function()
   vim.o.relativenumber = not vim.o.relativenumber
 end, { desc = "Toggle relative line numbers" })
 
+-- Select harpoon file
 vim.keymap.set("n", "<leader>H", function()
   func.harpoon_split()
-end, { desc = "Harpoon picker" })
+end, { desc = "[Harpoon] Single picker" })
 
+-- Run code
 vim.keymap.set("n", "<leader>R", function()
   func.runner(20)
-end, { desc = "Code runner" })
+end, { desc = icons.misc.terminal .. "→ Code runner" })
+
+-- Incredible markdown codeblocks:
+vim.keymap.set("n", "<leader>C", function()
+  func.md_block()
+end, { desc = icons.misc.langs.markdown .. "→ Codeblock creator" })
 
 -- Normal mode CTRL Keybinds
 -- Start recording macro for a given word / selection
@@ -207,8 +198,11 @@ vim.keymap.set("n", "<M-C-r>", "n@i", { desc = "Replay ranged macro" })
 vim.keymap.set({ "i", "v", "n" }, "<M-C-c>", func.confirm_macro, { desc = "Confirm ranged macro" })
 
 -- Half-page jumping
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.keymap.set("n", "]s", "]szz")
+vim.keymap.set("n", "[s", "[szz")
 
 -- Lazy terminal
 vim.keymap.set("n", "<M-C-j>", function()
@@ -222,13 +216,17 @@ vim.keymap.set("", "<ScrollWheelRight>", "<Nop>")
 vim.keymap.set("n", "<C-h>", "2<ScrollWheelLeft>")
 vim.keymap.set("n", "<C-l>", "2<ScrollWheelRight>")
 
+-- Move up and down in normal mode
+vim.keymap.set("n", "<C-j>", ":m .+1<CR>==", { silent = true })
+vim.keymap.set("n", "<C-k>", ":m .-2<CR>==", { silent = true })
+
 -- No plz
 vim.keymap.set("n", "<C-z>", "<Nop>")
 
 -- INSERT mode Keybinds
 
 -- How to escape Vim Insert mode: keybind edition:
-vim.keymap.set("i", "<C-c>", "<Esc>", { silent = true })
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- Move a bit in insert mode
 vim.keymap.set({ "c", "i" }, "<C-h>", "<Left>")
@@ -247,8 +245,8 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Better indenting
-vim.keymap.set("v", "<", "<gv", { silent = true })
-vim.keymap.set("v", ">", ">gv", { silent = true })
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- TERMINAL mode keybinds
 vim.keymap.set("t", "<M-C-J>", "<C-\\><C-n>bd!<CR>")
