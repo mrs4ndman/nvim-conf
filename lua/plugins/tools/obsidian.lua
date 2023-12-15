@@ -10,38 +10,37 @@ return {
     "mrs4ndman/nvim-cmp",
     "nvim-telescope/telescope.nvim",
   },
-  opts = {
-    workspaces = {
-      {
-        name = "hs",
-        path = "~/notes/HS-1-Doble",
+  config = function()
+    require("obsidian").setup({
+      workspaces = {
+        {
+          name = "hs",
+          path = "~/notes/HS-1-Doble",
+        },
+        {
+          name = "personal",
+          path = "~/Documents/Obsidian Vaults",
+        },
       },
-      {
-        name = "personal",
-        path = "~/Documents/Obsidian Vaults",
+      completion = {
+        nvim_cmp = true,
+        min_chars = 2,
+        new_notes_location = "current_dir",
       },
-    },
-    completion = {
-      nvim_cmp = true,
-      min_chars = 2,
-      new_notes_location = "current_dir",
-    },
-    mappings = {
-      ["gf"] = {
-        action = function()
-          return require("obsidian").util.gf_passthrough()
-        end,
-        opts = { noremap = false, expr = true, buffer = true },
+      mappings = {
+        ["gf"] = {
+          action = function()
+            return require("obsidian").util.gf_passthrough()
+          end,
+          opts = { noremap = false, expr = true, buffer = true },
+        },
       },
-    },
-    follow_url_func = function(url)
-      vim.fn.jobstart({ "xdg-open", url })
-    end,
-    open_app_foreground = true,
-    finder = "telescope.nvim",
-    open_notes_in = "current",
-  },
-  config = function(_, opts)
-    require("obsidian").setup(opts)
+      follow_url_func = function(url)
+        vim.fn.jobstart({ "xdg-open", url })
+      end,
+      open_app_foreground = true,
+      finder = "telescope.nvim",
+      open_notes_in = "current",
+    })
   end,
 }

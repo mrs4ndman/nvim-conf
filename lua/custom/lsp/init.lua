@@ -1,8 +1,6 @@
 -- LSP Explicit config
 local M = {}
 
-local lspconfig = require("lspconfig")
-
 -- Defining capabilities for LSPs
 local internal_capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(internal_capabilities)

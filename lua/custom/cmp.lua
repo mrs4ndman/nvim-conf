@@ -192,7 +192,7 @@ local custom_sources = {
   { name = "path" },
   { name = "emoji" },
   { name = "crates" }, -- crates.nvim plugin
-  { name = "nvim_lua" },
+  -- { name = "nvim_lua" },
   -- LaTeX stuff
   {
     name = "vimtex",

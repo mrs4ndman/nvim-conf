@@ -32,14 +32,17 @@ local colors = {
   yam = "#e86f54",
   pumpkin = "#ff9969",
   rose = "#b32e29",
-  mid_velvet = '#6E6EA3',
+  mid_velvet = "#6E6EA3",
 
-  deep_lavender = '#38265A',
-  deep_licorice = '#252137',
-  deep_anise = '#564D82',
-  deep_velvet = '#8F8FB3',
+  deep_lavender = "#38265A",
+  deep_licorice = "#252137",
+  deep_anise = "#564D82",
+  deep_velvet = "#8F8FB3",
 
-  light_lavender = '#EAD6FF',
+  light_lavender = "#EAD6FF",
+  git_add = "#66cb00",
+  git_del = "#cf3200",
+  git_chn = "#e6ab00",
 }
 
 return colors

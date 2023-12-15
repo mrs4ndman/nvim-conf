@@ -43,7 +43,6 @@ require("lazy").setup({
   performance = {
     cache = { enabled = true },
     rtp = {
-      reset = true,
       disabled_plugins = {
         "gzip",
         "tarPlugin",
@@ -51,7 +50,7 @@ require("lazy").setup({
         "netrwPlugin",
         -- "matchit",
         -- "matchparen",
-        "tutor",
+        -- "tutor",
         "zipPlugin",
       },
     },

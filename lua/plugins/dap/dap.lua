@@ -11,6 +11,14 @@ return {
   config = function(_, opts)
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
+    vim.fn.sign_define("DapBreakpoint", {
+      text = " ",
+      texthl = "DapBreakpoint",
+      linehl = "DapBreakpoint",
+      numhl = "DapBreakpoint",
+    })
+    vim.api.nvim_set_hl(0, "DapBreakpoint", { bg = "#4d6680" })
+
     local dap, dapui = require("dap"), require("dapui")
     dap.configurations.lua = {
       {

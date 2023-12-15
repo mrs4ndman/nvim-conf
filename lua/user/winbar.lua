@@ -1,6 +1,6 @@
 local M = {}
 
-local folder_icon = require("core.icons").misc.folder
+local icons = require("core.icons")
 
 function M.navic_component()
   if not package.loaded["nvim-navic"] or require("nvim-navic").get_location() == "" then
@@ -42,7 +42,7 @@ function M.path()
     end
     if prefix ~= "" then
       path = path:gsub("^" .. prefix_path, "")
-      prefix = string.format("%%#WinbarTitle#%s %s%s", folder_icon, prefix, separator)
+      prefix = string.format("%%#WinbarTitle#%s %s%s", icons.misc.folder, prefix, separator)
     end
   end
   -- Remove trailing slash.
@@ -60,6 +60,7 @@ function M.path()
   })
 end
 
+--- Render all the components together
 function M.render()
   return table.concat({
     M.side_marks_component(),
@@ -70,6 +71,7 @@ function M.render()
   })
 end
 
+-- Winbar dumb-but-smart attach
 vim.api.nvim_create_autocmd("BufWinEnter", {
   group = vim.api.nvim_create_augroup("mrsandman/winbar", { clear = true }),
   desc = "Attach winbar",
@@ -80,13 +82,64 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       and vim.api.nvim_buf_get_name(args.buf) ~= "" -- Has a file name
       and not vim.wo[0].diff -- Not in diff mode
     then
-      vim.wo.winbar = "%{%v:lua.require'core.winbar'.render()%}"
+      vim.wo.winbar = "%{%v:lua.require'user.winbar'.render()%}"
     end
   end,
 })
 
-vim.o.winbar = "%{%v:lua.require'core.winbar'.render()%}"
+-- Custom winbars based on filetype
+vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost" }, {
+  callback = function()
+    local winbar_ft_list = {
+      "help",
+      "startify",
+      "dashboard",
+      "lazy",
+      "Trouble",
+      "alpha",
+      "Outline",
+      "TelescopePrompt",
+      "DressingInput",
+      "DressingSelect",
+      "octo",
+    }
+
+    if vim.api.nvim_win_get_config(0).relative ~= "" then
+      return
+    end
+
+    local hl_group = "WinbarExtra"
+
+    ---@type table<string, string>
+    local extra_win_table = {
+      ["dapui_watches"] = " " .. "%#" .. hl_group .. "#" .. icons.plugins.dap.watches .. "Watches" .. "%*",
+      ["dapui_stacks"] = " " .. "%#" .. hl_group .. "#" .. icons.plugins.dap.stacks .. "Stacks" .. "%*",
+      ["dapui_breakpoints"] = " " .. "%#" .. hl_group .. "#" .. icons.plugins.dap.breakpoints .. "Breakpoints" .. "%*",
+      ["dapui_scopes"] = " " .. "%#" .. hl_group .. "#" .. icons.plugins.dap.scopes .. "Scopes" .. "%*",
+      ["dap-repl"] = " " .. "%#" .. hl_group .. "#" .. icons.misc.terminal .. "Debug REPL" .. "%*",
+      ["dapui_console"] = " " .. "%#" .. hl_group .. "#" .. icons.misc.terminal .. "Consola" .. "%*",
+      ["gitcommit"] = " " .. "%#" .. hl_group .. "#" .. icons.misc.git.icon .. "Commit" .. "%*",
+    }
+
+    for k, v in pairs(extra_win_table) do
+      if vim.bo.filetype == k then
+        vim.opt_local.winbar = v
+      end
+    end
+
+    if vim.tbl_contains(winbar_ft_list, vim.bo.filetype) then
+      vim.opt_local.winbar = nil
+      return
+    end
+
+    local is_winbar_ok, winbar = pcall(require, "user.winbar")
+    if not is_winbar_ok or type(winbar) == "boolean" then
+      vim.opt_local.winbar = nil
+      return
+    end
+  end,
+})
+
+vim.o.winbar = "%{%v:lua.require'user.winbar'.render()%}"
 
 return M
-
--- vim.o.winbar = "%!v:lua.require'core.winbar'.render()"

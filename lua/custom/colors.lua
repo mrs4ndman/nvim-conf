@@ -1,3 +1,4 @@
+-- WARN: Not in use
 -- colorizer
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")

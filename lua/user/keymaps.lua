@@ -56,6 +56,7 @@ vim.keymap.set("n", "<leader><Esc>", "<cmd>quitall<CR>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>ww", "<cmd>write<CR>", { desc = "Write current buffer" })
 vim.keymap.set("n", "<leader>wa", "<cmd>write<CR>", { desc = "Write to all buffers" })
 vim.keymap.set("n", "<leader>wq", "<cmd>wqa<CR>", { desc = "Bye :D" })
+vim.keymap.set("n", "ZE", "<cmd>confirm qall<CR>")
 
 -- Substitutor for current word
 vim.keymap.set("n", "<C-s>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]])

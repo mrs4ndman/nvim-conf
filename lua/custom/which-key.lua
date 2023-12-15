@@ -43,7 +43,7 @@ wk.register({
   ["<localleader>D"] = { name = "[DAP]" },
   ["<localleader>DP"] = { name = "[DAP] Python testing" },
 
-  -- Custom lua functions: their which-key entries
+  -- My theme switcher
   ["<leader>th"] = { "<cmd>Themer<CR>", "[🔭] Colorscheme manager", { silent = true } },
 
   -- LSP Stuff
@@ -52,9 +52,6 @@ wk.register({
   -- Filling in the blanks for native stuff
   ["gj"] = { name = "Go up 1 wrapped line" },
   ["gk"] = { name = "Go down 1 wrapped line" },
-
-  -- All the plugin keybinds are either with the plugin definition or in the corresponding
-  -- custom/file.lua (e.g. LSP and CMP)
 })
 -- GitHub stuff
 wk.register({

@@ -13,18 +13,29 @@
 --     return tostring(fileencoding)
 -- end
 
-vim.keymap.set({ "n", "v" }, "<leader>F", function()
-  local clients = vim.lsp.get_clients({
-    method = "textDocument/format",
+function StatuslineRender()
+  ---@diagnostic disable-next-line: param-type-mismatch
+  return table.concat({
+    vim.fn.expand("%"),
+    " ",
+    "pepe",
   })
+end
 
-  if #clients > 0 then
-    vim.lsp.buf.format()
-  else
-    print("no formatter :(")
-  end
-end, { desc = "LSP formatting" })
+vim.o.statusline = "%!v:lua.StatuslineRender()"
 
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true })
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true })
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true })
+-- vim.keymap.set({ "n", "v" }, "<leader>F", function()
+--   local clients = vim.lsp.get_clients({
+--     method = "textDocument/format",
+--   })
+--
+--   if #clients > 0 then
+--     vim.lsp.buf.format()
+--   else
+--     print("no formatter :(")
+--   end
+-- end, { desc = "LSP formatting" })
+--
+-- vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true })
+-- vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true })
+-- vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true })

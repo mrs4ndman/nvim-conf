@@ -74,6 +74,13 @@ M.plugins = {
   oil = "󱐋",
   trouble = " ",
   undotree = "󰃢 ",
+  dap = {
+    watches = " ",
+    stacks = " ",
+    breakpoints = " ",
+    scopes = " ",
+    repl = M.misc.terminal,
+  },
 }
 
 return M

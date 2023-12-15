@@ -171,22 +171,22 @@ function M.git_component()
   local formatted_str = ""
   for substring in git_status:gmatch("%S+") do
     if vim.startswith(substring, "+") then
-      substring = "%#GitSignsAdd#" .. substring
+      substring = " %#StatuslineGitAdd#" .. substring
     end
     if vim.startswith(substring, "-") then
-      substring = "%#GitSignsDelete#" .. substring
+      substring = " %#StatuslineGitDelete#" .. substring
     end
     if vim.startswith(substring, "~") then
-      substring = "%#GitSignsChange#" .. substring
+      substring = " %#StatuslineGitChange#" .. substring
     end
-    table.insert(chunks, "%## " .. substring)
+    table.insert(chunks, "%#StatuslineGit#" .. substring)
   end
   formatted_str = table.concat(chunks)
   -- vim.print(formatted_str)
-  if git_status ~= "" then
-    git_status = " → " .. git_status
+  if formatted_str ~= "" then
+    formatted_str = " →" .. formatted_str
   else
-    git_status = git_status
+    formatted_str = formatted_str
   end
   return table.concat({
     string.format("%%#StatuslineGit#%s %s", git_icon, head),
@@ -461,5 +461,5 @@ function M.render()
   })
 end
 
-vim.o.statusline = "%!v:lua.require'core.statusline'.render()"
+vim.o.statusline = "%!v:lua.require'user.statusline'.render()"
 return M
