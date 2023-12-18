@@ -86,6 +86,6 @@ return {
     "buschco/nvim-cmp-ts-tag-close",
     "saadparwaiz1/cmp_luasnip",
   },
-  main = "custom.cmp",
+  main = "plugins.configs.cmp",
   config = true
 }

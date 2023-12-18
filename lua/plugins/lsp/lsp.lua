@@ -12,6 +12,6 @@ return {
       end,
     },
   },
-  main = "custom.lsp",
+  main = "plugins.configs.lsp",
   config = true,
 }

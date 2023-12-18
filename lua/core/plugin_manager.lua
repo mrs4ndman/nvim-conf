@@ -20,7 +20,7 @@ vim.g.maplocalleader = "ñ"
 
 require("lazy").setup({
   spec = {
-    { import = "plugins.custom" },
+    { import = "plugins.colorschemes" },
     { import = "plugins.movement" },
     { import = "plugins.treesitter" },
     { import = "plugins.lsp" },

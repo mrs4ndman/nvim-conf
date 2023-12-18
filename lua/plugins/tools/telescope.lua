@@ -1,6 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
-  cmd = { "Telescope" },
+  cmd = { "Telescope", "TeleCommit" },
   -- tag = "0.1.4",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -66,8 +66,9 @@ return {
         hidden = true,
         mappings = {
           i = {
-            ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
-            ["<M-q>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
+            ["<C-q>"] = require("telescope.actions").send_to_qflist --[[ + require("telescope.actions").open_qflist ]],
+            ["<M-q>"] = require("telescope.actions").send_selected_to_qflist --[[+  require("telescope.actions").open_qflist ]],
+            ["<C-t>"] = require("trouble.providers.telescope").open_with_trouble,
             ["<C-n>"] = require("telescope.actions").preview_scrolling_down,
             ["<C-p>"] = require("telescope.actions").preview_scrolling_up,
             ["<C-h>"] = require("telescope.actions").preview_scrolling_left,

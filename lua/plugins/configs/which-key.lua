@@ -2,6 +2,24 @@ local wk = require("which-key")
 local icons = require("core.icons")
 
 -- LEADER plugin keybinds (Space for this config)
+require("which-key").setup({
+  key_labels = {
+    ["<leader>"] = "Space",
+    ["ñ"] = "Meta",
+  },
+  icons = {
+    group = "",
+  },
+  window = {
+    border = "single",
+    margin = { 0, 4, 1, 1 },
+    padding = { 0, 4, 2, 1 },
+  },
+  layout = {
+    spacing = 2,
+    align = "center",
+  },
+})
 
 wk.register({
   -- which-key category entries

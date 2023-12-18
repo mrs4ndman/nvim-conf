@@ -1,6 +1,5 @@
 return {
   "epwalsh/obsidian.nvim",
-  lazy = true,
   event = {
     "BufReadPre " .. vim.fn.expand("~") .. "/notes/HS-1-Doble/**.md",
     "BufReadPre " .. vim.fn.expand("~") .. "/Documents/Obsidian Vaults/**.md",

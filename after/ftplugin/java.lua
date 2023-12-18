@@ -15,8 +15,8 @@ vim.opt.formatoptions = vim.opt.formatoptions
   + "j" -- Autoremove comments if possible.
 
 local home = os.getenv("HOME")
-local capabilities = require("custom.lsp.init").capabilities
-local on_attach = require("custom.lsp.init").on_attach
+local capabilities = require("plugins.configs.lsp.init").capabilities
+local on_attach = require("plugins.configs.lsp.init").on_attach
 
 local config = {
   capabilities = capabilities,
@@ -48,4 +48,4 @@ local config = {
 }
 
 require("jdtls").start_or_attach(config)
-require("custom.lsp.diagnostics")
+require("plugins.configs.lsp.diagnostics")

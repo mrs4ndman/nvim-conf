@@ -170,6 +170,13 @@ vim.keymap.set("n", "<leader>pc", function()
   func.put_at_beginning("* [ ]")
 end, { desc = "Put * [ ] at the beginning of the line" })
 
+vim.keymap.set("n", "<leader>→", function()
+  func.put_at_end(" →")
+end, { desc = "Put → at the end of the line" })
+vim.keymap.set("n", "<leader>↓", function()
+  func.put_at_end(" ↓")
+end, { desc = "Put ↓ at the end of the line" })
+
 -- Toggle relative linenumbers on and off
 vim.keymap.set({ "n", "v" }, "<leader>tn", function()
   vim.o.relativenumber = not vim.o.relativenumber
@@ -189,6 +196,15 @@ end, { desc = icons.misc.terminal .. "→ Code runner" })
 vim.keymap.set("n", "<leader>C", function()
   func.md_block()
 end, { desc = icons.misc.langs.markdown .. "→ Codeblock creator" })
+
+-- Mover caracteres desde normal
+vim.keymap.set("n", "<C-M-h>", function()
+  func.swap_char_b()
+end)
+
+vim.keymap.set("n", "<C-M-l>", function()
+  func.swap_char_f()
+end)
 
 -- Normal mode CTRL Keybinds
 -- Start recording macro for a given word / selection

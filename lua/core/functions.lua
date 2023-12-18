@@ -21,13 +21,14 @@ function M.put_at_end(chars)
   local row = pos[1] - 1
   local current_line = vim.api.nvim_get_current_line()
   local col = #current_line
+  local entry_length = string.len(chars)
   ---@diagnostic disable-next-line: param-type-mismatch
   local cline = vim.fn.getline(".")
   ---@diagnostic disable-next-line: param-type-mismatch
-  local endchar = vim.fn.getline("."):sub(-1)
+  local endchar = vim.fn.getline("."):sub(cline:len() - (entry_length - 1))
   if endchar == chars then
     ---@diagnostic disable-next-line: param-type-mismatch
-    vim.api.nvim_set_current_line(cline:sub(1, cline:len() - 1))
+    vim.api.nvim_set_current_line(cline:sub(1, cline:len() - entry_length))
   else
     vim.api.nvim_buf_set_text(0, row, col, row, col, { chars })
   end
@@ -46,11 +47,11 @@ function M.put_at_beginning(chars)
   local entry_length = string.len(chars)
   ---@diagnostic disable-next-line: param-type-mismatch
   local start_chars = string.sub(vim.fn.getline("."), 0, entry_length)
-  if start_chars ~= chars then
-    vim.api.nvim_buf_set_text(0, row, col, row, col, { chars })
-  else
+  if start_chars == chars then
     ---@diagnostic disable-next-line: param-type-mismatch
     vim.api.nvim_set_current_line(cline:sub((entry_length + 1), cline:len()))
+  else
+    vim.api.nvim_buf_set_text(0, row, col, row, col, { chars })
   end
 end
 
@@ -111,7 +112,6 @@ function M.swap_char_b()
   local prevchar = vim.fn.getline("."):sub(prev_colnr, prev_colnr)
   local concatted = curchar .. prevchar
   vim.api.nvim_buf_set_text(0, pos[1] - 1, (prev_colnr - 1), pos[1] - 1, colnr, { concatted })
-  -- print(concatted)
 end
 
 --- Swap current char with the next one
@@ -148,9 +148,9 @@ end
 
 --- Markdown codeblock machine using `vim.ui.input`
 function M.md_block()
-  vim.ui.input({ prompt = "Block language?"}, function(lang)
-     local enter = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
-     local escape = vim.api.nvim_replace_termcodes("<C-o>k", true, false, true)
+  vim.ui.input({ prompt = "Block language?" }, function(lang)
+    local enter = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
+    local escape = vim.api.nvim_replace_termcodes("<C-o>k", true, false, true)
     vim.api.nvim_feedkeys([[o```]] .. lang .. enter .. enter .. [[```]] .. escape, "n", true)
   end)
 end
@@ -249,5 +249,36 @@ vim.api.nvim_create_user_command("ClearReg", function()
   M.clear_reg()
 end, {})
 vim.keymap.set("n", "<leader>cr", "<cmd>ClearReg<CR>", { desc = "Clear registers" })
+
+--- Git commit picker + open in Fugitive
+--- Requires Telescope and Fugitive to work
+function M.git_fugitive_picker()
+  if not pcall(require, "telescope") or not package.loaded["fugitive"] then
+    vim.notify("Both Telescope.nvim and vim-fugitive are needed", vim.log.levels.WARN, {})
+    return
+  end
+  local builtin = require("telescope.builtin")
+  local actions = require("telescope.actions")
+  local actions_state = require("telescope.actions.state")
+
+  builtin.git_commits({
+    attach_mappings = function(buffer)
+      actions.select_default:replace(function()
+        actions.close(buffer)
+
+        local commit = actions_state.get_selected_entry().value
+
+        vim.cmd.Git("diff " .. tostring(commit))
+        vim.cmd.wincmd("T")
+      end)
+
+      return true
+    end,
+  })
+end
+
+vim.api.nvim_create_user_command("TeleCommit", function()
+  M.git_fugitive_picker()
+end, {})
 
 return M

@@ -50,7 +50,6 @@ return {
       end,
     })
 
-    -- if vim.cmd.echo"argc()" == "0" then
     -- Header section config
     dashboard.section.header.val = {
       "                                                                                    ",
@@ -85,6 +84,5 @@ return {
     alpha.setup(dashboard.opts)
 
     vim.cmd([[ autocmd Filetype alpha setlocal nofoldenable signcolumn=no nonumber norelativenumber ]])
-    -- end
   end,
 }

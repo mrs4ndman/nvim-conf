@@ -214,6 +214,9 @@ function M.noice_keys()
     return ""
   end
   local noiceCommand = require("noice").api.statusline.command.get()
+  if noiceCommand == nil then
+    return ""
+  end
   return string.format("%%#StatuslineNoiceKeys#󰌓 %s", noiceCommand)
 end
 

@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost" }, {
       ["dapui_scopes"] = " " .. "%#" .. hl_group .. "#" .. icons.plugins.dap.scopes .. "Scopes" .. "%*",
       ["dap-repl"] = " " .. "%#" .. hl_group .. "#" .. icons.misc.terminal .. "Debug REPL" .. "%*",
       ["dapui_console"] = " " .. "%#" .. hl_group .. "#" .. icons.misc.terminal .. "Consola" .. "%*",
-      ["gitcommit"] = " " .. "%#" .. hl_group .. "#" .. icons.misc.git.icon .. "Commit" .. "%*",
+      ["gitcommit"] = " " .. "%#" .. hl_group .. "#" .. icons.misc.git.icon .. " Commit" .. "%*",
     }
 
     for k, v in pairs(extra_win_table) do

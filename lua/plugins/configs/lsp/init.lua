@@ -94,8 +94,8 @@ end
 -- LSP Server setups
 
 M.setup = function()
-  require("custom.lsp.servers")
-  require("custom.lsp.diagnostics")
+  require("plugins.configs.lsp.servers")
+  require("plugins.configs.lsp.diagnostics")
 end
 
 return M

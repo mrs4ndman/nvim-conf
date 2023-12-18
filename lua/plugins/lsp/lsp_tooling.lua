@@ -5,6 +5,7 @@ return {
   dependencies = {
     {
       "williamboman/mason.nvim",
+      event = { "BufReadPost" },
       cmd = "Mason",
       opts = {
         ui = {
