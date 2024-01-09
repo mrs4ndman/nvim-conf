@@ -9,6 +9,12 @@ function M.navic_component()
   return "  " .. "%{%v:lua.require'nvim-navic'.get_location()%}"
 end
 
+--- Window ID time 😎
+--- This function shows the window ID on the top-left near the marks
+function M.win_id()
+  return "%#WinbarNumber# [%#WinbarNumberInside#" .. vim.api.nvim_win_get_number(0) .. "%#WinbarNumber#]  "
+end
+
 --- Side marks, a la Doom-Emacs
 ---@return string
 function M.side_marks_component()
@@ -64,6 +70,7 @@ end
 function M.render()
   return table.concat({
     M.side_marks_component(),
+    M.win_id(),
     M.path(),
     M.navic_component(),
     "%=",

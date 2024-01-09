@@ -26,8 +26,8 @@ vim.keymap.set("n", "<leader><leader>", function()
     print("Not a Lua file")
     return
   end
-  vim.cmd("so")
   print("Sourced :)")
+  vim.cmd("so")
 end, { desc = icons.misc.langs.lua .. " → Source current file" })
 
 -- Clear notifications and search
@@ -40,7 +40,7 @@ end)
 -- Netrw keybind
 -- vim.keymap.set("n", "<leader>E", vim.cmd.Ex, { desc = "Ex" })
 
--- Window splits and ?tabs?
+-- Window splits
 vim.keymap.set("n", "<leader>wh", "<cmd>split<CR>", { desc = "Horizontal split" })
 vim.keymap.set("n", "<leader>wv", "<cmd>vsplit<CR>", { desc = "Vertical split" })
 vim.keymap.set("n", "<A-Left>", "<cmd>vertical resize -2<CR>", { desc = "Make vertical split smaller" })
@@ -48,7 +48,9 @@ vim.keymap.set("n", "<A-Right>", "<cmd>vertical resize +2<CR>", { desc = "Make v
 vim.keymap.set("n", "<A-Up>", "<cmd>resize -2<CR>", { desc = "Make horizontal split smaller" })
 vim.keymap.set("n", "<A-Down>", "<cmd>resize +2<CR>", { desc = "Make horizontal split larger" })
 for i = 1, 10 do
-  vim.keymap.set({ "n", "v" }, "<M-" .. i .. ">", func.tabnm(i), { desc = "Go to tab " .. i })
+  vim.keymap.set("n", "<M-" .. i .. ">", function()
+    func.navigate(i)
+  end)
 end
 
 -- Get me out of here (:D)
@@ -206,6 +208,13 @@ vim.keymap.set("n", "<C-M-l>", function()
   func.swap_char_f()
 end)
 
+vim.keymap.set("n", "<C-M-a>", function()
+  func.increase_header()
+end)
+vim.keymap.set("n", "<C-M-x>", function()
+  func.decrease_header()
+end)
+
 -- Normal mode CTRL Keybinds
 -- Start recording macro for a given word / selection
 vim.keymap.set({ "n", "v" }, "<M-C-q>", func.record_macro, { desc = "Ranged macro" })
@@ -260,6 +269,13 @@ end)
 -- VISUAL mode Keybinds
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
+
+-- Strip trailing spaces from selection
+vim.keymap.set("v", "<leader>s", function()
+  local store = vim.fn.winsaveview()
+  vim.cmd([[%s/\s\+$//e]])
+  vim.fn.winrestview(store)
+end)
 
 -- Better indenting
 vim.keymap.set("v", "<", "<gv")

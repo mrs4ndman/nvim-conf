@@ -19,5 +19,20 @@ return {
       "github_dark_high_contrast",
     }
     require("theme-selector")
+
+    -- require("theme-selector").setup({
+    --   colorschemes = {
+    --     "tokyonight",
+    --     "catppuccin",
+    --     "rose-pine",
+    --     "tokyodark",
+    --     "default",
+    --     "oxocarbon",
+    --     "enfocado",
+    --     "fluoromachine",
+    --     "github_dark_high_contrast",
+    --   },
+    -- })
+    -- require("theme-selector")
   end,
 }

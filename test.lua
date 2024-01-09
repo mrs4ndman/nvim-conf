@@ -1,7 +1,3 @@
--- local myTable = { "h", "e", "l", "l", "o" }
--- local combinedString = table.concat(myTable)
--- print(combinedString) -- Outputs hello
-
 -- -- ENCODING -> UTF-8 etc.
 -- local function encoding()
 --     local fileencoding = vim.opt.fileencoding:get()
@@ -13,16 +9,16 @@
 --     return tostring(fileencoding)
 -- end
 
-function StatuslineRender()
-  ---@diagnostic disable-next-line: param-type-mismatch
-  return table.concat({
-    vim.fn.expand("%"),
-    " ",
-    "pepe",
-  })
-end
-
-vim.o.statusline = "%!v:lua.StatuslineRender()"
+-- function StatuslineRender()
+--   ---@diagnostic disable-next-line: param-type-mismatch
+--   return table.concat({
+--     vim.fn.expand("%"),
+--     " ",
+--     "pepe",
+--   })
+-- end
+--
+-- vim.o.statusline = "%!v:lua.StatuslineRender()"
 
 -- vim.keymap.set({ "n", "v" }, "<leader>F", function()
 --   local clients = vim.lsp.get_clients({
@@ -36,6 +32,10 @@ vim.o.statusline = "%!v:lua.StatuslineRender()"
 --   end
 -- end, { desc = "LSP formatting" })
 --
--- vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true })
--- vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true })
--- vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true })
+
+-- vim.keymap.set("n", "<leader>L", function ()
+--   require("telescope.builtin").find_files({
+--     cwd = "/run"
+--   })
+-- end)
+

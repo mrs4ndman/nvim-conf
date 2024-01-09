@@ -17,7 +17,7 @@ vim.opt.showmode = false
 vim.opt.laststatus = 3
 
 -- Numbers config
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Type-writer mode = ON xD

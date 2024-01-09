@@ -394,7 +394,7 @@ function M.lazy_updates()
   end
   return table.concat({
     string.format("%%#StatuslineLazyIcon# %s", string.sub((require("lazy.status").updates()), 1, 3)),
-    string.format("%%#StatuslineWhite#%s", string.sub((require("lazy.status").updates()), 4, 5)),
+    string.format("%%#StatuslineWhite#%s", string.sub((require("lazy.status").updates()), 4, 6)),
   })
 end
 ---@return string

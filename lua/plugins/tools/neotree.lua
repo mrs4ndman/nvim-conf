@@ -1,12 +1,13 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  enabled = false,
+  enabled = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
   keys = { { "<leader>pt", "<cmd>Neotree<CR>", desc = "Neo-Tree" } },
+  cmd = { "Neotree" },
   opts = {
     close_if_last_window = true,
     popup_border_style = "rounded",
@@ -67,12 +68,16 @@ return {
         hide_dotfiles = false,
         hide_gitignored = false,
       },
-      follow_current_file = true,
+      follow_current_file = {
+        enabled = true,
+      },
       group_empty_dirs = true,
       hijack_netrw_behavior = "disabled",
     },
     buffers = {
-      follow_current_file = true,
+      follow_current_file = {
+        enabled = true,
+      },
       group_empty_dirs = true,
       show_unloaded = true,
     },

@@ -204,14 +204,14 @@ local custom_sources = {
       symbols_in_menu = 1,
     },
   },
-  {
-    name = "latex_symbols",
-    filetype = { "tex", "latex" },
-    option = {
-      strategy = 0,
-      cache = true,
-    },
-  },
+  -- {
+  --   name = "latex_symbols",
+  --   filetype = { "tex", "latex" },
+  --   option = {
+  --     strategy = 0,
+  --     cache = true,
+  --   },
+  -- },
 }
 
 -- local experimental = {

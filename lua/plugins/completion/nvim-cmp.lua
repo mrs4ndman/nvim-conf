@@ -17,7 +17,7 @@ return {
     --   "micangl/cmp-vimtex",
     --   ft = "tex",
     -- },
-    "kdheepak/cmp-latex-symbols",
+    -- "kdheepak/cmp-latex-symbols",
     "hrsh7th/cmp-omni",
     "f3fora/cmp-spell",
     -- Icons

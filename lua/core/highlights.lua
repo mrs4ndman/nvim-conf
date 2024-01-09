@@ -43,9 +43,11 @@ statusline_groups = vim.tbl_extend("error", statusline_groups, {
   StatuslineTitle = { fg = colors.white, bg = colors.bg, bold = true },
   StatuslineTotalLines = { fg = colors.red, italic = true },
   StatuslineWhite = { fg = colors.white, bg = colors.bg, bold = true },
-  WinbarTitle = {  bg = "" },
+  WinbarTitle = { bg = "" },
   WinbarSeparator = { bg = "" },
   WinbarSidemark = { link = "StatuslineSidemark", bg = "" },
+  WinbarNumberInside = { fg = colors.turquoise, bg = "" },
+  WinbarNumber = { link = "WinbarTitle" },
   WinbarExtra = { bg = colors.bg },
 })
 

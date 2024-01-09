@@ -55,6 +55,54 @@ function M.put_at_beginning(chars)
   end
 end
 
+--- Dumb but useful function to increase markdown headers
+function M.increase_header()
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local cline = vim.fn.getline(".")
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local header = vim.fn.getline("."):sub(1, 8)
+  if header:find("# ") then
+    ---@diagnostic disable-next-line: param-type-mismatch
+    vim.api.nvim_set_current_line("#" .. cline)
+  else
+    vim.notify("No headers, creating one")
+    vim.api.nvim_set_current_line("# " .. cline)
+  end
+end
+
+--- Dumb but useful function to decrease markdown headers
+function M.decrease_header()
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local cline = vim.fn.getline(".")
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local header = vim.fn.getline("."):sub(1, 8)
+  if string.match(header, "# ") or string.match(header, " ") then
+    ---@diagnostic disable-next-line: param-type-mismatch
+    vim.api.nvim_set_current_line(cline:sub(2, cline:len()))
+  else
+    vim.notify("No headers, not removing anything")
+  end
+end
+
+--- Navigate to other windows in the tab by window number, not ID
+---@param num integer
+function M.navigate(num)
+  local nrs = {}
+  local ids = {}
+  ---@type table<integer>
+  local windows = vim.tbl_filter(function(id)
+    return vim.api.nvim_win_get_config(id).relative == ""
+  end, vim.api.nvim_tabpage_list_wins(0))
+
+  for _, win in ipairs(windows) do
+    local number = vim.api.nvim_win_get_number(win)
+
+    table.insert(nrs, number)
+    ids[number] = win
+  end
+  vim.api.nvim_set_current_win(ids[num])
+end
+
 --- Moves [count] up and down the selected lines
 function M.visual_move(count, min_count, pos_1, pos_2, fix_num, cmd_start)
   vim.cmd([[execute "normal! \<esc>"]])
@@ -253,10 +301,10 @@ vim.keymap.set("n", "<leader>cr", "<cmd>ClearReg<CR>", { desc = "Clear registers
 --- Git commit picker + open in Fugitive
 --- Requires Telescope and Fugitive to work
 function M.git_fugitive_picker()
-  if not pcall(require, "telescope") or not package.loaded["fugitive"] then
-    vim.notify("Both Telescope.nvim and vim-fugitive are needed", vim.log.levels.WARN, {})
-    return
-  end
+  -- if not pcall(require, "telescope") or not pcall(require, "fugitive") then
+  --   vim.notify("Both Telescope.nvim and vim-fugitive are needed", vim.log.levels.WARN, {})
+  --   return
+  -- end
   local builtin = require("telescope.builtin")
   local actions = require("telescope.actions")
   local actions_state = require("telescope.actions.state")
@@ -279,6 +327,10 @@ end
 
 vim.api.nvim_create_user_command("TeleCommit", function()
   M.git_fugitive_picker()
+end, {})
+
+vim.api.nvim_create_user_command("SF", function()
+  vim.cmd("'<,'>!sql-formatter")
 end, {})
 
 return M
