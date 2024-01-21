@@ -215,6 +215,8 @@ vim.keymap.set("n", "<C-M-x>", function()
   func.decrease_header()
 end)
 
+vim.keymap.set("n", "<leader>tC", "rx")
+
 -- Normal mode CTRL Keybinds
 -- Start recording macro for a given word / selection
 vim.keymap.set({ "n", "v" }, "<M-C-q>", func.record_macro, { desc = "Ranged macro" })
@@ -276,6 +278,9 @@ vim.keymap.set("v", "<leader>s", function()
   vim.cmd([[%s/\s\+$//e]])
   vim.fn.winrestview(store)
 end)
+
+-- Sort imports
+vim.keymap.set("v", "<leader>i", "<cmd>'<,'>!awk '{print length, $0}' | sort -n | cut -d' ' -f2-<CR>")
 
 -- Better indenting
 vim.keymap.set("v", "<", "<gv")

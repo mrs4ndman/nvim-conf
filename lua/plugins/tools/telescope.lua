@@ -75,6 +75,8 @@ return {
             ["<C-l>"] = require("telescope.actions").preview_scrolling_right,
             ["<C-j>"] = require("telescope.actions").move_selection_next,
             ["<C-k>"] = require("telescope.actions").move_selection_previous,
+            ["<C-v>"] = "select_vertical",
+            ["<C-s>"] = "select_horizontal",
             ["<Esc>"] = require("telescope.actions").close,
           },
           n = {

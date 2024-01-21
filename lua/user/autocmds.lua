@@ -53,3 +53,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank({ timeout = 60 })
   end,
 })
+
+
+-- A pair for simple notifying when recording macros
+-- vim.api.nvim_create_autocmd("RecordingEnter", {
+--   callback = function()
+--     vim.notify("Macro recording started", vim.log.levels.INFO, {})
+--   end,
+-- })
+-- vim.api.nvim_create_autocmd("RecordingLeave", {
+--   callback = function()
+--     vim.notify("Macro recording stopped", vim.log.levels.INFO, {})
+--   end,
+-- })
