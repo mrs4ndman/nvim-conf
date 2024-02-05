@@ -279,6 +279,10 @@ vim.keymap.set("v", "<leader>s", function()
   vim.fn.winrestview(store)
 end)
 
+vim.keymap.set("n", "<leader>zt", func.cursor_lock("t"), { desc = "Toggle cursor lock (top)" })
+vim.keymap.set("n", "<leader>zc", func.cursor_lock("z"), { desc = "Toggle cursor lock (middle)" })
+vim.keymap.set("n", "<leader>zb", func.cursor_lock("b"), { desc = "Toggle cursor lock (bottom)" })
+
 -- Sort imports
 vim.keymap.set("v", "<leader>i", "<cmd>'<,'>!awk '{print length, $0}' | sort -n | cut -d' ' -f2-<CR>")
 

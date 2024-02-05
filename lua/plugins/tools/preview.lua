@@ -28,14 +28,14 @@ return {
   },
   -- MD to HTML
   {
-    "davidgranstrom/nvim-markdown-preview",
-    cmd = { "MarkdownPreview" },
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
-    keys = {
-      { "<leader>md", "<cmd>MarkdownPreview<CR>", desc = "Toggle MD preview" },
-    },
-    config = function()
-      vim.g.nvim_markdown_preview_theme = "github"
+    build = function()
+      vim.fn["mkdp#util#install"]()
     end,
+    keys = {
+      { "<leader>md", "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle MD preview" },
+    },
   },
 }

@@ -203,6 +203,33 @@ function M.md_block()
   end)
 end
 
+--- Cursor lock for navigating code - Credit to @b0o
+function M.cursor_lock(lock)
+  return function()
+    local win = vim.api.nvim_get_current_win()
+    local augid = vim.api.nvim_create_augroup("user_cursor_lock_" .. win, { clear = true })
+    if not lock or vim.w.cursor_lock == lock then
+      vim.w.cursor_lock = nil
+      vim.notify("Cursor lock disabled")
+      return
+    end
+    local cb = function()
+      if vim.w.cursor_lock then
+        vim.cmd("silent normal z" .. vim.w.cursor_lock)
+      end
+    end
+    vim.w.cursor_lock = lock
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      desc = "Cursor lock for window " .. win,
+      buffer = 0,
+      group = augid,
+      callback = cb,
+    })
+    cb()
+    vim.notify("Cursor lock enabled")
+  end
+end
+
 --[[ 
 # --------------------------------------------------- #
 #    FUNCTIONS FOR RANGED / SINGLE LINE MACRO EXEC    #
