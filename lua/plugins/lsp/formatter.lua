@@ -29,6 +29,7 @@ return {
       markdown = { "injected" },
       java = { "clang_format" },
       sql = { "sql_formatter" },
+      xml = { "xmlformat" },
     },
   },
 }

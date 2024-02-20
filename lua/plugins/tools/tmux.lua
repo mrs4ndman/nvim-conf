@@ -6,7 +6,7 @@ return {
   },
   {
     "christoomey/vim-tmux-navigator",
-    enabled = os.getenv("TMUX") ~= nil,
+    lazy = false,
     keys = {
       { "<M-h>", "<cmd>TmuxNavigateLeft<CR>", desc = "[tmux] Navigate to the pane to the left" },
       { "<M-j>", "<cmd>TmuxNavigateDown<CR>", desc = "[tmux] Navigate to the pane below" },
@@ -15,6 +15,18 @@ return {
     },
     init = function()
       vim.g.tmux_navigator_no_mappings = 1
-    end
+    end,
+  },
+  {
+    "vimpostor/vim-tpipeline",
+    lazy = false,
+    cond = function()
+      return vim.env.TMUX ~= nil
+    end,
+    init = function()
+      vim.g.tpipeline_autoembed = 0
+      vim.cmd("set laststatus=0")
+      vim.g.tpipeline_statusline = ''
+    end,
   },
 }

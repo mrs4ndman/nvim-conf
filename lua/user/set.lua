@@ -11,10 +11,12 @@ vim.opt.guicursor = ""
 vim.wo.cursorline = true
 vim.wo.cursorlineopt = "both"
 vim.opt.smoothscroll = true
-vim.opt.laststatus = 3
-
 vim.opt.showmode = false
-vim.opt.laststatus = 3
+if vim.env.TMUX then
+  vim.opt.laststatus = 0
+else
+  vim.opt.laststatus = 3
+end
 
 -- Numbers config
 vim.opt.number = true

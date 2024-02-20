@@ -116,13 +116,13 @@ function M.filename_component()
     shorting_target = 40,
   }
 
-  local filename = vim.fn.expand("%:t")
+  local filename = ""
 
   ---@type table<string, string>
   local special_stuff = {
     ["TelescopePrompt"] = "[🔭 Telescope]",
     ---@diagnostic disable-next-line: param-type-mismatch
-    ["oil"] = "[oil] " .. vim.fn.expand("%" --[[@as string]]):sub(7),
+    ["oil"] = "[oil] " .. vim.fn.expand("%" --[[@as string]]):sub(7, string.len(vim.fn.expand("%")) - 1),
     ---@diagnostic disable-next-line: param-type-mismatch
     ["help"] = "[Help] " .. filename:sub(1, (filename:len() - 4)),
     ["lazy"] = "[lazy.nvim]",
@@ -130,6 +130,7 @@ function M.filename_component()
     ["alpha"] = "[Start]",
     ["Trouble"] = "[" .. icons.plugins.trouble .. "trouble]",
   }
+
   for k, v in pairs(special_stuff) do
     if vim.bo.filetype == k then
       filename = v
@@ -149,7 +150,7 @@ function M.filename_component()
   end
 
   -- local relpath = "%f%m%r"
-  return string.format("%%#StatuslineFilename# %s", filename)
+  return string.format("%%#StatuslineFilename#%s", filename)
 end
 
 --- Git status (if any)
@@ -216,6 +217,9 @@ function M.noice_keys()
   local noiceCommand = require("noice").api.statusline.command.get()
   if noiceCommand == nil then
     return ""
+  end
+  if string.match(noiceCommand, "<20>") then
+    string.gsub(noiceCommand, "<20>", "[Space]")
   end
   return string.format("%%#StatuslineNoiceKeys#󰌓 %s", noiceCommand)
 end
@@ -453,7 +457,7 @@ function M.render()
       M.diagnostics_component(),
     }),
     concat_components({
-      "%#Statusline#%=",
+      -- "%#Statusline#%=",
       M.formatter_component(),
       M.lsp_component(),
       M.filetype_component(),

@@ -156,6 +156,13 @@ local servers = {
     }
   end,
 
+  ["lemminx"] = function()
+    return {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  end,
+
   ["jsonls"] = function()
     return {
       on_attach = on_attach,

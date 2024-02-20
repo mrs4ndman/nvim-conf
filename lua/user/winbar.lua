@@ -2,13 +2,6 @@ local M = {}
 
 local icons = require("core.icons")
 
-function M.navic_component()
-  if not package.loaded["nvim-navic"] or require("nvim-navic").get_location() == "" then
-    return ""
-  end
-  return "  " .. "%{%v:lua.require'nvim-navic'.get_location()%}"
-end
-
 --- Window ID time 😎
 --- This function shows the window ID on the top-left near the marks
 function M.win_id()
@@ -72,7 +65,6 @@ function M.render()
     M.side_marks_component(),
     M.win_id(),
     M.path(),
-    M.navic_component(),
     "%=",
     M.side_marks_component(),
   })

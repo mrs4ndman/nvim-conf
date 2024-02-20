@@ -217,14 +217,6 @@ end)
 
 vim.keymap.set("n", "<leader>tC", "rx")
 
--- Normal mode CTRL Keybinds
--- Start recording macro for a given word / selection
-vim.keymap.set({ "n", "v" }, "<M-C-q>", func.record_macro, { desc = "Ranged macro" })
--- Replay said macro
-vim.keymap.set("n", "<M-C-r>", "n@i", { desc = "Replay ranged macro" })
--- Stop recording said macro
-vim.keymap.set({ "i", "v", "n" }, "<M-C-c>", func.confirm_macro, { desc = "Confirm ranged macro" })
-
 -- Half-page jumping
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

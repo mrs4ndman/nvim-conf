@@ -236,13 +236,13 @@ end
 # --------------------------------------------------- # 
 ]]
 --- Stores current visual selection into the `v` register
-function M.get_visual_selection()
+--[[ function M.get_visual_selection()
   vim.cmd('noau normal! "vy"')
   return vim.fn.getreg("v")
-end
+end ]]
 
 --- Escapes the strings going into it
-function M.escape_string(string_to_escape)
+--[[ function M.escape_string(string_to_escape)
   local escape_chars = {
     "\\",
     '"',
@@ -273,10 +273,10 @@ function M.escape_string(string_to_escape)
     string_to_escape = vim.fn.escape(string_to_escape, char)
   end
   return string_to_escape
-end
+end ]]
 
 --- Record macro for a given word or visual selection
-function M.record_macro()
+--[[ function M.record_macro()
   local mode = vim.api.nvim_get_mode().mode
   if mode == "v" then
     local selection = M.get_visual_selection()
@@ -290,10 +290,10 @@ function M.record_macro()
   end
   -- start recording macro
   vim.cmd("normal! qi")
-end
+end ]]
 
 --- Correctly close the previously started macro
-function M.confirm_macro()
+--[[ function M.confirm_macro()
   local mode = vim.api.nvim_get_mode().mode
   -- exit insert mode if it is being recorded
   if mode == "i" then
@@ -307,7 +307,7 @@ function M.confirm_macro()
   -- stop recording macro if it is being recorded
   -- or do nothing if it's not
   vim.cmd("normal! qq")
-end
+end ]]
 
 --- Registry cleaner
 function M.clear_reg()
