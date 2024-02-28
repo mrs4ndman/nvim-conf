@@ -3,7 +3,12 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     { "folke/which-key.nvim" },
-    { "rcarriga/nvim-dap-ui" },
+    {
+      "rcarriga/nvim-dap-ui",
+      dependencies = {
+        "nvim-neotest/nvim-nio",
+      },
+    },
     { "theHamsta/nvim-dap-virtual-text" },
     -- DAP adapters
     { "jbyuki/one-small-step-for-vimkind", module = "osv" },

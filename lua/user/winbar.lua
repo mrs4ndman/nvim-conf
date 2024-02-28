@@ -51,7 +51,7 @@ function M.path()
     " ",
     prefix,
     table.concat(
-      vim.iter.map(function(segment)
+      vim.iter(function(segment)
         return string.format("%%#WinbarTitle#%s", segment)
       end, vim.split(path, "/")),
       separator
@@ -126,7 +126,8 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost" }, {
       end
     end
 
-    if vim.tbl_contains(winbar_ft_list, vim.bo.filetype) then
+    -- WARNING: This is a hack. I'm not proud of it, but it works.
+    if vim.iter(winbar_ft_list, vim.bo.filetype) then
       vim.opt_local.winbar = nil
       return
     end

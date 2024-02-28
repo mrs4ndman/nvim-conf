@@ -1,7 +1,6 @@
 -- VIM OPTS
 
 -- Clipboard
--- vim.api.nvim_command("set clipboard+=unnamedplus")
 vim.opt.clipboard = "unnamedplus"
 
 -- Cursor config

@@ -11,36 +11,6 @@ return {
     { "[h", "<cmd>Gitsigns prev_hunk<CR>", desc = "[] Previous hunk" },
   },
   opts = {
-    signs = {
-      add = {
-        hl = "DiffAdd",
-        text = "+",
-        numhl = "GitSignsAddNr",
-      },
-      change = {
-        hl = "DiffChange",
-        text = "󰇙",
-        numhl = "GitSignsChangeNr",
-      },
-      delete = {
-        hl = "DiffDelete",
-        text = "_",
-        show_count = true,
-        numhl = "GitSignsDeleteNr",
-      },
-      topdelete = {
-        hl = "DiffDelete",
-        text = "‾",
-        show_count = true,
-        numhl = "GitSignsDeleteNr",
-      },
-      changedelete = {
-        hl = "DiffChange",
-        text = "~",
-        show_count = true,
-        numhl = "GitSignsChangeNr",
-      },
-    },
     count_chars = {
       [1] = "",
       [2] = "₂",
@@ -59,5 +29,15 @@ return {
   },
   config = function(_, opts)
     require("gitsigns").setup(opts)
+    vim.api.nvim_set_hl(0, "GitSignsAdd", { link = "DiffAdd" })
+    vim.api.nvim_set_hl(0, "GitSignsAddNr", { link = "GitSignsAddNr" })
+    vim.api.nvim_set_hl(0, "GitSignsChange", { link = "DiffChange" })
+    vim.api.nvim_set_hl(0, "GitSignsChangeNr", { link = "GitSignsChangeNr" })
+    vim.api.nvim_set_hl(0, "GitSignsChangedelete", { link = "DiffChange" })
+    vim.api.nvim_set_hl(0, "GitSignsChangedeleteNr", { link = "GitSignsChangeNr" })
+    vim.api.nvim_set_hl(0, "GitSignsDelete", { link = "DiffDelete" })
+    vim.api.nvim_set_hl(0, "GitSignsDeleteNr", { link = "GitSignsDeleteNr" })
+    vim.api.nvim_set_hl(0, "GitSignsTopdelete", { link = "DiffDelete" })
+    vim.api.nvim_set_hl(0, "GitSignsTopdeleteNr", { link = "GitSignsDeleteNr" })
   end,
 }

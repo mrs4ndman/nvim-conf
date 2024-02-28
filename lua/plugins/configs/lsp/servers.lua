@@ -18,6 +18,17 @@ local servers = {
               vim.fn.stdpath("config") .. "/lua",
               vim.api.nvim_get_runtime_file("", true),
             },
+            maxPreload = 1000,
+            preloadFileSize = 1000,
+            checkThirdParty = false,
+          },
+          runtime = {
+            version = "LuaJIT",
+            pathStrict = true,
+            path = {
+              "lua/?.lua",
+              "lua/?/init.lua",
+            },
           },
           hint = { enable = true },
         },
@@ -184,12 +195,12 @@ local servers = {
   ["ansiblels"] = function()
     return {}
   end,
-  ["ruby_ls"] = function()
-    return {}
-  end,
 
   -- Not in use
 
+  -- ["ruby_ls"] = function()
+  --   return {}
+  -- end,
   -- ["emmet_ls"] = function()
   --  return {}
   --  end,

@@ -1,7 +1,7 @@
 return {
   {
     "tmux-plugins/vim-tmux",
-    enabled = os.getenv("TMUX") ~= nil,
+    lazy = false,
     event = "VimEnter",
   },
   {

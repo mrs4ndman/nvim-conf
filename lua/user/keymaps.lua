@@ -184,6 +184,9 @@ vim.keymap.set({ "n", "v" }, "<leader>tn", function()
   vim.o.relativenumber = not vim.o.relativenumber
 end, { desc = "Toggle relative line numbers" })
 
+-- PL-SQL formatter
+vim.keymap.set("n", "<leader>fp", "<cmd>!/home/mrsandman/.local/share/nvim/mason/bin/sql-formatter --fix -l plsql %<CR>", { desc = "Format PL-SQL" })
+
 -- Select harpoon file
 vim.keymap.set("n", "<leader>H", function()
   func.harpoon_split()

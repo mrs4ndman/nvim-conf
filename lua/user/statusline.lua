@@ -241,45 +241,45 @@ local progress_status = {
   title = nil,
 }
 
-vim.api.nvim_create_autocmd("LspProgress", {
-  group = vim.api.nvim_create_augroup("mrsandman/statusline", { clear = true }),
-  desc = "Update LSP progress in statusline",
-  pattern = { "begin", "end" },
-  callback = function(args)
-    if not args.data then
-      return
-    end
-
-    progress_status = {
-      client = vim.lsp.get_client_by_id(args.data.client_id).name,
-      kind = args.data.result.value.kind,
-      title = args.data.result.value.title,
-    }
-
-    if progress_status.kind == "end" then
-      progress_status.title = nil
-      -- Wait a bit before clearing the status.
-      vim.defer_fn(function()
-        vim.cmd.redrawstatus()
-      end, 3000)
-    else
-      vim.cmd.redrawstatus()
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("LspProgress", {
+--   group = vim.api.nvim_create_augroup("mrsandman/statusline", { clear = true }),
+--   desc = "Update LSP progress in statusline",
+--   pattern = { "begin", "end" },
+--   callback = function(args)
+--     if not args.data then
+--       return
+--     end
+--
+--     progress_status = {
+--       client = vim.lsp.get_client_by_id(args.data.client_id).name,
+--       kind = args.data.result.value.kind,
+--       title = args.data.result.value.title,
+--     }
+--
+--     if progress_status.kind == "end" then
+--       progress_status.title = nil
+--       -- Wait a bit before clearing the status.
+--       vim.defer_fn(function()
+--         vim.cmd.redrawstatus()
+--       end, 3000)
+--     else
+--       vim.cmd.redrawstatus()
+--     end
+--   end,
+-- })
 
 --- The latest LSP progress message (might disable this in favor of noice)
 ---@return string
-function M.lsp_progress_component()
-  if not progress_status.client or not progress_status.title then
-    return ""
-  end
-  return table.concat({
-    "%#StatuslineSpinner#󱥸 ",
-    string.format("%%#StatuslineTitle#%s  ", progress_status.client),
-    string.format("%%#StatuslineItalic#%s...", progress_status.title),
-  })
-end
+-- function M.lsp_progress_component()
+--   if not progress_status.client or not progress_status.title then
+--     return ""
+--   end
+--   return table.concat({
+--     "%#StatuslineSpinner#󱥸 ",
+--     string.format("%%#StatuslineTitle#%s  ", progress_status.client),
+--     string.format("%%#StatuslineItalic#%s...", progress_status.title),
+--   })
+-- end
 
 local last_diagnostic_component = ""
 
@@ -302,7 +302,7 @@ function M.diagnostics_component()
     return acc
   end)
 
-  local parts = vim.iter.map(function(severity, count)
+  local parts = vim.iter(function(severity, count)
     if count == 0 then
       return nil
     end
@@ -453,7 +453,6 @@ function M.render()
     }),
     concat_components({
       M.dap_component(),
-      --[[ M.lsp_progress_component() ]]
       M.diagnostics_component(),
     }),
     concat_components({

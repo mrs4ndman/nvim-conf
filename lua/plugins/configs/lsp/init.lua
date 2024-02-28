@@ -32,20 +32,20 @@ M.on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>tD", "<cmd>Telescope lsp_dynamic_document_symbols<CR>",
     { desc = "[LSP] Dynamic document symbols", buffer = bufnr })
   vim.keymap.set("n", "<leader>tW", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "[LSP] Dynamic workspace symbols", buffer = bufnr })
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { noremap = true, desc = "[LSP] Previous diagnostic", buffer = bufnr })
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { noremap = true, desc = "[LSP] Next diagnostic", buffer = bufnr })
+  vim.keymap.set("n", "[d", vim.diagnostic.jump({ count = -1, float = true }), { noremap = true, desc = "[LSP] Previous diagnostic", buffer = bufnr })
+  vim.keymap.set("n", "]d", vim.diagnostic.jump({ count = 1, float = true }), { noremap = true, desc = "[LSP] Next diagnostic", buffer = bufnr })
   vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, { noremap = true, desc = "[LSP] View code actions", buffer = bufnr })
   vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, { noremap = true, desc = "[LSP} Show references", buffer = bufnr })
   vim.keymap.set({ "n", "v" }, "<leader>vrn", vim.lsp.buf.rename, { noremap = true, desc = "[LSP] Rename element under cursor", buffer = bufnr })
   vim.keymap.set("n", "<C-n>", vim.lsp.buf.signature_help, { noremap = true, desc = "[LSP] Signature help", buffer = bufnr })
 
   if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-    vim.lsp.inlay_hint.enable(bufnr, false)
+    vim.lsp.inlay_hint.enable(false, bufnr)
     vim.keymap.set("n", "<leader>ih", function()
-      if vim.lsp.inlay_hint.is_enabled(0) then
-        vim.lsp.inlay_hint.enable(0, false)
+      if vim.lsp.inlay_hint.is_enabled() then
+        vim.lsp.inlay_hint.enable(false, bufnr)
       else
-        vim.lsp.inlay_hint.enable(0, true)
+        vim.lsp.inlay_hint.enable(true, bufnr)
       end
     end, { desc = "Toggle Inlay hints" })
   end
