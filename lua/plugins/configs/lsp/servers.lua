@@ -67,7 +67,7 @@ local servers = {
     }
   end,
   -- lspconfig.eslint.setup({})
-  ["tsserver"] = function()
+  ["ts_ls"] = function()
     return {
       on_attach = on_attach,
       capabilities = capabilities,

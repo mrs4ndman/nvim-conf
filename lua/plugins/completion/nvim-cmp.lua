@@ -1,5 +1,5 @@
 return {
-  "mrs4ndman/nvim-cmp",
+  "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
     -- Completion sources
