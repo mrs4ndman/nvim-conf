@@ -51,7 +51,7 @@ function M.path()
     " ",
     prefix,
     table.concat(
-      vim.iter(function(segment)
+      vim.tbl_map(function(segment)
         return string.format("%%#WinbarTitle#%s", segment)
       end, vim.split(path, "/")),
       separator
