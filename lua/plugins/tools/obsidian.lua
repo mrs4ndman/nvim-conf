@@ -6,7 +6,7 @@ return {
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "mrs4ndman/nvim-cmp",
+    "hrsh7th/nvim-cmp",
     "nvim-telescope/telescope.nvim",
   },
   config = function()

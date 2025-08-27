@@ -1,5 +1,24 @@
 return {
   -- HTML Preview
+  -- {
+  --   "Diogo-ss/five-server.nvim",
+  --   cmd = { "FiveServer" },
+  --   keys = {
+  --     { "<leader>ls", "<cmd>FiveServer start<CR>", desc = "[Live-Server] Start" },
+  --     { "<leader>li", "<cmd>FiveServer install<CR>", desc = "[Live-Server] Restart" },
+  --     { "<leader>lq", "<cmd>FiveServer stop<CR>", desc = "[Live-Server] Stop" },
+  --   },
+  --   build = function()
+  --     require("fs.utils.install")()
+  --   end,
+  --   opts = {
+  --     notify = true,
+  --     -- add other options
+  --   },
+  --   config = function(_, opts)
+  --     require("fs").setup(opts)
+  --   end,
+  -- },
   {
     "barrett-ruth/live-server.nvim",
     cmd = { "LiveServerStart", "LiveServerRestart", "LiveServerStop" },

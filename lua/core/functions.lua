@@ -215,7 +215,9 @@ function M.cursor_lock(lock)
     end
     local cb = function()
       if vim.w.cursor_lock then
+        vim.print("no error")
         vim.cmd("silent normal z" .. vim.w.cursor_lock)
+        vim.print("after error")
       end
     end
     vim.w.cursor_lock = lock

@@ -20,6 +20,7 @@ return {
       lua = { "stylua" },
 
       rust = { "rustfmt" },
+      java = { "clang-format" },
 
       javascript = { "prettierd" },
       astro = { "prettierd" },
@@ -27,7 +28,6 @@ return {
       css = { "prettierd" },
 
       markdown = { "injected" },
-      java = { "clang_format" },
       sql = { "sql_formatter" },
       xml = { "xmlformat" },
     },

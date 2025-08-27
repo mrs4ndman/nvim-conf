@@ -60,7 +60,7 @@ return {
         "ansible-language-server",
         "dockerfile-language-server",
         "yaml-language-server",
-        "ruff-lsp",
+        "ruff",
         "sql-formatter",
         -- "rust-analyzer",
         "gopls",
