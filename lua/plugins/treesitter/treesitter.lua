@@ -1,7 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter", -- parsing to the end of time
-  cmd = { "TSInstall", "TSUpdate" },
-  event = { "BufRead", "BufNewFile" },
+  lazy = false,
   build = function()
     vim.cmd("TSUpdate")
   end,

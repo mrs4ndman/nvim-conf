@@ -76,7 +76,6 @@ local formatting = {
   fields = { "kind", "abbr", "menu" },
   format = function(entry, vim_item)
     vim_item.menu = ({
-      codeium = "[ ] ",
       buffer = "[󰦨]",
       git = "[" .. require("core.icons").misc.git.icon .. "]",
       luasnip = "[LS]",

@@ -23,12 +23,6 @@ return {
     -- Icons
     "onsails/lspkind.nvim",
     {
-      "Exafunction/codeium.nvim",
-      dependencies = "nvim-lua/plenary.nvim",
-      enabled = false,
-      config = true,
-    },
-    {
       "roobert/tailwindcss-colorizer-cmp.nvim",
       -- optionally, override the default options:
       config = function()
