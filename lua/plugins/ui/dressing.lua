@@ -1,3 +1,4 @@
+-- TODO: snacks.nvim candidate
 return {
   "stevearc/dressing.nvim",
   event = "BufReadPost",

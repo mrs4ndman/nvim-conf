@@ -34,6 +34,8 @@ return {
   },
   {
     "nguyenvukhang/nvim-toggler",
+    lazy = false,
+    enabled = false,
     keys = {
       {
         mode = { "n", "v" },

@@ -256,7 +256,7 @@ function M.toggle_word()
     if s and e and cursor >= s and cursor <= e then
       local new_line = line:sub(1, s - 1) .. b .. line:sub(e + 1)
       vim.api.nvim_set_current_line(new_line)
-      vim.notify(string.format("[toggler] %s → %s", a, b))
+      -- vim.notify(string.format("[toggler] %s → %s", a, b))
       toggled = true
       break
     end
@@ -266,7 +266,7 @@ function M.toggle_word()
     if s and e and cursor >= s and cursor <= e then
       local new_line = line:sub(1, s - 1) .. a .. line:sub(e + 1)
       vim.api.nvim_set_current_line(new_line)
-      vim.notify(string.format("[toggler] %s → %s", b, a))
+      -- vim.notify(string.format("[toggler] %s → %s", b, a))
       toggled = true
       break
     end

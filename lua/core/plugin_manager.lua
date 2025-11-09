@@ -17,6 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
+
 -- A little special key 😎
 vim.g.maplocalleader = "ñ"
 

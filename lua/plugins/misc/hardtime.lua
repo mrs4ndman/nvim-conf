@@ -3,8 +3,8 @@ return {
   event = "BufReadPost",
   opts = {
     max_time = 1250,
-    max_count = 5,
-    disable_mouse = false,
+    max_count = 10,
+    disable_mouse = true,
     hint = true,
     notification = true,
     allow_different_key = true,

@@ -2,9 +2,9 @@ return {
   "rmagatti/auto-session",
   event = "VimEnter",
   keys = {
-    { "<leader>sd", "<cmd>SessionDelete<CR>", desc = "Delete current session" },
-    { "<leader>sr", "<cmd>SessionRestore<CR>", desc = "Restore session for CWD" },
-    { "<leader>ss", "<cmd>SessionSave<CR>", desc = "Save current session" },
+    { "<leader>sd", "<cmd>AutoSession delete<CR>", desc = "Delete current session" },
+    { "<leader>sr", "<cmd>AutoSession restore<CR>", desc = "Restore session for CWD" },
+    { "<leader>ss", "<cmd>AutoSession save<CR>", desc = "Save current session" },
   },
   cmd = {
     "SessionRestore",

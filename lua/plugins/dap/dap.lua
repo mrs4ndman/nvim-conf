@@ -1,6 +1,7 @@
 return {
   -- Language / debugging plugins
   "mfussenegger/nvim-dap",
+  enabled = false,
   dependencies = {
     { "folke/which-key.nvim" },
     {

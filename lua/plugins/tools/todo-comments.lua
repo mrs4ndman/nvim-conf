@@ -4,7 +4,8 @@ return {
   event = { "BufRead", "BufNewFile" },
   dependencies = "nvim-lua/plenary.nvim",
   keys = {
-    { "<leader>td", "<cmd>TodoTrouble<CR>", desc = "[To-Do] Toggle list" },
+    { "<leader>tdq", "<cmd>TodoQuickfix<CR>", desc = "[To-Do] Toggle list" },
+    { "<leader>tdt", "<cmd>TodoTelescope<CR>", desc = "[To-Do] Toggle list" },
   },
   cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
   config = function()

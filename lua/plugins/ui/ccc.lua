@@ -1,3 +1,4 @@
+-- TODO: Susceptible to deletion
 return {
   "uga-rosa/ccc.nvim",
   lazy = true,
@@ -6,7 +7,6 @@ return {
   },
   config = function()
     local ccc = require("ccc")
-    local mapping = ccc.mapping
 
     ccc.setup({
       -- Enabling highlighter

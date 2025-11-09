@@ -2,10 +2,10 @@ return {
   "ggandor/flit.nvim",
   dependencies = { "tpope/vim-repeat" },
   event = "BufRead",
-  -- lazy = false,
+  -- lazy = true,
   opts = {
     keys = { f = "f", F = "F", t = "t", T = "T" },
-    labeled_modes = "v",
+    labeled_modes = "nv",
     multiline = true,
     opts = {},
   },

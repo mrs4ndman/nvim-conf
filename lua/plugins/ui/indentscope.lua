@@ -1,9 +1,9 @@
 return {
-  "echasnovski/mini.indentscope",
+  "nvim-mini/mini.indentscope",
   event = { "BufRead", "BufNewFile" },
   config = function()
     require("mini.indentscope").setup({
-      draw = { delay = 25, priority = 1 },
+      draw = { delay = 75, priority = 1 },
       mappings = {
         object_scope = "ii",
         object_scope_with_borer = "ai",
