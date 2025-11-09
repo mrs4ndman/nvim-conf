@@ -218,6 +218,10 @@ vim.keymap.set("n", "<C-M-x>", function()
   func.decrease_header()
 end)
 
+vim.keymap.set({ "n", "v" }, "<leader>dt", function()
+  func.toggle_word()
+end, { desc = "Toggle word" })
+
 vim.keymap.set("n", "<leader>tC", "rx")
 
 -- Half-page jumping
@@ -226,11 +230,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 vim.keymap.set("n", "]s", "]szz")
 vim.keymap.set("n", "[s", "[szz")
-
--- Lazy terminal
-vim.keymap.set("n", "<M-C-j>", function()
-  require("lazy.util").float_term()
-end, {})
 
 -- Normal mode ALT keybinds
 -- Sidescrolling: Go-Go-Gadget :D
@@ -274,9 +273,6 @@ vim.keymap.set("v", "<leader>s", function()
   vim.fn.winrestview(store)
 end)
 
-vim.keymap.set("n", "<leader>zt", func.cursor_lock("t"), { desc = "Toggle cursor lock (top)" })
-vim.keymap.set("n", "<leader>zc", func.cursor_lock("z"), { desc = "Toggle cursor lock (middle)" })
-vim.keymap.set("n", "<leader>zb", func.cursor_lock("b"), { desc = "Toggle cursor lock (bottom)" })
 
 -- Sort imports
 vim.keymap.set("v", "<leader>i", "<cmd>'<,'>!awk '{print length, $0}' | sort -n | cut -d' ' -f2-<CR>")
@@ -286,6 +282,5 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- TERMINAL mode keybinds
-vim.keymap.set("t", "<M-C-J>", "<C-\\><C-n>bd!<CR>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>te>", ":bd!", { desc = "Exit terminal" })

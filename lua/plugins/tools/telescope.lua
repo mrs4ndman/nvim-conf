@@ -4,11 +4,6 @@ return {
   -- tag = "0.1.4",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    {
-      "barrett-ruth/http-codes.nvim",
-      config = true,
-      dependencies = "ibhagwan/fzf-lua",
-    },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
 
@@ -98,8 +93,6 @@ return {
         },
       },
     })
-    require("telescope").load_extension("http")
     require("telescope").load_extension("fzf")
-    vim.keymap.set("n", "<leader>tH", "<cmd>Telescope http list<CR>", { desc = "HTTP Status codes" })
   end,
 }

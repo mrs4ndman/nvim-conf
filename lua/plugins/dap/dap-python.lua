@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-dap-python",
+  enabled = false,
   dependencies = { "mfussenegger/nvim-dap" },
   ft = "python",
   keys = {

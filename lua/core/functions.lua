@@ -204,159 +204,80 @@ function M.md_block()
 end
 
 --- Cursor lock for navigating code - Credit to @b0o
-function M.cursor_lock(lock)
-  return function()
-    local win = vim.api.nvim_get_current_win()
-    local augid = vim.api.nvim_create_augroup("user_cursor_lock_" .. win, { clear = true })
-    if not lock or vim.w.cursor_lock == lock then
-      vim.w.cursor_lock = nil
-      vim.notify("Cursor lock disabled")
-      return
-    end
-    local cb = function()
-      if vim.w.cursor_lock then
-        vim.print("no error")
-        vim.cmd("silent normal z" .. vim.w.cursor_lock)
-        vim.print("after error")
-      end
-    end
-    vim.w.cursor_lock = lock
-    vim.api.nvim_create_autocmd("CursorMoved", {
-      desc = "Cursor lock for window " .. win,
-      buffer = 0,
-      group = augid,
-      callback = cb,
-    })
-    cb()
-    vim.notify("Cursor lock enabled")
-  end
-end
+-- function M.cursor_lock(lock)
+--     local win = vim.api.nvim_get_current_win()
+--     local augid = vim.api.nvim_create_augroup("user_cursor_lock_" .. win, { clear = true })
+--     if not lock or vim.w.cursor_lock == lock then
+--       vim.w.cursor_lock = nil
+--       vim.notify("Cursor lock disabled")
+--       return
+--     end
+--     local cb = function()
+--       if vim.w.cursor_lock then
+--         vim.print("no error")
+--         vim.cmd("silent normal z" .. vim.w.cursor_lock)
+--         vim.print("after error")
+--       end
+--     end
+--     vim.w.cursor_lock = lock
+--     vim.api.nvim_create_autocmd("CursorMoved", {
+--       desc = "Cursor lock for window " .. win,
+--       buffer = 0,
+--       group = augid,
+--       callback = cb,
+--     })
+--     cb()
+--     vim.notify("Cursor lock enabled")
+--   end
 
---[[ 
-# --------------------------------------------------- #
-#    FUNCTIONS FOR RANGED / SINGLE LINE MACRO EXEC    #
-# --------------------------------------------------- # 
-]]
---- Stores current visual selection into the `v` register
---[[ function M.get_visual_selection()
-  vim.cmd('noau normal! "vy"')
-  return vim.fn.getreg("v")
-end ]]
-
---- Escapes the strings going into it
---[[ function M.escape_string(string_to_escape)
-  local escape_chars = {
-    "\\",
-    '"',
-    "'",
-    "[",
-    "]",
-    ".",
-    "*",
-    "+",
-    "-",
-    "?",
-    "^",
-    "$",
-    "(",
-    ")",
-    "%",
-    "#",
-    "{",
-    "}",
-    "|",
-    "<",
-    ">",
-    "=",
-    "!",
-    ":",
+--- Toggle common pairs of opposites under the cursor (e.g. true <-> false, yes <-> no)
+function M.toggle_word()
+  local pairs = {
+    {"true", "false"},
+    {"True", "False"},
+    {"yes", "no"},
+    {"on", "off"},
+    {"left", "right"},
+    {"up", "down"},
+    {"enable", "disable"},
+    {"!=", "=="},
   }
-  for _, char in ipairs(escape_chars) do
-    string_to_escape = vim.fn.escape(string_to_escape, char)
+
+  local line = vim.fn.getline(".")
+  local cursor = vim.fn.col(".")
+  local toggled = false
+
+  for _, pair in ipairs(pairs) do
+    local a, b = pair[1], pair[2]
+    local s, e = line:find(a, 1, true)
+    local word, inverse = a, b
+
+    -- If cursor is inside `a`
+    if s and e and cursor >= s and cursor <= e then
+      local new_line = line:sub(1, s - 1) .. b .. line:sub(e + 1)
+      vim.api.nvim_set_current_line(new_line)
+      vim.notify(string.format("[toggler] %s → %s", a, b))
+      toggled = true
+      break
+    end
+
+    -- If cursor is inside `b`
+    s, e = line:find(b, 1, true)
+    if s and e and cursor >= s and cursor <= e then
+      local new_line = line:sub(1, s - 1) .. a .. line:sub(e + 1)
+      vim.api.nvim_set_current_line(new_line)
+      vim.notify(string.format("[toggler] %s → %s", b, a))
+      toggled = true
+      break
+    end
   end
-  return string_to_escape
-end ]]
 
---- Record macro for a given word or visual selection
---[[ function M.record_macro()
-  local mode = vim.api.nvim_get_mode().mode
-  if mode == "v" then
-    local selection = M.get_visual_selection()
-    local escaped_selection = M.escape_string(selection)
-    vim.fn.setreg("/", escaped_selection)
-  elseif mode == "n" then
-    -- Move cursor to the begginning of the word under the cursor and yank it
-    vim.cmd('normal! "vyiw')
-    local word = vim.fn.getreg("v")
-    vim.fn.setreg("/", word)
+  if not toggled then
+    vim.notify("[toggler] no toggleable word under cursor", vim.log.levels.WARN)
   end
-  -- start recording macro
-  vim.cmd("normal! qi")
-end ]]
-
---- Correctly close the previously started macro
---[[ function M.confirm_macro()
-  local mode = vim.api.nvim_get_mode().mode
-  -- exit insert mode if it is being recorded
-  if mode == "i" then
-    vim.cmd("stopinsert")
-    -- exit visual mode if it is being recorded
-  elseif mode == "v" then
-    -- feedkeys
-    local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
-    vim.api.nvim_feedkeys(esc, "x", false)
-  end
-  -- stop recording macro if it is being recorded
-  -- or do nothing if it's not
-  vim.cmd("normal! qq")
-end ]]
-
---- Registry cleaner
-function M.clear_reg()
-  print("Clearing registers")
-  vim.cmd([[
-    let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
-    for r in regs
-    call setreg(r, [])
-    endfor
-    ]])
-end
--- Clearing the registers?
-vim.api.nvim_create_user_command("ClearReg", function()
-  M.clear_reg()
-end, {})
-vim.keymap.set("n", "<leader>cr", "<cmd>ClearReg<CR>", { desc = "Clear registers" })
-
---- Git commit picker + open in Fugitive
---- Requires Telescope and Fugitive to work
-function M.git_fugitive_picker()
-  -- if not pcall(require, "telescope") or not pcall(require, "fugitive") then
-  --   vim.notify("Both Telescope.nvim and vim-fugitive are needed", vim.log.levels.WARN, {})
-  --   return
-  -- end
-  local builtin = require("telescope.builtin")
-  local actions = require("telescope.actions")
-  local actions_state = require("telescope.actions.state")
-
-  builtin.git_commits({
-    attach_mappings = function(buffer)
-      actions.select_default:replace(function()
-        actions.close(buffer)
-
-        local commit = actions_state.get_selected_entry().value
-
-        vim.cmd.Git("diff " .. tostring(commit))
-        vim.cmd.wincmd("T")
-      end)
-
-      return true
-    end,
-  })
 end
 
-vim.api.nvim_create_user_command("TeleCommit", function()
-  M.git_fugitive_picker()
-end, {})
+--- Toggle common pairs of opposites under the cursor (e.g. true <-> false, yes <-> no)
 
 vim.api.nvim_create_user_command("SF", function()
   vim.cmd("'<,'>!sql-formatter")
