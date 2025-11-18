@@ -2,7 +2,7 @@ return {
   "eandrju/cellular-automaton.nvim",
   cmd = "CellularAutomaton",
   keys = {
-    { "<leader>cat", "<cmd>CellularAutomaton make_it_rain<CR>", desc = "cool stuff" },
+    { "<leader>cat", "<cmd>CellularAutomaton make_it_rain<CR>", desc = "[automaton] cool stuff" },
   },
   config = function()
     require("cellular-automaton").register_animation({

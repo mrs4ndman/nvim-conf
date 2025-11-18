@@ -3,7 +3,7 @@ return {
   "uga-rosa/ccc.nvim",
   lazy = true,
   keys = {
-    { "<leader>cp", "<cmd>CccPick<CR>" },
+    { "<leader>cp", "<cmd>CccPick<CR>", desc = "[Color Picker] Open" },
   },
   config = function()
     local ccc = require("ccc")

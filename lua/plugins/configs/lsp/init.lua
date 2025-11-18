@@ -29,11 +29,11 @@ M.on_attach = function(client, bufnr)
   vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { noremap = true, desc = "[LSP] Go to Implementation", buffer = bufnr })
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "[LSP] Hover info", buffer = bufnr })
   -- stylua: ignore
-  vim.keymap.set("n", "<leader>tD", "<cmd>Telescope lsp_dynamic_document_symbols<CR>",
-    { desc = "[LSP] Dynamic document symbols", buffer = bufnr })
-  vim.keymap.set("n", "<leader>tW", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "[LSP] Dynamic workspace symbols", buffer = bufnr })
+  vim.keymap.set("n", "<leader>tD", "<cmd>Telescope lsp_document_symbols<CR>",
+    { desc = "[LSP] Document symbols", buffer = bufnr })
+  vim.keymap.set("n", "<leader>tW", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "[LSP] Workspace symbols", buffer = bufnr })
   vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, { noremap = true, desc = "[LSP] View code actions", buffer = bufnr })
-  vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, { noremap = true, desc = "[LSP} Show references", buffer = bufnr })
+  vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, { noremap = true, desc = "[LSP] Show references", buffer = bufnr })
   vim.keymap.set({ "n", "v" }, "<leader>vrn", vim.lsp.buf.rename, { noremap = true, desc = "[LSP] Rename element under cursor", buffer = bufnr })
   vim.keymap.set("n", "<C-n>", vim.lsp.buf.signature_help, { noremap = true, desc = "[LSP] Signature help", buffer = bufnr })
   -- vim.keymap.set("n", "[d", vim.diagnostic.jump({ count = -1, float = true }), { noremap = true, desc = "[LSP] Previous diagnostic", buffer = bufnr })

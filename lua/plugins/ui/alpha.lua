@@ -1,7 +1,5 @@
 return {
   "goolord/alpha-nvim",
-  -- event = "VimEnter",
-  -- dependencies = "nvim-tree/nvim-web-devicons",
   keys = {
     { "<leader>sp", "<cmd>Alpha<CR>", desc = "Toggle Alpha" },
   },
@@ -11,7 +9,7 @@ return {
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
     -- It uses almost the same format as the "date" command in Linux (man date for info)
-    local time = os.date("%_k:%M - %a - %b %d")
+    local time = os.date("%_k:%M | %a | %d %b")
     local lazy = require("lazy")
 
     if vim.o.filetype == "lazy" then
@@ -34,9 +32,9 @@ return {
           -- "",
           -- "",
           "",
-          "       " .. time .. " |   v" .. v.major .. "." .. v.minor .. "." .. v.patch,
+          "     version: " .. v.major .. "." .. v.minor .. "." .. v.patch .. " | " .. time,
           "",
-          "   " .. stats.loaded .. " / " .. stats.count .. " plugins | " .. ms .. "ms |  mrs4ndman",
+          "Start: " .. stats.loaded .. " / " .. stats.count .. " plugins, " .. ms .. "ms |  mrs4ndman",
           "",
           "󰽰 The phone is ringing, the world is spinning 󰽰",
           "               󰎈 Just let me out 󰎈",
@@ -60,25 +58,25 @@ return {
       " ██║ ╚═╝ ██║██║  ██║███████║██║  ██║██║ ╚████║██████╔╝██║ ╚═╝ ██║██║  ██║██║ ╚████║ ",
       " ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ",
       "                                                                                    ",
-      "                                   N E O V I M                                      ",
-      "                                                                                    ",
+      -- "                                   N E O V I M                                      ",
+      -- "                                                                                    ",
       "                                      ／|__                                         ",
-      "                                     (o o /                                         ",
-      "_____________________________________ |.   ~. _____________________________________ ",
-      "                                      じしf_,)ノ                                    ",
+      "                                     (o o /     *                                   ",
+      " ____________________________________ / .  `~. / __________________________________ ",
+      "                                      ししf_,)ノ                                    ",
       -- "                                                                                    ",
     }
 
     dashboard.section.buttons.val = {
       dashboard.button("n", "    New file", "<cmd>ene<CR>"),
       dashboard.button("o", "⚡   It's Oil time", "<cmd>Oil<CR>"),
-      dashboard.button("v", "    Source session", "<cmd>SessionRestore<CR>"),
+      dashboard.button("s", "    Source session", "<cmd>AutoSession restore<CR>"),
       dashboard.button("f", "󰈞    Find project file", "<cmd>Telescope find_files<CR>"),
-      dashboard.button("r", "    Recent", "<cmd>Telescope oldfiles<CR>"),
       dashboard.button("g", "󰊄    Grep pattern", "<cmd>Telescope live_grep<CR>"),
-      dashboard.button("c", "󰏘    Colorschemes", "<cmd>Themer<CR>"),
+      dashboard.button("r", "    Recent", "<cmd>Telescope oldfiles<CR>"),
       dashboard.button("l", "󰒲    Plugins", "<cmd>Lazy<CR>"),
-      dashboard.button("q", "󰿅    Get me out :D", "<cmd>qa<CR>"),
+      dashboard.button("c", "󰏘    Colorschemes", "<cmd>Themer<CR>"),
+      dashboard.button("q", "󰿅    Get me out >:3", "<cmd>qa<CR>"),
     }
 
     alpha.setup(dashboard.opts)

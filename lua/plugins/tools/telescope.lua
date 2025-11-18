@@ -1,5 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
+  lazy = false,
   cmd = { "Telescope", "TeleCommit" },
   -- tag = "0.1.4",
   dependencies = {
@@ -16,8 +17,7 @@ return {
     { "<leader>sg", "<cmd>Telescope grep_string<CR>", desc = "[🔭] Fast string grep" },
     { "<leader>tr", "<cmd>Telescope oldfiles<CR>", desc = "[🔭] Recent files" },
     { "<leader>lh", "<cmd>Telescope highlights<CR>", desc = "[🔭] List highlights" },
-    { "<leader>tli", "<cmd>Telescope lsp_incoming_calls<CR>", desc = "[🔭-LSP] Incoming calls" },
-    { "<leader>tlo", "<cmd>Telescope lsp_outgoing_calls<CR>", desc = "[🔭-LSP] Outgoing calls" },
+    { "<leader>ld", "<cmd>Telescope diagnostics<CR>", desc = "[🔭] Grep through files" },
   },
   config = function()
     require("telescope").setup({
@@ -65,9 +65,8 @@ return {
         hidden = true,
         mappings = {
           i = {
-            ["<C-q>"] = require("telescope.actions").send_to_qflist --[[ + require("telescope.actions").open_qflist ]],
-            ["<M-q>"] = require("telescope.actions").send_selected_to_qflist --[[+  require("telescope.actions").open_qflist ]],
-            -- ["<C-t>"] = require("trouble.sources.telescope").open(),
+            ["<C-q>"] = require("telescope.actions").send_to_qflist,
+            ["<M-q>"] = require("telescope.actions").send_selected_to_qflist,
             ["<C-n>"] = require("telescope.actions").preview_scrolling_down,
             ["<C-p>"] = require("telescope.actions").preview_scrolling_up,
             ["<C-h>"] = require("telescope.actions").preview_scrolling_left,

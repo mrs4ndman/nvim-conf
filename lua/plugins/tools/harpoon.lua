@@ -38,7 +38,10 @@ return {
     local ui = require("harpoon.ui")
     local term = require("harpoon.term")
 
-    vim.keymap.set("n", "<leader>a", mark.add_file)
+    vim.keymap.set("n", "<leader>a", function()
+      vim.print("Added " .. vim.fn.expand("%:t") .. " to harpoon")
+     mark.add_file()
+    end)
     vim.keymap.set("n", "<leader>h", ui.toggle_quick_menu)
     vim.keymap.set("n", "<localleader><localleader>", ui.toggle_quick_menu)
 

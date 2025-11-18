@@ -126,7 +126,6 @@ function M.filename_component()
     ---@diagnostic disable-next-line: param-type-mismatch
     ["help"] = "[Help] " .. filename:sub(1, (filename:len() - 4)),
     ["lazy"] = "[lazy.nvim]",
-    [""] = "[No Name]",
     ["alpha"] = "[Start]",
     ["Trouble"] = "[" .. icons.plugins.trouble .. "trouble]",
   }
@@ -453,7 +452,6 @@ function M.render()
     }),
     concat_components({
       M.dap_component(),
-      M.diagnostics_component(),
     }),
     concat_components({
       -- "%#Statusline#%=",

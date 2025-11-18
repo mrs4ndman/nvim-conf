@@ -1,7 +1,6 @@
 local M = {}
 -- Execute the playerctl command and capture its output
 local playerctl_command = "playerctl -p spotify metadata"
-local playerctl_output = io.popen(playerctl_command):read("*a")
 
 -- Initialize variables to store extracted information
 local title, artist, album
@@ -9,6 +8,7 @@ local title, artist, album
 -- Iterate over lines and extract Title, Artist, and Album
 ---@return string
 function M.player_split()
+  local playerctl_output = io.popen(playerctl_command):read("*a")
   for line in playerctl_output:gmatch("[^\r\n]+") do
     local key, value = line:match("(%S+)%s+(.*)")
     if key == "spotify" then

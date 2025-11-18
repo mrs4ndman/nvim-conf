@@ -8,6 +8,7 @@ vim.g.maplocalleader = "ñ"
 
 local func = require("core.functions")
 local icons = require("core.icons")
+local music = require("user.music")
 
 -- Lazy and Mason shortcuts
 vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<CR>", { desc = "Lazy" })
@@ -273,7 +274,6 @@ vim.keymap.set("v", "<leader>s", function()
   vim.fn.winrestview(store)
 end)
 
-
 -- Sort imports
 vim.keymap.set("v", "<leader>i", "<cmd>'<,'>!awk '{print length, $0}' | sort -n | cut -d' ' -f2-<CR>")
 
@@ -284,3 +284,7 @@ vim.keymap.set("v", ">", ">gv")
 -- TERMINAL mode keybinds
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>te>", ":bd!", { desc = "Exit terminal" })
+
+vim.keymap.set("n", "<C-M-m>", function()
+  print(music.player_split())
+end)

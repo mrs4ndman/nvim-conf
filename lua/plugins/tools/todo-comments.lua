@@ -6,6 +6,7 @@ return {
   keys = {
     { "<leader>tdq", "<cmd>TodoQuickfix<CR>", desc = "[To-Do] Toggle list" },
     { "<leader>tdt", "<cmd>TodoTelescope<CR>", desc = "[To-Do] Toggle list" },
+    { "<leader>td", desc = "[To-Do] Toggle list" },
   },
   cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
   config = function()
