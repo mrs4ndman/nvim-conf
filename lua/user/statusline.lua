@@ -95,7 +95,7 @@ function M.mode_component()
     " ",
     string.format("%%#StatuslineModeSeparator%s# " .. icons.misc.neovim_solid .. " ", hl),
     string.format("%%#StatuslineMode%s#%s", hl, mode),
-    string.format("%%#StatuslineModeSeparator%s#  %%", hl),
+    string.format("%%#StatuslineModeSeparator%s# 󱢇 %%", hl),
   })
 end
 
@@ -465,5 +465,22 @@ function M.render()
   })
 end
 
-vim.o.statusline = "%!v:lua.require'user.statusline'.render()"
+local group = vim.api.nvim_create_augroup("Statusline", { clear = true })
+
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+  group = group,
+  desc = "Activate statusline on focus",
+  callback = function()
+    vim.opt_local.statusline = "%!v:lua.require'user.statusline'.render()"
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+  group = group,
+  desc = "Deactivate statusline when unfocused",
+  callback = function()
+    vim.opt_local.statusline = " %t"
+  end,
+})
+
 return M

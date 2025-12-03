@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- Highlight yanking action for a second
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank({ timeout = 60 })
+    vim.hl.on_yank({ timeout = 60 })
   end,
 })
 

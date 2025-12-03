@@ -55,6 +55,7 @@ for group, opts in pairs(statusline_groups) do
   vim.api.nvim_set_hl(0, group, opts)
 end
 
+---@diagnostic disable-next-line: param-type-mismatch
 vim.api.nvim_create_autocmd("Colorscheme", {
   callback = function()
     for group, opts in pairs(statusline_groups) do

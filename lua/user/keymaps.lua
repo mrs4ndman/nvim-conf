@@ -14,10 +14,6 @@ local music = require("user.music")
 vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<CR>", { desc = "Lazy" })
 vim.keymap.set("n", "<leader>mp", "<cmd>Mason<CR>", { desc = "Mason" })
 
-vim.keymap.set("n", "<leader>sb", function()
-  require("telescope.builtin").live_grep({ search_dirs = { vim.api.nvim_buf_get_name(0) } })
-end, { desc = "[🔭] Search current buffer" })
-
 -- INTERNAL KEYBINDS
 -- NORMAL mode Keybinds
 
@@ -27,8 +23,8 @@ vim.keymap.set("n", "<leader><leader>", function()
     print("Not a Lua file")
     return
   end
-  print("Sourced :)")
   vim.cmd("so")
+  print("Sourced :)")
 end, { desc = icons.misc.langs.lua .. " → Source current file" })
 
 -- Clear notifications and search
@@ -57,7 +53,7 @@ end
 -- Get me out of here (:D)
 vim.keymap.set("n", "<leader><Esc>", "<cmd>quitall<CR>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>ww", "<cmd>write<CR>", { desc = "Write current buffer" })
-vim.keymap.set("n", "<leader>wa", "<cmd>write<CR>", { desc = "Write to all buffers" })
+vim.keymap.set("n", "<leader>wa", "<cmd>wall<CR>", { desc = "Write to all buffers" })
 vim.keymap.set("n", "<leader>wq", "<cmd>wqa<CR>", { desc = "Bye :D" })
 vim.keymap.set("n", "ZE", "<cmd>confirm qall<CR>")
 
@@ -127,9 +123,6 @@ vim.keymap.set({ "n", "v" }, "X", '"_X')
 
 -- Select all
 vim.keymap.set("n", "<leader>sa", "ggVG", { desc = "Select all" })
-
--- Yank whole buffer
-vim.keymap.set("n", "<leader>ya", 'ggVG"+y', { desc = "Yank whole buffer" })
 
 -- Insert new line above and below and exit
 -- vim.keymap.set("n", "<leader>o", "o<Esc>", {desc = "Insert new line below and exit" })
@@ -239,9 +232,9 @@ vim.keymap.set("", "<ScrollWheelRight>", "<Nop>")
 vim.keymap.set("n", "<C-h>", "2<ScrollWheelLeft>")
 vim.keymap.set("n", "<C-l>", "2<ScrollWheelRight>")
 
--- Move up and down in normal mode
-vim.keymap.set("n", "<C-j>", ":m .+1<CR>==", { silent = true })
-vim.keymap.set("n", "<C-k>", ":m .-2<CR>==", { silent = true })
+-- Move up and down in normal and visual-adjacent mode
+vim.keymap.set("x", "<C-j>", ":m .+1<CR>==", { silent = true })
+vim.keymap.set("x", "<C-k>", ":m .-2<CR>==", { silent = true })
 
 -- No plz
 vim.keymap.set("n", "<C-z>", "<Nop>")
@@ -286,5 +279,5 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>te>", ":bd!", { desc = "Exit terminal" })
 
 vim.keymap.set("n", "<C-M-m>", function()
-  print(music.player_split())
+  music.player_split()
 end)

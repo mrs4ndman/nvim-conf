@@ -11,6 +11,8 @@ vim.wo.cursorline = true
 vim.wo.cursorlineopt = "both"
 vim.opt.smoothscroll = true
 vim.opt.showmode = false
+
+-- Just for my setup ;)
 if vim.env.TMUX then
   vim.opt.laststatus = 0
 else
@@ -35,10 +37,15 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 -- vim.opt.list = true
 -- vim.opt.listchars = {
---     eol = '⤶',
+    -- eol = '⤶',
+    -- trail = '|',
+    -- tab =  '>-'
 -- }
 
 -- If I even want to fold
+
+-- Disable fold marks
+vim.o.foldenable = false
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
@@ -46,7 +53,7 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.breakindent = true
 
--- No text wrapping
+-- No text wrapping (except for markdown -> after/ftplugin/markdown.lua for it)
 vim.opt.wrap = false
 
 -- Search tweaks, highlighting and included search
@@ -61,16 +68,13 @@ vim.opt.matchtime = 10
 vim.opt.termguicolors = true
 
 -- Update time
-vim.opt.updatetime = 50
+vim.opt.updatetime = 1000
 
 -- Set nvim timeout
 vim.opt.timeoutlen = 500
 
 -- Added auto signs to the signcolumn
-vim.opt.signcolumn = "auto:1-4"
-
--- Disable fold marks
-vim.o.foldenable = false
+vim.opt.signcolumn = "auto:4"
 
 -- NVIM Plugin set zone
 -- netrw config

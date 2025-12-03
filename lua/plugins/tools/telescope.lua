@@ -93,5 +93,8 @@ return {
       },
     })
     require("telescope").load_extension("fzf")
+    vim.keymap.set("n", "<leader>sb", function()
+      require("telescope.builtin").live_grep({ search_dirs = { vim.api.nvim_buf_get_name(0) } })
+    end, { desc = "[🔭] Search current buffer" })
   end,
 }

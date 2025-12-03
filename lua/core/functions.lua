@@ -94,6 +94,16 @@ function M.navigate(num)
     return vim.api.nvim_win_get_config(id).relative == ""
   end, vim.api.nvim_tabpage_list_wins(0))
 
+  if num > #windows then
+    vim.print("Invalid hop to ", num)
+    return
+  end
+
+  if num == vim.api.nvim_win_get_number(0) then
+    vim.print("Already at this window")
+    return
+  end
+
   for _, win in ipairs(windows) do
     local number = vim.api.nvim_win_get_number(win)
 
@@ -233,14 +243,16 @@ end
 --- Toggle common pairs of opposites under the cursor (e.g. true <-> false, yes <-> no)
 function M.toggle_word()
   local pairs = {
-    {"true", "false"},
-    {"True", "False"},
-    {"yes", "no"},
-    {"on", "off"},
-    {"left", "right"},
-    {"up", "down"},
-    {"enable", "disable"},
-    {"!=", "=="},
+    { "true", "false" },
+    { "True", "False" },
+    { "i32", "f32" },
+    { "i64", "f64" },
+    { "yes", "no" },
+    { "on", "off" },
+    { "left", "right" },
+    { "up", "down" },
+    { "enable", "disable" },
+    { "!=", "==" },
   }
 
   local line = vim.fn.getline(".")
