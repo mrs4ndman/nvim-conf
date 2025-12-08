@@ -1,5 +1,5 @@
 return {
-  "NvChad/nvim-colorizer.lua",
+  "catgoose/nvim-colorizer.lua",
   keys = {
     { "<localleader>c", "<cmd>ColorizerToggle<CR>", desc = "Color picker toggle" },
   },

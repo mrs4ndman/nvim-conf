@@ -5,7 +5,11 @@ return {
     config = function()
       require("nvim-autopairs").setup({
         check_ts = true,
-        -- { open = "¿", close = "?" },
+      })
+      local npairs = require("nvim-autopairs")
+      local rule = require("nvim-autopairs.rule")
+      npairs.add_rules({
+        rule("*", "*", { "markdown" })
       })
     end,
   },

@@ -2,8 +2,7 @@ return {
   "stevearc/aerial.nvim",
   cmd = "AerialToggle",
   keys = {
-    { "<leader>nb", "<cmd>AerialToggle!<CR>", desc = "[TS] Toggle Aerial" },
-    { "<leader>A", "<cmd>AerialCloseAll<CR>", desc = "[TS] Close Aerial" },
+    { "<leader>A", "<cmd>AerialToggle left<CR>", desc = "[TS] Toggle Aerial window on the left" },
   },
   dependencies = {
     "nvim-tree/nvim-web-devicons",

@@ -1,5 +1,6 @@
 return {
   "ray-x/go.nvim",
+  enabled = false,
   config = function()
     require("go").setup()
   end,

@@ -9,7 +9,7 @@ return {
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
     -- It uses almost the same format as the "date" command in Linux (man date for info)
-    local time = os.date("%_k:%M | %a | %d %b")
+    local time = os.date("%_k:%M | %a - %d %b")
     local lazy = require("lazy")
 
     if vim.o.filetype == "lazy" then
@@ -32,12 +32,12 @@ return {
           -- "",
           -- "",
           "",
-          "     version: " .. v.major .. "." .. v.minor .. "." .. v.patch .. " | " .. time,
+          "         v" .. v.major .. "." .. v.minor .. "." .. v.patch .. " | " .. time,
           "",
           "Start: " .. stats.loaded .. " / " .. stats.count .. " plugins, " .. ms .. "ms |  mrs4ndman",
           "",
           "󰽰 The phone is ringing, the world is spinning 󰽰",
-          "               󰎈 Just let me out 󰎈",
+          "              󰎈 Just let me out 󰎈",
           -- "   󰽰 I tuck you in, warm within, keep you free from sin ... 󰽰",
           -- "                 󰎈 'Til the Sandman, he comes 󰎈              ",
           "",

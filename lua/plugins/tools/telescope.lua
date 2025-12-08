@@ -10,6 +10,7 @@ return {
 
   keys = {
     -- TELESCOPE
+    { "<leader>ta", "<cmd>Telescope aerial<CR>", desc = "[🔭] Find symbols in current file" },
     { "<leader>tf", "<cmd>Telescope find_files<CR>", desc = "[🔭] Find files" },
     { "<leader>tg", "<cmd>Telescope live_grep<CR>", desc = "[🔭] Grep through files" },
     { "<leader>tb", "<cmd>Telescope buffers<CR>", desc = "[🔭] List buffers" },

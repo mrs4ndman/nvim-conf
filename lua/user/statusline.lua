@@ -95,7 +95,7 @@ function M.mode_component()
     " ",
     string.format("%%#StatuslineModeSeparator%s# " .. icons.misc.neovim_solid .. " ", hl),
     string.format("%%#StatuslineMode%s#%s", hl, mode),
-    string.format("%%#StatuslineModeSeparator%s# 󱢇 %%", hl),
+    string.format("%%#StatuslineModeSeparator%s# 󱢇%%", hl),
   })
 end
 
@@ -126,7 +126,7 @@ function M.filename_component()
     ---@diagnostic disable-next-line: param-type-mismatch
     ["help"] = "[Help] " .. filename:sub(1, (filename:len() - 4)),
     ["lazy"] = "[lazy.nvim]",
-    ["alpha"] = "[Start]",
+    ["alpha"] = " [Start]",
     ["Trouble"] = "[" .. icons.plugins.trouble .. "trouble]",
   }
 
@@ -366,7 +366,7 @@ function M.lsp_component()
   local icon = " "
 
   if next(clients) == nil then
-    return string.format("%%#StatuslineLSPIconNone#%s %%#StatuslineWhite# None ", icon)
+    return string.format("%%#StatuslineLSPIconNone#%s %%#StatuslineWhite#None", icon)
   end
   for _, client in ipairs(clients) do
     return clients ~= "" and string.format("%%#StatuslineLSPIconOk#%s %%#StatuslineWhite#%s", icon, client.name) or ""

@@ -19,7 +19,8 @@ return {
         { open = "[", close = "]" },
         { open = "{", close = "}" },
         { open = "<", close = ">" },
-        -- {open = ':', close = ':'} -- Rust maybe?
+        -- { open = "*", close = "*" },
+        { open = "|", close = "|" }, -- Rust maybe?
       },
       ignore_beginning = true,
       exclude = {},
