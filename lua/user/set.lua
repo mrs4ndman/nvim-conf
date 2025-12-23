@@ -60,10 +60,6 @@ vim.opt.wrap = false
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
--- Highlight bracket pairs
-vim.opt.showmatch = true
-vim.opt.matchtime = 10
-
 -- Terminal colors
 vim.opt.termguicolors = true
 

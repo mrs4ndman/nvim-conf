@@ -1,7 +1,7 @@
 return {
   "goolord/alpha-nvim",
   keys = {
-    { "<leader>sp", "<cmd>Alpha<CR>", desc = "Toggle Alpha" },
+    { "<leader>sp", "<cmd>Alpha<CR>", desc = "[Alpha] Toggle Dashboard" },
   },
   lazy = false,
   priority = 1000,

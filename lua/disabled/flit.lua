@@ -1,6 +1,7 @@
 return {
   "ggandor/flit.nvim",
   dependencies = { "tpope/vim-repeat" },
+  enabled = false,
   event = "BufRead",
   -- lazy = true,
   opts = {
