@@ -16,12 +16,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
-vim.api.nvim_create_autocmd("Filetype", {
-  pattern = "alpha",
-  callback = function()
-    vim.b.miniindentscope_disable = true
-  end,
-})
+-- vim.api.nvim_create_autocmd("Filetype", {
+--   pattern = "alpha",
+--   callback = function()
+--     vim.b.miniindentscope_disable = true
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*.tex",

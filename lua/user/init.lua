@@ -5,7 +5,7 @@ end
 if not pcall(require, "user.set") then
   print("Settings not loaded: error found")
 end
-if not pcall(require("user.autocmds")) then
+if not pcall(require, "user.autocmds") then
   print("Auto-commands not loaded: error found")
 end
 if not pcall(require, "user.statusline") then
