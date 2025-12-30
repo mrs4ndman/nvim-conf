@@ -48,6 +48,16 @@ return {
       --   enable = true,
       --   additional_vim_regex_highlighting = { "markdown" },
       -- markid = { enable = true },
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("mrsandman.tree-sitter", { clear = true }),
+        callback = function(event)
+          local ok, treesitter = pcall(require, "nvim-treesitter")
+          if ok and vim.tbl_contains(treesitter.get_installed(), event.match) then
+            vim.treesitter.start(event.buf, event.match)
+          end
+        end,
+      })
     end,
   },
   {

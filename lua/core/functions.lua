@@ -262,7 +262,6 @@ function M.toggle_word()
   for _, pair in ipairs(pairs) do
     local a, b = pair[1], pair[2]
     local s, e = line:find(a, 1, true)
-    local word, inverse = a, b
 
     -- If cursor is inside `a`
     if s and e and cursor >= s and cursor <= e then

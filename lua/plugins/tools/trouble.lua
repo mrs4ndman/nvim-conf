@@ -9,4 +9,5 @@ return {
     { "<leader>xb", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "[Trouble] Toggle diagnostics" },
     { "gr", "<cmd>Trouble lsp_references<CR>", desc = "[Trouble] LSP References" },
   },
+  opts = {}
 }
