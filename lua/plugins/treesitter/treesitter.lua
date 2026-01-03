@@ -58,6 +58,9 @@ return {
           end
         end,
       })
+
+      vim.keymap.set("n", "<leader>I", "<cmd>Inspect<CR>", { desc = "[TS] Inspect highlights under cursor" })
+      vim.keymap.set("n", "<leader>it", "<cmd>InspectTree<CR>", { desc = "[TS] Inspect highlights under cursor" })
     end,
   },
   {

@@ -6,6 +6,15 @@ return {
     -- commit = "8df2c65343da403d0c738797817c5e6d1607fdbb",
   },
   {
+    "mrs4ndman/kirbo", -- the coolest color scheme B)
+    -- lazy = false,
+    -- priority = 1000,
+    enabled = true,
+    lazy = false,
+    dev = true,
+    priority = 1000,
+  },
+  {
     "rose-pine/neovim", -- the coolest color scheme B)
     name = "rose-pine",
     -- lazy = false,

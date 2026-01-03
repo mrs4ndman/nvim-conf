@@ -13,5 +13,5 @@ require("core.highlights")
 if not pcall(require, "last-color") then
   return
 end
-local theme = require("last-color").recall() or "tokyonight"
+local theme = require("last-color").recall() or "habamax"
 vim.cmd(("colorscheme %s"):format(theme))

@@ -8,6 +8,7 @@ return {
   enabled = true,
   config = function()
     require("theme-selector.colorschemes").list = {
+      "kirbo",
       "tokyonight",
       "catppuccin",
       "rose-pine",
@@ -19,20 +20,5 @@ return {
       "github_dark_high_contrast",
     }
     require("theme-selector")
-
-    -- require("theme-selector").setup({
-    --   colorschemes = {
-    --     "tokyonight",
-    --     "catppuccin",
-    --     "rose-pine",
-    --     "tokyodark",
-    --     "default",
-    --     "oxocarbon",
-    --     "enfocado",
-    --     "fluoromachine",
-    --     "github_dark_high_contrast",
-    --   },
-    -- })
-    -- require("theme-selector")
   end,
 }
