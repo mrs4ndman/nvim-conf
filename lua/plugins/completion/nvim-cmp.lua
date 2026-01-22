@@ -21,7 +21,10 @@ return {
     "hrsh7th/cmp-omni",
     "f3fora/cmp-spell",
     -- Icons
-    "onsails/lspkind.nvim",
+    {
+      "onsails/lspkind.nvim",
+      commit = "3ddd1b4edefa425fda5a9f95a4f25578727c0bb3",
+    },
     {
       "roobert/tailwindcss-colorizer-cmp.nvim",
       -- optionally, override the default options:
