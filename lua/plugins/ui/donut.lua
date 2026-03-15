@@ -1,9 +1,10 @@
 return {
   "NStefan002/donut.nvim",
   version = "*",
+  enabled = false,
   lazy = false,
   opts = {
-    timeout = 15,
+    timeout = 60,
     sync_donuts = true,
   },
 }
