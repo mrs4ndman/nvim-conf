@@ -140,7 +140,6 @@ local servers = {
     capabilities = capabilities,
   },
 
-
   ["jsonls"] = {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -149,7 +148,18 @@ local servers = {
     on_attach = on_attach,
     capabilities = capabilities,
   },
-
+  ["ansiblels"] = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  },
+  ["terraformls"] = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  },
+  ["dockerls"] = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  },
 
   -- Not in use
 
@@ -160,7 +170,6 @@ local servers = {
   },
   ["ocamlls"] = {},
   ["neocmake"] = {},
-  ["ansiblels"] = {},
   ["ruby_ls"] = {},
   ["emmet_ls"] = {},
   ["gopls"] = {}, 

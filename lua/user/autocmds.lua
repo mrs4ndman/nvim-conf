@@ -49,11 +49,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- Highlight yanking action for a second
 vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("highlight_op", { clear = true }),
   callback = function()
-    vim.hl.on_yank({ timeout = 60 })
+    -- vim.hl.hl_op({ higroup = "Visual", timeout = 300 })
   end,
 })
-
 
 -- A pair for simple notifying when recording macros
 -- vim.api.nvim_create_autocmd("RecordingEnter", {
