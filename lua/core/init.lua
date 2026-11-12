@@ -15,3 +15,4 @@ if not pcall(require, "last-color") then
 end
 local theme = require("last-color").recall() or "habamax"
 vim.cmd(("colorscheme %s"):format(theme))
+vim.g.tpipeline_fillchar = " "
